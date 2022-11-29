@@ -9,11 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/helper-module-imports": "^7.18.6",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-regular-svg-icons": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/material": "^5.10.16",
+    "babel-plugin-macros": "^3.1.0",
     "next": "13.0.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-p5": "^1.3.33",
+    "react-type-animation": "^2.1.2"
   },
   "devDependencies": {
+    "@iconify/react": "^4.0.0",
     "autoprefixer": "^10.4.13",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.4",
