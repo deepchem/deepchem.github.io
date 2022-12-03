@@ -15,7 +15,8 @@ module.exports = {
       "terminal-red": "#FF5250",
       "terminal-green": "#10CF33",
       "terminal-yellow": "#FEC512",
-      "terminal-header": "#EEEFEF"
+      "terminal-header": "#EEEFEF",
+      "white": "#FFFFFF"
       
     },
     fontFamily: {
