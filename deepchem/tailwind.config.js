@@ -18,7 +18,6 @@ module.exports = {
       "terminal-header": "#EEEFEF"
       
     },
-
     fontFamily: {
       'sans': ['ui-sans-serif', 'system-ui'],
       'serif': ['ui-serif', 'Georgia'],
