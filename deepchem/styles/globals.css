@@ -32,15 +32,86 @@ a {
 
 canvas {
   display: block;
-  background: rgb(0,78,152);
+  background: rgb(0, 78, 152);
   background: linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%);
 }
 
-@media (-webkit-device-pixel-ratio: 1.25) {
-  header, nav, i, .hero, .get-started, .explore {
-    zoom: 0.8 ;
-    
+@media(-webkit-device-pixel-ratio: 1.25) {
+  header,
+  nav,
+  i,
+  .hero,
+  .get-started,
+  .supporters,
+  .contributors,
+  footer,
+  .explore {
+    zoom: 0.8;
+
+  }
+
+  /* .get-started,
+  .hero,
+  .explore,
+  header {
+    padding-left: calc(0.46 * 100vw - 400px) !important;
+    padding-right: calc(0.46 * 100vw - 400px) !important;
+  } */
+
+
+}
+
+@media (min-width: 1200px) {
+
+
+  .carousel::before,
+  .carousel::after {
+    background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 300px;
+    z-index: 2;
+  }
+
+  .carousel::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  .carousel::before {
+    left: 0;
+    top: 0;
   }
 
   
 }
+
+
+#get-started {
+  scroll-margin-top: 250px;
+}
+
+
+
+
+
+
+/* .get-started,
+.hero,
+header,
+footer {
+  padding-left: calc(0.46 * 100vw - 546px) !important;
+  padding-right: calc(0.46 * 100vw - 546px) !important;
+  margin-left: 20px;
+  margin-right: 20px;
+} */
+
+
+header,
+footer {
+  margin: 0;
+}
+
+

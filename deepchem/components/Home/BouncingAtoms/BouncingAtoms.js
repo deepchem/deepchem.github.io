@@ -1,32 +1,38 @@
-//ISSUE: p5.width and p5.height are undefined. Hardcoded them to 1920 and 540 for now. 
+//ISSUE: p5.width and p5.height are undefined. Hardcoded them to 1920 and 540 for now.
 
 import React from "react";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
   ssr: false,
 });
 
 const CANVAS_RESIZE = 1;
-const CANVAS_HEIGHT = 420 * CANVAS_RESIZE;
-const CANVAS_WIDTH = 1920 * CANVAS_RESIZE;
+let CANVAS_HEIGHT = 420 * CANVAS_RESIZE;
+let CANVAS_WIDTH = 1920 * CANVAS_RESIZE;
 
 const NUM_MOLECULES = 5;
-const NUM_ATOMS = 60;
+const NUM_ATOMS = 40;
 
 const MIN_N = 3;
 const MAX_N = 5;
 const MIN_RADIUS = 30;
 const MAX_RADIUS = 30;
 
-const MAX_DIA = 15;
-const MIN_DIA = 10;
-const MAX_SPEED = 2;
+const MAX_DIA = 9;
+const MIN_DIA = 2;
+const MAX_SPEED = 1.5;
 const MAX_DIA_CHANGE_SPEED = 0.1;
 
-const MAX_BONDING_DISTANCE = 15000;
-const MAX_STRONG_BONDING_DISTANCE = 5000;
+const MAX_BONDING_DISTANCE = 8000;
+const MAX_STRONG_BONDING_DISTANCE = 3000;
 
 const atoms = [];
+
+function updateCanvasHeightBasedOnWindowWidth(windowWidth, windowHeight) {
+  if (windowWidth < 480) {
+    CANVAS_HEIGHT = windowHeight/3;
+  }
+}
 
 function createMolecule(n, x, y, r, d, vx, vy, p5) {
   // console.log({n});
@@ -80,14 +86,16 @@ function formBond(a, b, separation, p5) {
     return;
   }
   if (separation < MAX_STRONG_BONDING_DISTANCE) {
-    p5.strokeWeight(5);
+    p5.strokeWeight(1);
   }
   p5.line(a.x, a.y, b.x, b.y);
-  p5.strokeWeight(1);
+  p5.strokeWeight(0.3);
 }
 export default (props) => {
   const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(p5.windowWidth, p5.windowHeight/2 - 80).parent(canvasParentRef);
+    updateCanvasHeightBasedOnWindowWidth(p5.windowWidth, p5.windowHeight);
+    CANVAS_HEIGHT = p5.windowHeight/2 - 80;
+    p5.createCanvas(p5.windowWidth, CANVAS_HEIGHT).parent(canvasParentRef);
 
     for (let i = 0; i < NUM_ATOMS; i++) {
       p5.append(
@@ -106,7 +114,6 @@ export default (props) => {
 
   const draw = (p5) => {
     p5.clear();
-    
 
     for (let i = 0; i < atoms.length; i++) {
       for (let j = i + 1; j < atoms.length; j++) {
@@ -121,9 +128,10 @@ export default (props) => {
     }
   };
 
-const windowResized = (p5) => {
-    p5.resizeCanvas(p5.windowWidth, p5.windowHeight/2 - 80);
+  const windowResized = (p5) => {
+    updateCanvasHeightBasedOnWindowWidth(p5.windowWidth, p5.windowHeight);
+    p5.resizeCanvas(p5.windowWidth, CANVAS_HEIGHT);
   };
 
-  return <Sketch setup={setup} draw={draw} windowResized = {windowResized}/>;
+  return <Sketch setup={setup} draw={draw} windowResized={windowResized} />;
 };
