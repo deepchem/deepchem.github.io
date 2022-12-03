@@ -1,8 +1,14 @@
 # deepchem.io
+Website for DeepChem - https://deepchem.io.
 
-Website for deepchem https://deepchem.io.
+## TechStack
+- [Next-13](https://nextjs.org/blog/next-13)
+- [TailwindCSS](https://tailwindcss.com/)
 
+## Features
+- Models
+- Datasets
+- Tutorials
 
-The static pages for the website will be maintained in this repo. They will be served automatically by [GitHub Pages](https://pages.github.com/).
-
-The frontpage for the website is in index.html.
+## Links
+- [UI/UX](https://www.figma.com/file/lx8RDjCI7XyzLeUMmP7tCw/DeepChem?node-id=0%3A1&t=fen0NhmFRR0TvkX3-3)
