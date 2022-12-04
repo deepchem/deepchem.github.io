@@ -15,19 +15,15 @@ import exploreProjects from "../public/images/explore-projects.png";
 import exploreTutorials from "../public/images/explore-tutorials.png";
 import exploreDatasets from "../public/images/explore-datasets.png";
 
-const installationCommand = "pip install deepchem";
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 export default function Home() {
   const [open, setOpen] = React.useState(false);
-
+  const terminalCommand = "pip install deepchem";
   const handleClick = () => {
-    navigator['clipboard'].writeText(
-      installationCommand
-    );
+    console.log("Clicked");
+    
     setOpen(true);
   };
 
