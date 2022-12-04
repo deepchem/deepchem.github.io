@@ -4,6 +4,7 @@ import Image from "next/image";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { TypeAnimation } from "react-type-animation";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import BouncingAtoms from "../components/Home/BouncingAtoms/BouncingAtoms";
 import CustomCarousel from "../components/CustomCarousel/CustomCarousel";
@@ -15,15 +16,14 @@ import exploreProjects from "../public/images/explore-projects.png";
 import exploreTutorials from "../public/images/explore-tutorials.png";
 import exploreDatasets from "../public/images/explore-datasets.png";
 
-
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function Home() {
   const [open, setOpen] = React.useState(false);
   const terminalCommand = "pip install deepchem";
   const handleClick = () => {
-    console.log("Clicked");
-    
     setOpen(true);
   };
 
@@ -106,12 +106,14 @@ export default function Home() {
           <div className="flex flex-row px-8 bg-white py-4 lg:py-6 rounded-b-2xl text-xl lg:text-2xl items-center">
             <p className="pr-2 font-extrabold">$</p>
             <div className="mr-auto">
-              <p>{installationCommand}</p>
+              <p>{terminalCommand}</p>
             </div>
+            <CopyToClipboard text={terminalCommand}>
             <i
               className="p-3 fa-regular fa-copy cursor-pointer text-dc-light-gray hover:bg-dc-gray/[0.06] rounded-full"
               onClick={handleClick}
             ></i>
+            </CopyToClipboard>
           </div>
         </div>
         <div className="hidden lg:block h-full w-[300px] flex-1"></div>
