@@ -39,7 +39,7 @@ export default function Home() {
       <BouncingAtoms />
 
       {/* HERO */}
-      <section className="flex flex-row py-8 items-center justify-between px-[25px] 2xl:px-[300px]">
+      <section className="flex flex-row py-8 items-center justify-between px-[25px] 2xl:px-[300px] hero">
         <div className="flex-1">
           <p className="text-dc-blue font-medium text-xl lg:text-[30px]">
             Democratising Deep Learning in
