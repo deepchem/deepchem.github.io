@@ -28,10 +28,12 @@ const MAX_STRONG_BONDING_DISTANCE = 3000;
 
 const atoms = [];
 
-function updateCanvasHeightBasedOnWindowWidth(windowWidth, windowHeight) {
-  if (windowWidth < 480) {
-    CANVAS_HEIGHT = windowHeight/3;
-  }
+function updateCanvasHeightBasedOnWindowWidth(windowWidth, windowHeight) {  
+    CANVAS_HEIGHT = windowHeight/2 - 80;
+    
+    if (windowWidth < 480) {
+      CANVAS_HEIGHT = windowHeight/3;
+    }
 }
 
 function createMolecule(n, x, y, r, d, vx, vy, p5) {
@@ -94,7 +96,6 @@ function formBond(a, b, separation, p5) {
 export default (props) => {
   const setup = (p5, canvasParentRef) => {
     updateCanvasHeightBasedOnWindowWidth(p5.windowWidth, p5.windowHeight);
-    CANVAS_HEIGHT = p5.windowHeight/2 - 80;
     p5.createCanvas(p5.windowWidth, CANVAS_HEIGHT).parent(canvasParentRef);
 
     for (let i = 0; i < NUM_ATOMS; i++) {

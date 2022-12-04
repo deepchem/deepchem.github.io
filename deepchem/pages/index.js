@@ -63,7 +63,7 @@ export default function Home() {
   return (
     <>
       <BouncingAtoms /> {/* HERO */}
-      <div className="flex flex-row mt-8 lg:mt-12 items-center justify-between px-[300px]  px-4 lg:px-16 xl:px-[300px]    hero">
+      <section className="flex flex-row mt-8 lg:mt-12 items-center justify-between px-[300px]  px-4 lg:px-16 xl:px-[300px]    hero">
         <div className="flex-1">
           <p className="text-dc-blue -mt-2 font-medium text-xl lg:text-[30px]">
             Democratising deep learning for
@@ -103,10 +103,10 @@ export default function Home() {
 
           <p className="self-end">-Mr. XYZ</p>
         </div>
-      </div>
+      </section>
       {/* HERO END*/}
       {/* GET STARTED BEGIN */}
-      <div className="px-4 gap-8 lg:gap-16 items-center justify-between flex flex-col lg:flex-row py-4 lg:py-16  bg-opacity-10 bg-dc-light-gray get-started">
+      <section className="px-4 gap-8 lg:gap-16 items-center justify-between flex flex-col lg:flex-row py-4 lg:py-16  bg-opacity-10 bg-dc-light-gray get-started">
         
         <div className=" hidden lg:block h-full w-[300px] flex-1"></div>
 
@@ -143,10 +143,10 @@ export default function Home() {
         </div>
 
         <div className="hidden lg:block h-full w-[300px] flex-1"></div>
-      </div>
+      </section>
       {/* GET STARTED END */}
       {/* SUPPORTERS SECTION BEGIN */}
-      <div className="supporters py-16 px-6 lg:px-[300px]">
+      <section className="supporters py-16 px-6 lg:px-[300px]">
         <div className=" flex flex-row items-center justify-around pt-8 gap-8">
           <h2 className="text-2xl lg:text-[40px] mb-8 lg:mb-16">Used by Industry Leaders</h2>
         </div>
@@ -185,10 +185,10 @@ export default function Home() {
             ></Image>
           </div>
         </Carousel>
-      </div>
+      </section>
       {/* SUPPORTERS SECTION END */}
       {/* EXPLORE START */}
-      <div className="explore flex flex-col items-center px-6 lg:px-[300px] py-8 mb-8 bg-dc-light-gray bg-opacity-10 gap-4">
+      <section className="explore flex flex-col items-center px-6 lg:px-[300px] py-8 mb-8 bg-dc-light-gray bg-opacity-10 gap-4">
         <h2 className="text-2xl lg:text-[40px]">Explore</h2>
         <div className="explore flex flex-col lg:flex-row items-center justify-between gap-16 ">
           <ExploreCard image={exploreModels} title="MODELS" />
@@ -206,7 +206,7 @@ export default function Home() {
             Copied to clipboard!
           </Alert>
         </Snackbar>
-      </div>
+      </section>
       {/* EXPLORE END */}
     </>
   );
