@@ -1,10 +1,10 @@
 import BouncingAtoms from "../components/Home/BouncingAtoms/BouncingAtoms";
 import { TypeAnimation } from "react-type-animation";
 import ExploreCard from "./../components/Home/ExploreCard";
-import React, { useState, useEffect } from 'react';               
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { Carousel } from "react-responsive-carousel";
+import CustomCarousel from "../components/CustomCarousel/CustomCarousel";
 
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -38,28 +38,6 @@ export default function Home() {
     setOpen(false);
   };
 
-  const [windowWidth, setWindowWidth] = React.useState(0);
-
-  useEffect(() => {
-    // Handler to call on window resize
-    function handleResize() {
-      setWindowWidth(window.innerWidth);
-    }
-
-    // Add event listener
-    window.addEventListener('resize', handleResize);
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); 
-
-  useEffect(() => {
-    // Handle your changes
-    console.log(innerWidth);
-  }, [windowWidth]);
-
-
-
   return (
     <>
       <BouncingAtoms /> {/* HERO */}
@@ -68,7 +46,7 @@ export default function Home() {
           <p className="text-dc-blue -mt-2 font-medium text-xl lg:text-[30px]">
             Democratising deep learning for
           </p>
-          <div className = "text-3xl lg:text-[36px] pb-4 lg:pb-16 lg:pt-4 font-bold">
+          <div className="text-3xl lg:text-[36px] pb-4 lg:pb-16 lg:pt-4 font-bold">
             <TypeAnimation
               sequence={[
                 "Drug Discovery",
@@ -90,10 +68,14 @@ export default function Home() {
               }}
             />
           </div>
-          <p className="font-medium text-[48px] lg:text-[56px] pb-8">DeepChem</p>
+          <p className="font-medium text-[48px] lg:text-[56px] pb-8">
+            DeepChem
+          </p>
         </div>
 
-        <p className="text-dc-orange font-thin text-[250px] px-24 hidden lg:inline">/</p>
+        <p className="text-dc-orange font-thin text-[250px] px-24 hidden lg:inline">
+          /
+        </p>
 
         <div className="flex flex-col flex-1  text-dc-gray text-opacity-60 hidden lg:block">
           <p className="italic">
@@ -107,9 +89,7 @@ export default function Home() {
       {/* HERO END*/}
       {/* GET STARTED BEGIN */}
       <section className="px-4 gap-8 lg:gap-16 items-center justify-between flex flex-col lg:flex-row py-4 lg:py-16  bg-opacity-10 bg-dc-light-gray get-started">
-        
         <div className=" hidden lg:block h-full w-[300px] flex-1"></div>
-
 
         <h2 className="text-2xl lg:text-[40px]" id="get-started">
           Get Started
@@ -121,7 +101,9 @@ export default function Home() {
               <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-yellow inline-block rounded-full " />
               <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-green inline-block rounded-full " />
             </div>
-            <p className="text-xl justify-self-center invisible lg:visible">deepchem --bash</p>
+            <p className="text-xl justify-self-center invisible lg:visible">
+              deepchem --bash
+            </p>
 
             <div className="flex flex-row gap-2 items-center invisible">
               <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-red inline-block rounded-full " />
@@ -148,19 +130,12 @@ export default function Home() {
       {/* SUPPORTERS SECTION BEGIN */}
       <section className="supporters py-16 px-6 lg:px-[300px]">
         <div className=" flex flex-row items-center justify-around pt-8 gap-8">
-          <h2 className="text-2xl lg:text-[40px] mb-8 lg:mb-16">Used by Industry Leaders</h2>
+          <h2 className="text-2xl lg:text-[40px] mb-8 lg:mb-16">
+            Used by Industry Leaders
+          </h2>
         </div>
-        <Carousel
-          className="carousel"
-          autoPlay={true}
-          centerMode={true}
-          infiniteLoop={true}
-          showThumbs={false}
-          centerSlidePercentage={windowWidth > 1200 ? 40 : 100}
-          showArrows={true}
-          showStatus = {false}
-          showIndicators = {false}
-        >
+        <CustomCarousel>
+          {" "}
           <div className="h-24 w-32">
             <Image
               src="/images/supporters/stanford-university-logo.png"
@@ -168,7 +143,6 @@ export default function Home() {
               objectFit="contain"
             ></Image>
           </div>
-
           <div className="h-24">
             <Image
               src="/images/supporters/schrodinger-logo.png"
@@ -176,7 +150,6 @@ export default function Home() {
               objectFit="contain"
             ></Image>
           </div>
-
           <div className="h-24">
             <Image
               src="/images/supporters/mit-logo.png"
@@ -184,7 +157,7 @@ export default function Home() {
               objectFit="contain"
             ></Image>
           </div>
-        </Carousel>
+        </CustomCarousel>
       </section>
       {/* SUPPORTERS SECTION END */}
       {/* EXPLORE START */}

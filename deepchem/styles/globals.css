@@ -45,10 +45,11 @@ canvas {
   .supporters,
   .contributors,
   footer,
-  .explore {
+  .explore,
+  .about {
     zoom: 0.8;
 
-  }
+  };
 
   /* .get-started,
   .hero,
@@ -61,7 +62,7 @@ canvas {
 
 }
 
-@media (min-width: 1200px) {
+@media(min-width: 1200px) {
 
 
   .carousel::before,
@@ -85,17 +86,13 @@ canvas {
     top: 0;
   }
 
-  
+
 }
 
 
 #get-started {
   scroll-margin-top: 250px;
 }
-
-
-
-
 
 
 /* .get-started,
@@ -113,5 +110,3 @@ header,
 footer {
   margin: 0;
 }
-
-
