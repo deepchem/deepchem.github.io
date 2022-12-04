@@ -18,15 +18,16 @@ import exploreProjects from "../public/images/explore-projects.png";
 import exploreTutorials from "../public/images/explore-tutorials.png";
 import exploreDatasets from "../public/images/explore-datasets.png";
 
+
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
 export default function Home() {
   // Handles showing and hiding of the Snackbar displayed upon pressing the copy button in the terminal
   const [open, setOpen] = React.useState(false);
-
+  const terminalCommand = "pip install deepchem";
   const handleClick = () => {
     console.log("Clicked");
-    navigator.clipboard.writeText(
-      "pip install tensorflow && pip install deepchem"
-    );
+    
     setOpen(true);
   };
 
@@ -117,10 +118,12 @@ export default function Home() {
               <p>pip install deepchem</p>
             </div>
 
-            <i
-              className="fa-regular fa-copy cursor-pointer"
-              onClick={handleClick}
-            ></i>
+            <CopyToClipboard text={terminalCommand}>
+              <i
+                className="fa-regular fa-copy cursor-pointer"
+                onClick={handleClick}
+              ></i>
+            </CopyToClipboard>
           </div>
         </div>
 
