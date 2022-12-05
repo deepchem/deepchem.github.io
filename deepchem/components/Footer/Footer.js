@@ -17,28 +17,54 @@ export default function Footer() {
             <p className="mb-2 text-white font-normal lg:text-2xl text-lg">
               DeepChem
             </p>
-            <Link href="#get-started">Get Started</Link>
-            <Link href="#get-started">About</Link>
-            <Link href="#get-started">Tutorials</Link>
-            <Link href="#get-started">Projects</Link>
-            <Link href="#get-started">Models</Link>
-            <Link href="#get-started">Datasets</Link>
+            <Link href="/#get-started">Get Started</Link>
+            <Link href="/about">About</Link>
+            <Link href="/tutorials">Tutorials</Link>
+            <Link
+              href="https://github.com/deepchem/deepchem/tree/master/examples"
+              target={"_blank"}
+            >
+              Projects
+            </Link>
+            <Link href="/models">Models</Link>
+            <Link href="/datasets">Datasets</Link>
           </div>
           <div className="flex flex-col gap-1">
             <p className="mb-2 text-white font-normal lg:text-2xl text-lg">
               Community
             </p>
-            <Link href="#get-started">Github</Link>
-            <Link href="#get-started">Forums</Link>
-            <Link href="#get-started">Discuss</Link>
+            <Link href="https://github.com/deepchem/deepchem" target={"_blank"}>
+              Github
+            </Link>
+            <Link href="https://forum.deepchem.io/" target={"_blank"}>
+              Forums
+            </Link>
+            <Link href="https://gitter.im/deepchem/Lobby" target={"_blank"}>
+              Discuss
+            </Link>
           </div>
           <div className="flex flex-col justify-center gap-1">
             <p className="mb-2 text-white font-normal lg:text-2xl text-lg">
               Socials
             </p>
-            <Link href="#get-started">LinkedIn</Link>
-            <Link href="#get-started">Facebook</Link>
-            <Link href="#get-started">Twitter</Link>
+            <Link
+              href="https://www.linkedin.com/company/deep-forest-sciences/"
+              target={"_blank"}
+            >
+              LinkedIn
+            </Link>
+            <Link
+              href="https://www.facebook.com/groups/1362916627160962/"
+              target={"_blank"}
+            >
+              Facebook
+            </Link>
+            <Link
+              href="https://twitter.com/deep_chem?lang=en"
+              target={"_blank"}
+            >
+              Twitter
+            </Link>
           </div>
         </div>
       </div>
