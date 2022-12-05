@@ -4,17 +4,13 @@ import Image from "next/image";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { TypeAnimation } from "react-type-animation";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import BouncingAtoms from "../components/Home/BouncingAtoms/BouncingAtoms";
 import CustomCarousel from "../components/CustomCarousel/CustomCarousel";
 import CarouselItem from "../components/CustomCarousel/CarouselItem";
-import ExploreCard from "./../components/Home/ExploreCard";
 
-import exploreModels from "../public/images/explore-models.png";
-import exploreProjects from "../public/images/explore-projects.png";
-import exploreTutorials from "../public/images/explore-tutorials.png";
-import exploreDatasets from "../public/images/explore-datasets.png";
+import ExploreCardItem from "./../components/Home/ExploreCardItem";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -66,15 +62,15 @@ export default function Home() {
               }}
             />
           </div>
-          <p className="font-medium text-[48px] lg:text-[56px]">
-            DeepChem
-          </p>
+          <p className="font-medium text-[48px] lg:text-[56px]">DeepChem</p>
         </div>
-        <div className="h-[250px] rotate-[18deg] w-[2px] bg-dc-orange mr-10 hidden lg:flex">
-        </div>
+        <div className="h-[250px] rotate-[18deg] w-[2px] bg-dc-orange mr-10 hidden lg:flex"></div>
         <div className="flex-col flex-1 text-dc-gray text-opacity-60 hidden lg:flex">
           <p className="italic text-lg">
-            "Chemistry itself knows altogether too well that - given the real fear that the scarcity of global resources and energy might threaten the unity of mankind - chemistry is in a position to make a contribution towards securing a true peace on earth."
+            "Chemistry itself knows altogether too well that - given the real
+            fear that the scarcity of global resources and energy might threaten
+            the unity of mankind - chemistry is in a position to make a
+            contribution towards securing a true peace on earth."
           </p>
           <p className="text-right font-bold mt-2">~ Kenichi Ukui</p>
         </div>
@@ -109,10 +105,10 @@ export default function Home() {
               <p>{terminalCommand}</p>
             </div>
             <CopyToClipboard text={terminalCommand}>
-            <i
-              className="p-3 fa-regular fa-copy cursor-pointer text-dc-light-gray hover:bg-dc-gray/[0.06] rounded-full"
-              onClick={handleClick}
-            ></i>
+              <i
+                className="p-3 fa-regular fa-copy cursor-pointer text-dc-light-gray hover:bg-dc-gray/[0.06] rounded-full"
+                onClick={handleClick}
+              ></i>
             </CopyToClipboard>
           </div>
         </div>
@@ -124,12 +120,16 @@ export default function Home() {
       <section className="supporters py-16 px-6 lg:px-[300px]">
         <div className=" flex flex-row items-center justify-start gap-8">
           <h2 className="text-2xl lg:text-[32px] mb-8 lg:mb-16 uppercase">
-            Used By<br/>
+            Used By
+            <br />
             Scientific Leaders
           </h2>
         </div>
-        <CustomCarousel showArrows={true} showIndicators={true} >
-          <CarouselItem src="/images/supporters/stanford-university-logo.png" link="" />
+        <CustomCarousel showArrows={true} showIndicators={true}>
+          <CarouselItem
+            src="/images/supporters/stanford-university-logo.png"
+            link=""
+          />
           <CarouselItem src="/images/supporters/schrodinger-logo.png" link="" />
           <CarouselItem src="/images/supporters/mit-logo.png" link="" />
         </CustomCarousel>
@@ -140,20 +140,33 @@ export default function Home() {
       <section className="explore flex flex-col items-center px-[25px] 2xl:px-[300px] py-16 bg-dc-light-gray bg-opacity-10 gap-4">
         <h2 className="text-3xl mb-8">Explore</h2>
         <div className="explore flex flex-wrap lg:flex-row items-center justify-center gap-10">
-          <ExploreCard image={exploreModels} title="MODELS" />
-          <ExploreCard image={exploreProjects} title="PROJECTS" />
-          <ExploreCard image={exploreTutorials} title="TUTORIALS" />
-          <ExploreCard image={exploreDatasets} title="DATASETS" />
+          <ExploreCardItem
+            image={"/images/explore-models.png"}
+            title="MODELS"
+            link={"/models"}
+          />
+          <ExploreCardItem
+            image={"/images/explore-projects.png"}
+            title="PROJECTS"
+            link={"https://github.com/deepchem/deepchem/tree/master/examples"}
+            blank={true}
+          />
+          <ExploreCardItem
+            image={"/images/explore-tutorials.png"}
+            title="TUTORIALS"
+            link={"/tutorials"}
+          />
+          <ExploreCardItem
+            image={"/images/explore-datasets.png"}
+            title="DATASETS"
+            link={"/datasets"}
+          />
         </div>
       </section>
       {/* EXPLORE END */}
 
       <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
+        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           Copied!
         </Alert>
       </Snackbar>
