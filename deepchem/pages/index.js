@@ -117,7 +117,7 @@ export default function Home() {
       {/* GET STARTED END */}
 
       {/* SUPPORTERS SECTION BEGIN */}
-      {/* <section className="supporters py-16 px-6 lg:px-[300px]">
+      <section className="supporters py-16 px-6 lg:px-[300px]">
         <div className=" flex flex-row items-center justify-start gap-8">
           <h2 className="text-2xl lg:text-[32px] mb-8 lg:mb-16 uppercase">
             Used By
@@ -157,17 +157,6 @@ export default function Home() {
           <CarouselItem src="/images/used-by/uni-tokyo.png" />
           <CarouselItem src="/images/used-by/uni-vienna.png" />
           <CarouselItem src="/images/used-by/uni-zhejiang.png" />
-        </CustomCarousel>
-      </section> */}
-      <section className="supporters pt-8 pb-16 px-[25px] 2xl:px-[300px] ">
-        <h2 className="text-dc-gray text-2xl lg:text-[32px] mb-8 lg:mb-16 uppercase">
-          Used By<br />
-          Scientific Leaders
-        </h2>
-        <CustomCarousel>
-          <CarouselItem src="/images/supporters/stanford-university-logo.png" link="" />
-          <CarouselItem src="/images/supporters/schrodinger-logo.png" link="" />
-          <CarouselItem src="/images/supporters/mit-logo.png" link="" />
         </CustomCarousel>
       </section>
       {/* SUPPORTERS SECTION END */}
