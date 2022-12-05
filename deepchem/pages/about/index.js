@@ -2,13 +2,15 @@ import Image from "next/image";
 
 import faqs from "./faqs";
 import CarouselItem from "../../components/CustomCarousel/CarouselItem";
-import CustomCarousel from './../../components/CustomCarousel/CustomCarousel';
+import CustomCarousel from "./../../components/CustomCarousel/CustomCarousel";
 
 export default function About() {
   return (
     <>
       <section className="py-8 px-[25px] 2xl:px-[300px] about text-center lg:text-left">
-        <h2 className="text-2xl lg:text-3xl mb-4 text-dc-gray font-medium">From Developer's Desk</h2>
+        <h2 className="text-2xl lg:text-3xl mb-4 text-dc-gray font-medium">
+          From Developer's Desk
+        </h2>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
           <p className="text-justify font-normal leading-[1.5rem] text-base lg:text-lg text-dc-gray/60">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ab
@@ -40,14 +42,33 @@ export default function About() {
         </div>
       </section>
 
+      <section className="py-8 px-[25px] 2xl:px-[300px] about text-center lg:text-left">
+        <h2 className="text-2xl lg:text-3xl mb-4 text-dc-gray font-medium">
+          Licensing and Commercial Uses
+        </h2>
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
+          <p className="text-justify font-normal leading-[1.5rem] text-base lg:text-lg text-dc-gray/60">
+            DeepChem is licensed under the MIT License. We actively support
+            commercial users. Note that any novel discoveries made through
+            DeepChem belong entirely to the user and not to DeepChem developers.
+          </p>
+        </div>
+      </section>
+
       <section className="py-8 px-[25px] 2xl:px-[300px] about bg-dc-light-gray bg-opacity-10 ">
-        <h2 className="text-2xl lg:text-3xl mb-4 text-center lg:text-left text-dc-gray">FAQs</h2>
+        <h2 className="text-2xl lg:text-3xl mb-4 text-center lg:text-left text-dc-gray">
+          FAQs
+        </h2>
         <div className="flex flex-col justify-between gap-6">
           {faqs.map((faq) => {
             return (
               <div>
-                <h3 className="text-xl lg:text-2xl text-dc-orange font-medium py-1">{faq.question}</h3>
-                <p className="font-light italic leading-[1.5rem] text-base lg:text-lg text-justify">{faq.answer}</p>
+                <h3 className="text-xl lg:text-2xl text-dc-orange font-medium py-1">
+                  {faq.question}
+                </h3>
+                <p className="font-light italic leading-[1.5rem] text-base lg:text-lg text-justify">
+                  {faq.answer}
+                </p>
               </div>
             );
           })}
@@ -56,14 +77,22 @@ export default function About() {
 
       <section className="supporters pt-8 pb-16 px-[25px] 2xl:px-[300px] ">
         <h2 className="text-dc-gray text-2xl lg:text-[32px] mb-8 lg:mb-16 uppercase">
-          COMPANIES & UNIVERSITIES<br />
+          COMPANIES & UNIVERSITIES
+          <br />
           DEVELOPING DEEPCHEM
         </h2>
-        <CustomCarousel>
-          <CarouselItem src="/images/supporters/stanford-university-logo.png" link="" />
-          <CarouselItem src="/images/supporters/schrodinger-logo.png" link="" />
-          <CarouselItem src="/images/supporters/mit-logo.png" link="" />
-        </CustomCarousel>
+        <div className="flex flex-row flex-wrap items-center justify-center gap-16">
+          <Image
+            src="/images/supporters/schrodinger-logo.png"
+            height={0}
+            width={300}
+          />
+          <Image
+            src="/images/supporters/stanford-logo.png"
+            height={0}
+            width={400}
+          />
+        </div>
       </section>
     </>
   );

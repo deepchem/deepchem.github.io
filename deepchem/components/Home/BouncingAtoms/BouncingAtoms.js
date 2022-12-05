@@ -1,5 +1,3 @@
-//ISSUE: p5.width and p5.height are undefined. Hardcoded them to 1920 and 540 for now.
-
 import React from "react";
 import dynamic from "next/dynamic";
 const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
@@ -11,7 +9,7 @@ let CANVAS_HEIGHT = 420 * CANVAS_RESIZE;
 let CANVAS_WIDTH = 1920 * CANVAS_RESIZE;
 
 const NUM_MOLECULES = 5;
-const NUM_ATOMS = 40;
+const NUM_ATOMS = 50;
 
 const MIN_N = 3;
 const MAX_N = 5;
@@ -28,12 +26,16 @@ const MAX_STRONG_BONDING_DISTANCE = 3000;
 
 const atoms = [];
 
-function updateCanvasHeightBasedOnWindowWidth(windowWidth, windowHeight) {  
-    CANVAS_HEIGHT = windowHeight/2 - 80;
-    
-    if (windowWidth < 480) {
-      CANVAS_HEIGHT = windowHeight/3;
-    }
+function updateCanvasDimensionsBasedOnWindowDimensions(
+  windowWidth,
+  windowHeight
+) {
+  CANVAS_HEIGHT = windowHeight / 2 - 80;
+  CANVAS_WIDTH = windowWidth;
+
+  if (windowWidth < 480) {
+    CANVAS_HEIGHT = windowHeight / 3;
+  }
 }
 
 function createMolecule(n, x, y, r, d, vx, vy, p5) {
@@ -59,14 +61,13 @@ class Atom {
     this.p5 = p5;
   }
 
-  move() {
+  move(p5) {
     this.x += this.vx;
     this.y += this.vy;
-    if (this.x < 0 || this.x > 1920) {
+    if (this.x < 0 || this.x > p5.windowWidth) {
       this.vx = this.vx * -1;
     }
 
-    // console.log(540);
     if (this.y < 0 || this.y > 420) {
       this.vy = this.vy * -1;
     }
@@ -95,16 +96,19 @@ function formBond(a, b, separation, p5) {
 }
 export default (props) => {
   const setup = (p5, canvasParentRef) => {
-    updateCanvasHeightBasedOnWindowWidth(p5.windowWidth, p5.windowHeight);
-    p5.createCanvas(p5.windowWidth, CANVAS_HEIGHT).parent(canvasParentRef);
+    updateCanvasDimensionsBasedOnWindowDimensions(
+      p5.windowWidth,
+      p5.windowHeight
+    );
+    p5.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent(canvasParentRef);
 
     for (let i = 0; i < NUM_ATOMS; i++) {
       p5.append(
         atoms,
         new Atom(
           p5.random(MIN_DIA, MAX_DIA),
-          p5.random(0, 1920),
-          p5.random(0, 420),
+          p5.random(0, CANVAS_WIDTH),
+          p5.random(0, CANVAS_HEIGHT),
           p5.random(-MAX_SPEED, MAX_SPEED),
           p5.random(-MAX_SPEED, MAX_SPEED),
           p5.random(-MAX_DIA_CHANGE_SPEED, MAX_DIA_CHANGE_SPEED)
@@ -124,13 +128,16 @@ export default (props) => {
     }
 
     for (let atom of atoms) {
-      atom.move();
+      atom.move(p5);
       p5.circle(atom.x, atom.y, atom.dia);
     }
   };
 
   const windowResized = (p5) => {
-    updateCanvasHeightBasedOnWindowWidth(p5.windowWidth, p5.windowHeight);
+    updateCanvasDimensionsBasedOnWindowDimensions(
+      p5.windowWidth,
+      p5.windowHeight
+    );
     p5.resizeCanvas(p5.windowWidth, CANVAS_HEIGHT);
   };
 

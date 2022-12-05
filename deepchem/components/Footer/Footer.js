@@ -19,15 +19,20 @@ export default function Footer() {
             </p>
             <Link href="/#get-started">Get Started</Link>
             <Link href="/about">About</Link>
-            <Link href="/tutorials">Tutorials</Link>
+            <Link
+              href="https://github.com/deepchem/deepchem/tree/master/examples/tutorials"
+              target={"_blank"}
+            >
+              Tutorials
+            </Link>
             <Link
               href="https://github.com/deepchem/deepchem/tree/master/examples"
               target={"_blank"}
             >
               Projects
             </Link>
-            <Link href="/models">Models</Link>
-            <Link href="/datasets">Datasets</Link>
+            {/* <Link href="/models">Models</Link>
+            <Link href="/datasets">Datasets</Link> */}
           </div>
           <div className="flex flex-col gap-1">
             <p className="mb-2 text-white font-normal lg:text-2xl text-lg">

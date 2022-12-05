@@ -126,12 +126,37 @@ export default function Home() {
           </h2>
         </div>
         <CustomCarousel showArrows={true} showIndicators={true}>
-          <CarouselItem
-            src="/images/supporters/stanford-university-logo.png"
-            link=""
-          />
-          <CarouselItem src="/images/supporters/schrodinger-logo.png" link="" />
-          <CarouselItem src="/images/supporters/mit-logo.png" link="" />
+          <CarouselItem src="/images/used-by/atom.png" />
+          <CarouselItem src="/images/used-by/bist.png" />
+          <CarouselItem src="/images/used-by/csir.png" />
+          <CarouselItem src="/images/used-by/expedia.png" />
+          <CarouselItem src="/images/used-by/firmenich.png" />
+          <CarouselItem src="/images/used-by/german-research-center-for-env-health.png" />
+          <CarouselItem src="/images/used-by/ghddi.png" />
+          <CarouselItem src="/images/used-by/ibm-watson.png" />
+          <CarouselItem src="/images/used-by/icms.png" />
+          <CarouselItem src="/images/used-by/jiangsu.png" />
+          <CarouselItem src="/images/used-by/mit.png" />
+          <CarouselItem src="/images/used-by/northwestern.png" />
+          <CarouselItem src="/images/used-by/riken.png" />
+          <CarouselItem src="/images/used-by/skoltech.png" />
+          <CarouselItem src="/images/used-by/sri-international.png" />
+          <CarouselItem src="/images/used-by/strath.png" />
+          <CarouselItem src="/images/used-by/ucf.png" />
+          <CarouselItem src="/images/used-by/uni-alberta.png" />
+          <CarouselItem src="/images/used-by/uni-bristol.png" />
+          <CarouselItem src="/images/used-by/uni-catalonia.png" />
+          <CarouselItem src="/images/used-by/uni-central-south.png" />
+          <CarouselItem src="/images/used-by/uni-east-china.png" />
+          <CarouselItem src="/images/used-by/uni-geneva.png" />
+          <CarouselItem src="/images/used-by/uni-hunan.png" />
+          <CarouselItem src="/images/used-by/uni-macau.png" />
+          <CarouselItem src="/images/used-by/uni-shanghai.png" />
+          <CarouselItem src="/images/used-by/uni-taiwan.png" />
+          <CarouselItem src="/images/used-by/uni-tartu.png" />
+          <CarouselItem src="/images/used-by/uni-tokyo.png" />
+          <CarouselItem src="/images/used-by/uni-vienna.png" />
+          <CarouselItem src="/images/used-by/uni-zhejiang.png" />
         </CustomCarousel>
       </section>
       {/* SUPPORTERS SECTION END */}
@@ -140,11 +165,11 @@ export default function Home() {
       <section className="explore flex flex-col items-center px-[25px] 2xl:px-[300px] py-16 bg-dc-light-gray bg-opacity-10 gap-4">
         <h2 className="text-3xl mb-8">Explore</h2>
         <div className="explore flex flex-wrap lg:flex-row items-center justify-center gap-10">
-          <ExploreCardItem
+          {/* <ExploreCardItem
             image={"/images/explore-models.png"}
             title="MODELS"
             link={"/models"}
-          />
+          /> */}
           <ExploreCardItem
             image={"/images/explore-projects.png"}
             title="PROJECTS"
@@ -154,13 +179,15 @@ export default function Home() {
           <ExploreCardItem
             image={"/images/explore-tutorials.png"}
             title="TUTORIALS"
-            link={"/tutorials"}
+            link={
+              "https://github.com/deepchem/deepchem/tree/master/examples/tutorials"
+            }
           />
-          <ExploreCardItem
+          {/* <ExploreCardItem
             image={"/images/explore-datasets.png"}
             title="DATASETS"
             link={"/datasets"}
-          />
+          /> */}
         </div>
       </section>
       {/* EXPLORE END */}
