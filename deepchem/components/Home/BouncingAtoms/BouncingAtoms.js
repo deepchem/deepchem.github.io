@@ -9,32 +9,38 @@ let CANVAS_HEIGHT = 420 * CANVAS_RESIZE;
 let CANVAS_WIDTH = 1920 * CANVAS_RESIZE;
 
 const NUM_MOLECULES = 5;
-const NUM_ATOMS = 50;
+let NUM_ATOMS = 40;
 
 const MIN_N = 3;
 const MAX_N = 5;
 const MIN_RADIUS = 30;
 const MAX_RADIUS = 30;
 
-const MAX_DIA = 9;
-const MIN_DIA = 2;
+const MAX_DIA = 7;
+const MIN_DIA = 1;
 const MAX_SPEED = 1.5;
 const MAX_DIA_CHANGE_SPEED = 0.1;
 
-const MAX_BONDING_DISTANCE = 8000;
-const MAX_STRONG_BONDING_DISTANCE = 3000;
+let MAX_BONDING_DISTANCE = 8000;
+let MAX_STRONG_BONDING_DISTANCE = 3000;
 
 const atoms = [];
 
-function updateCanvasDimensionsBasedOnWindowDimensions(
-  windowWidth,
-  windowHeight
-) {
+function updateP5ParametersBasedOnWindowDimensions(windowWidth, windowHeight) {
   CANVAS_HEIGHT = windowHeight / 2 - 80;
   CANVAS_WIDTH = windowWidth;
 
-  if (windowWidth < 480) {
+  if (windowWidth < 1200) {
+    NUM_ATOMS = 30;
     CANVAS_HEIGHT = windowHeight / 3;
+    MAX_BONDING_DISTANCE = 6000;
+    MAX_STRONG_BONDING_DISTANCE = 2000;
+  }
+
+  if (windowWidth < 600) {
+    NUM_ATOMS = 20;
+    MAX_BONDING_DISTANCE = 3000;
+    MAX_STRONG_BONDING_DISTANCE = 1000;
   }
 }
 
@@ -64,11 +70,11 @@ class Atom {
   move(p5) {
     this.x += this.vx;
     this.y += this.vy;
-    if (this.x < 0 || this.x > p5.windowWidth) {
+    if (this.x < 0 || this.x > CANVAS_WIDTH) {
       this.vx = this.vx * -1;
     }
 
-    if (this.y < 0 || this.y > 420) {
+    if (this.y < 0 || this.y > CANVAS_HEIGHT) {
       this.vy = this.vy * -1;
     }
 
@@ -89,17 +95,14 @@ function formBond(a, b, separation, p5) {
     return;
   }
   if (separation < MAX_STRONG_BONDING_DISTANCE) {
-    p5.strokeWeight(1);
+    p5.strokeWeight(0.8);
   }
   p5.line(a.x, a.y, b.x, b.y);
   p5.strokeWeight(0.3);
 }
 export default (props) => {
   const setup = (p5, canvasParentRef) => {
-    updateCanvasDimensionsBasedOnWindowDimensions(
-      p5.windowWidth,
-      p5.windowHeight
-    );
+    updateP5ParametersBasedOnWindowDimensions(p5.windowWidth, p5.windowHeight);
     p5.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent(canvasParentRef);
 
     for (let i = 0; i < NUM_ATOMS; i++) {
@@ -134,10 +137,7 @@ export default (props) => {
   };
 
   const windowResized = (p5) => {
-    updateCanvasDimensionsBasedOnWindowDimensions(
-      p5.windowWidth,
-      p5.windowHeight
-    );
+    updateP5ParametersBasedOnWindowDimensions(p5.windowWidth, p5.windowHeight);
     p5.resizeCanvas(p5.windowWidth, CANVAS_HEIGHT);
   };
 
