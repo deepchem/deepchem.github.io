@@ -1,8 +1,21 @@
 import Image from "next/image";
 
-import faqs from "./faqs";
-import CarouselItem from "../../components/CustomCarousel/CarouselItem";
-import CustomCarousel from "./../../components/CustomCarousel/CustomCarousel";
+import DeveloperDeskImage from "../public/images/about/developer.png";
+import ScrodingerLogo from "../public/images/supporters/schrodinger-logo.png";
+import StanfordLogo from "../public/images/supporters/stanford-logo.png";
+
+const faqs = [
+  {
+    question: "What is DeepChem?",
+    answer:
+      "DeepChem is a Python library for machine learning and deep learning on molecular and quantum datasets. It is built on top of TensorFlow, Keras, and other popular ML frameworks. It is designed to make it easy to apply ML to new domains, and to build and benchmark new models. It is also designed to make it easy to use ML in production, by providing easy-to-use model export and deployment APIs.",
+  },
+  {
+    question: "How to get started?",
+    answer:
+      "To get started, you can check out our tutorials and documentation. You can also join our community on GitHub and discuss with other users.",
+  },
+];
 
 export default function About() {
   return (
@@ -33,11 +46,7 @@ export default function About() {
             nemo est soluta adipisci. Vitae?
           </p>
           <div className="order-first lg:order-none rounded-full w-40 h-40 relative flex-shrink-0">
-            <Image
-              src="/images/about/developer.png"
-              layout="fill"
-              objectFit="contain"
-            />
+            <Image src={DeveloperDeskImage} layout="fill" objectFit="contain" />
           </div>
         </div>
       </section>
@@ -82,16 +91,8 @@ export default function About() {
           DEVELOPING DEEPCHEM
         </h2>
         <div className="flex flex-row flex-wrap items-center justify-center gap-16">
-          <Image
-            src="/images/supporters/schrodinger-logo.png"
-            height={0}
-            width={300}
-          />
-          <Image
-            src="/images/supporters/stanford-logo.png"
-            height={0}
-            width={400}
-          />
+          <Image src={ScrodingerLogo} height={0} width={300} />
+          <Image src={StanfordLogo} height={0} width={400} />
         </div>
       </section>
     </>
