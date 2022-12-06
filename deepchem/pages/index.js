@@ -153,7 +153,7 @@ export default function Home() {
       {/* GET STARTED END */}
 
       {/* SUPPORTERS SECTION BEGIN */}
-      <section className="supporters py-16 px-6 lg:px-[300px]">
+      <section className="supporters py-16 px-6 px-[25px] 2xl:px-[300px]">
         <div className=" flex flex-row items-center justify-start gap-8">
           <h2 className="text-2xl lg:text-[32px] mb-8 lg:mb-16 uppercase">
             Used By
@@ -218,7 +218,7 @@ export default function Home() {
             link={
               "https://github.com/deepchem/deepchem/tree/master/examples/tutorials"
             }
-            blank = {true}
+            blank={true}
           />
           {/* <ExploreCardItem
             image={"/images/explore-datasets.png"}
