@@ -6,7 +6,7 @@ export default function NavLink({ link, icon, label, blank, relative }) {
     <>
       <Link
         href={link}
-        as={relative ? (prod ? "/deepchem.github.io" : "" + link) : link}
+        as={relative ? ((prod ? "/deepchem.github.io" : "") + link) : link}
         className="
                     transform hover:text-dc-light-blue text-lg flex items-center gap-3
                     border-solid border-t-2
