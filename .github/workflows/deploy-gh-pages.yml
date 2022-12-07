@@ -1,0 +1,37 @@
+name: Deploy to gh-pages 
+  
+on:
+  push:
+    branches: [ revamp ]
+  pull_request:
+    branches: [ revamp ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  
+
+    steps:
+      - uses: actions/checkout@v3
+      
+
+      - name: install and build
+        run: |
+          cd deepchem
+          npm i
+          npm run export
+          cd out
+          touch .nojekyll
+
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: deepchem/out
+          clean-exclude: |
+            .nojekyll
+            CNAME
+          
+        
