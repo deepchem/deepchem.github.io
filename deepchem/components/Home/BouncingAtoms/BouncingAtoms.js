@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import dynamic from "next/dynamic";
 const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
   ssr: false,
@@ -100,7 +100,26 @@ function formBond(a, b, separation, p5) {
   p5.line(a.x, a.y, b.x, b.y);
   p5.strokeWeight(0.3);
 }
+const useEffectOnlyOnUpdate = (callback, dependencies) => {
+  const didMount = React.useRef(false);
+
+  React.useEffect(() => {
+    if (didMount.current) {
+      callback(dependencies);
+    } else {
+      didMount.current = true;
+    }
+  }, [callback, dependencies]);
+};
+
 export default (props) => {
+
+  const [loaded, setLoaded] = useState(false);
+
+  useEffectOnlyOnUpdate((dependencies) => {
+    document.getElementById('static-banner')?.classList.add('hidden');
+  }, [loaded]);
+
   const setup = (p5, canvasParentRef) => {
     updateP5ParametersBasedOnWindowDimensions(p5.windowWidth, p5.windowHeight);
     p5.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent(canvasParentRef);
@@ -118,7 +137,10 @@ export default (props) => {
         )
       );
     }
+
+    setLoaded(true);
   };
+
 
   const draw = (p5) => {
     p5.clear();

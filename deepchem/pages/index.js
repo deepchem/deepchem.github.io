@@ -68,6 +68,9 @@ export default function Home() {
 
   return (
     <>
+      <div className = "h-72 xl:h-96 w-full " style = {{background: 'linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%)'}} id = "static-banner" >
+
+      </div>
       <BouncingAtoms />
 
       {/* HERO */}
