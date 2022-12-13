@@ -5,6 +5,8 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { TypeAnimation } from "react-type-animation";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import {Tooltip as ReactTooltip} from "react-tooltip";
+import Link from "next/link"
 
 import BouncingAtoms from "../components/Home/BouncingAtoms/BouncingAtoms";
 import CustomCarousel from "../components/CustomCarousel/CustomCarousel";
@@ -53,7 +55,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function Home() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false); // Need this for the react-tooltip
   const terminalCommand = "pip install deepchem";
   const handleClick = () => {
     setOpen(true);
@@ -65,6 +68,10 @@ export default function Home() {
     }
     setOpen(false);
   };
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <>
@@ -161,13 +168,22 @@ export default function Home() {
       {/* GET STARTED END */}
 
       {/* SUPPORTERS SECTION BEGIN */}
+      
+     
       <section className="supporters py-16 px-6 px-[25px] 2xl:px-[300px]">
+      {isMounted && <ReactTooltip anchorId="used-by-carousel" place = "left" className = "hidden md:block"/>  }
         <div className=" flex flex-row items-center justify-start gap-8">
-          <h2 className="text-2xl lg:text-[32px] mb-8 lg:mb-16 uppercase">
+        <Link href = "https://forum.deepchem.io/t/organizations-using-deepchem/567" target = "_blank">
+          <h2
+            id="used-by-carousel"
+            data-tooltip-content="Click the title for more info"
+            className="text-2xl lg:text-[32px] mb-8 lg:mb-16 uppercase"
+          >
             Used By
             <br />
             Scientific Leaders
           </h2>
+          </Link>
         </div>
 
         <CustomCarousel showArrows={true} showIndicators={true}>
