@@ -21,11 +21,12 @@ module.exports = {
     },
     fontFamily: {
       'sans': ['ui-sans-serif', 'system-ui'],
+      'inconsolata': ['Inconsolata', 'monospace'],
+      'poppins': ['Poppins', 'monospace'],
       'serif': ['ui-serif', 'Georgia'],
       'mono': ['ui-monospace', 'SFMono-Regular'],
       'display': ['Oswald'],
       'body': ['"Open Sans"'],
-      'inconsolata': ['Inconsolata', 'monospace'],
       'lato': ['Lato', 'monospace'],
     },
     extend: {},

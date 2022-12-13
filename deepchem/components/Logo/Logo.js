@@ -8,7 +8,7 @@ export default function Logo() {
     <Link href="/">
       <div className="logo flex flex-row items-center justify-around">
         <Image src={deepchemLogo} alt="DeepChem Logo" width={35} height={39} />
-        <p className="font-bold text-2xl ml-2">DeepChem</p>
+        <p className="font-medium text-2xl ml-2 font-poppins">DeepChem</p>
       </div>
     </Link>
   );
