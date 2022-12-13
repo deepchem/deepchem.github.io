@@ -1,10 +1,10 @@
-name: Deploy to gh-pages 
+name: Deploy to gh-pages
   
 on:
   push:
-    branches: [ revamp ]
+    branches: [ main, revamp ]
   pull_request:
-    branches: [ revamp ]
+    branches: [ main, revamp ]
 
 permissions:
   contents: write
@@ -15,7 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
 
       - name: install and build
         run: |
@@ -25,13 +24,11 @@ jobs:
           cd out
           touch .nojekyll
 
-
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: deepchem/out
+          branch: gh-pages
           clean-exclude: |
             .nojekyll
             CNAME
-          
-        
