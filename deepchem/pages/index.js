@@ -68,9 +68,14 @@ export default function Home() {
 
   return (
     <>
-      <div className = "h-72 xl:h-96 w-full " style = {{background: 'linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%)'}} id = "static-banner" >
-
-      </div>
+      <div
+        className="h-72 xl:h-96 w-full "
+        style={{
+          background:
+            "linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%)",
+        }}
+        id="static-banner"
+      ></div>
       <BouncingAtoms />
 
       {/* HERO */}
@@ -159,14 +164,12 @@ export default function Home() {
       <section className="supporters py-16 px-6 px-[25px] 2xl:px-[300px]">
         <div className=" flex flex-row items-center justify-start gap-8">
           <h2 className="text-2xl lg:text-[32px] mb-8 lg:mb-16 uppercase">
-            Used By 
+            Used By
             <br />
             Scientific Leaders
           </h2>
-
-          
         </div>
-        
+
         <CustomCarousel showArrows={true} showIndicators={true}>
           <CarouselItem src={atom} />
           <CarouselItem src={bist} />

@@ -7,7 +7,12 @@ export default function NavLinks({}) {
     <nav className="w-full">
       <ul className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-10">
         <li>
-          <NavLink label="About" link="/about" icon="fa-solid fa-circle-info" relative={true}/>
+          <NavLink
+            label="About"
+            link="/about"
+            icon="fa-solid fa-circle-info"
+            relative={true}
+          />
         </li>
         <li>
           <NavLink

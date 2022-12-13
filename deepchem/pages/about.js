@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 import DeveloperDeskImage from "../public/images/about/developer.png";
-import ScrodingerLogo from "../public/images/supporters/schrodinger-logo.png";
-import StanfordLogo from "../public/images/supporters/stanford-logo.png";
+import ScrodingerLogo from "../public/images/about/companies-developing-deepchem/schrodinger-logo.png";
+import StanfordLogo from "../public/images/about/companies-developing-deepchem/stanford-logo.png";
 
 const faqs = [
   {

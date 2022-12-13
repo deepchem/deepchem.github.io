@@ -3,8 +3,6 @@ import Link from "next/link";
 import Logo from "../Logo/Logo";
 
 export default function Footer() {
-  const prod = process.env.NODE_ENV === "production";
-
   return (
     <footer className="px-[25px] 2xl:px-[300px] bg-dc-gray py-8 flex flex-col text-dc-light-gray">
       <div className="flex flex-row justify-center lg:justify-between text-sm lg:text-base flex-1">
@@ -19,20 +17,8 @@ export default function Footer() {
             <p className="mb-2 text-white font-normal lg:text-2xl text-lg">
               DeepChem
             </p>
-            <Link
-              href="/#get-started"
-              as={
-                prod ? "/deepchem.github.io" : "" + "/about.html/#get-started"
-              }
-            >
-              Get Started
-            </Link>
-            <Link
-              href="/about"
-              as={prod ? "/deepchem.github.io" : "" + "/about"}
-            >
-              About
-            </Link>
+            <Link href="/#get-started">Get Started</Link>
+            <Link href="/about">About</Link>
             <Link
               href="https://github.com/deepchem/deepchem/tree/master/examples/tutorials"
               target={"_blank"}

@@ -10,7 +10,8 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  assetPrefix: !debug ? "https://yukino2002.github.io/deepchem.github.io/" : "",
+  basepath: !debug ? "/deepchem.github.io" : "",
+  assetPrefix: !debug ? "/deepchem.github.io/" : "",
 
   
 };

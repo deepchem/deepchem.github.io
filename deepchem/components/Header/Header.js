@@ -18,10 +18,11 @@ export default function NavBar() {
           <NavLinks />
         </div>
         <i
-          className={`fa-solid ${isNavOpen ? "fa-xmark" : "fa-bars"} lg:hidden text-2xl cursor-pointer`}
+          className={`fa-solid ${
+            isNavOpen ? "fa-xmark" : "fa-bars"
+          } lg:hidden text-2xl cursor-pointer`}
           onClick={toggleMobileNavbar}
-        >
-        </i>
+        ></i>
       </div>
       <div className={`${isNavOpen ? "flex" : "hidden"} lg:hidden mt-5`}>
         <NavLinks />
