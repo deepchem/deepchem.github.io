@@ -10,7 +10,7 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  basepath: !debug ? "/deepchem.github.io" : "",
+  basePath: !debug ? "/deepchem.github.io" : "",
   assetPrefix: !debug ? "/deepchem.github.io/" : "",
 
   

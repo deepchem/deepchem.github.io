@@ -1,0 +1,12 @@
+.scroll-nav {
+    @apply basis-1/6 text-right text-base hidden lg:block;
+}
+
+.scroll-nav__item--active {
+    @apply text-dc-orange;
+}
+
+
+.scroll-nav__item {
+    @apply pb-2;
+}
