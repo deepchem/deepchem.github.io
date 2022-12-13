@@ -26,27 +26,24 @@ export default function About() {
         </h2>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
           <p className="text-justify font-normal leading-[1.5rem] text-base lg:text-lg text-dc-gray/60">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ab
-            praesentium dolore eveniet molestias ipsum, voluptate veritatis
-            deleniti sequi a quia reprehenderit quam hic nihil asperiores labore
-            officiis? Quia, amet? Consequatur suscipit maxime recusandae nobis
-            unde rem necessitatibus est aut, ratione amet! Saepe, quas
-            consequatur repellendus quis perferendis modi accusantium itaque
-            nisi recusandae similique dolorem quod quia adipisci, quidem
-            eligendi? Eius quidem distinctio dolorem officiis dolorum dolore
-            ipsam obcaecati nostrum! Saepe est nisi, cum, atque corporis ea
-            numquam alias commodi soluta ullam tenetur perspiciatis enim
-            voluptas, iste autem repudiandae libero. Cupiditate quam,
-            exercitationem sequi maxime nulla quis expedita placeat perspiciatis
-            quas quod iure ratione itaque libero ea unde a illum quisquam, hic
-            laudantium rerum porro? Dolor eveniet quisquam aperiam repellat!
-            Iusto dolores sapiente nemo soluta excepturi architecto, quaerat sed
-            labore neque eum! Accusantium voluptate reiciendis, totam saepe
-            eligendi necessitatibus eum iusto earum, molestias, delectus labore
-            nemo est soluta adipisci. Vitae?
+            The DeepChem project aims to make high quality open source software
+            for scientific machine learning more accessible to scientists and
+            developers worldwide. We have a particular focus on molecular
+            machine learning and drug discovery, but also support a broad range
+            of applications in bioinformatics, materials science, and
+            computational physics. I started DeepChem while doing my Ph.D. at
+            Stanford, but today DeepChem operates as a global distributed
+            community of researchers spread across many academic and industrial
+            institutions. We hope that you will join our community and help us
+            build!
           </p>
-          <div className="order-first lg:order-none rounded-full w-40 h-40 relative flex-shrink-0">
-            <Image src={DeveloperDeskImage} layout="fill" objectFit="contain" />
+          <div className="order-first lg:order-none  w-40 h-40 relative flex-shrink-0">
+            <Image
+              src={DeveloperDeskImage}
+              layout="fill"
+              objectFit="contain"
+              className="rounded-full"
+            />
           </div>
         </div>
       </section>

@@ -159,11 +159,14 @@ export default function Home() {
       <section className="supporters py-16 px-6 px-[25px] 2xl:px-[300px]">
         <div className=" flex flex-row items-center justify-start gap-8">
           <h2 className="text-2xl lg:text-[32px] mb-8 lg:mb-16 uppercase">
-            Used By
+            Used By 
             <br />
             Scientific Leaders
           </h2>
+
+          
         </div>
+        
         <CustomCarousel showArrows={true} showIndicators={true}>
           <CarouselItem src={atom} />
           <CarouselItem src={bist} />
