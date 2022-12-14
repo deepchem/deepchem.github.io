@@ -10,6 +10,8 @@
 
 # next.js
 /.next/
+package-lock.json
+yarn.lock
 
 # production
 /build
