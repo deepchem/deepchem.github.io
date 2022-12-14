@@ -150,11 +150,25 @@ export default function BouncingAtoms(props) {
       p5.circle(atom.x, atom.y, atom.dia);
     }
   };
-  
+
+  const mouseClicked = (p5) => {
+    p5.append(
+        atoms,
+        new Atom(
+            p5.random(MIN_DIA, MAX_DIA),
+            p5.mouseX,
+            p5.mouseY,
+            p5.random(-MAX_SPEED, MAX_SPEED),
+            p5.random(-MAX_SPEED, MAX_SPEED),
+            p5.random(-MAX_DIA_CHANGE_SPEED, MAX_DIA_CHANGE_SPEED)
+        )
+    );
+  }
+
   const windowResized = (p5) => {
     updateP5ParametersBasedOnWindowDimensions(p5.windowWidth, p5.windowHeight);
     p5.resizeCanvas(p5.windowWidth, CANVAS_HEIGHT);
   };
 
-  return <Sketch setup={setup} draw={draw} windowResized={windowResized} />;
+  return <Sketch setup={setup} draw={draw} windowResized={windowResized} mouseClicked = {mouseClicked}/>;
 };
