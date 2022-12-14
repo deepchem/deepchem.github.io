@@ -114,7 +114,7 @@ const useEffectOnlyOnUpdate = (callback, dependencies) => {
   }, [callback, dependencies]);
 };
 
-export default (props) => {
+export default function BouncingAtoms(props) {
   const setup = (p5, canvasParentRef) => {
     updateP5ParametersBasedOnWindowDimensions(p5.windowWidth, p5.windowHeight);
     p5.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent(canvasParentRef);

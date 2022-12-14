@@ -25,9 +25,9 @@ export default function About() {
           From Developer&apos;s Desk
         </h2>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-16">
-          <div class="w-full">
-            <div class="text-3xl text-dc-blue text-left leading-tight h-3">“</div>
-            <p class="text-lg text-dc-gray text-center px-5">
+          <div className="w-full">
+            <div className="text-3xl text-dc-blue text-left leading-tight h-3">“</div>
+            <p className="text-lg text-dc-gray text-center px-5">
               The DeepChem project aims to make high quality open source software
               for scientific machine learning more accessible to scientists and
               developers worldwide. We have a particular focus on molecular
@@ -39,7 +39,7 @@ export default function About() {
               institutions. We hope that you will join our community and help us
               build!
             </p>
-            <div class="text-3xl text-dc-blue text-right leading-tight h-3 -mt-3">”</div>
+            <div className="text-3xl text-dc-blue text-right leading-tight h-3 -mt-3">”</div>
           </div>
           <div className="order-first lg:order-none w-36 h-36 relative flex-shrink-0">
             <Image
@@ -58,9 +58,9 @@ export default function About() {
           FAQs
         </h2>
         <div className="flex flex-col justify-between gap-6">
-          {faqs.map((faq) => {
+          {faqs.map((faq, index) => {
             return (
-              <div>
+              <div key={"faq-${index}"}>
                 <h3 className="text-xl lg:text-2xl text-dc-orange font-normal py-1">
                   {faq.question}
                 </h3>

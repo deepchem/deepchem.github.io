@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link"
 
 import Snackbar from "@mui/material/Snackbar";
@@ -8,12 +7,10 @@ import { TypeAnimation } from "react-type-animation";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import Bounce from 'react-reveal/Bounce';
-import ReactPlaceholder from 'react-placeholder';
 
 import BouncingAtoms from "../components/Home/BouncingAtoms/BouncingAtoms";
 import CustomCarousel from "../components/CustomCarousel/CustomCarousel";
 import CarouselItem from "../components/CustomCarousel/CarouselItem";
-
 import ExploreCardItem from "./../components/Home/ExploreCardItem";
 
 import atom from "../public/images/used-by/atom.png";
@@ -115,10 +112,10 @@ export default function Home() {
         <div className="h-[250px] rotate-[18deg] w-[2px] bg-dc-orange mr-10 hidden lg:flex"></div>
         <div className="flex-col flex-1 text-dc-gray text-opacity-60 hidden lg:flex">
           <p className="italic text-lg">
-            "Chemistry itself knows altogether too well that - given the real
+            &quot;Chemistry itself knows altogether too well that - given the real
             fear that the scarcity of global resources and energy might threaten
             the unity of mankind - chemistry is in a position to make a
-            contribution towards securing a true peace on earth."
+            contribution towards securing a true peace on earth.&quot;
           </p>
           <p className="text-right font-medium mt-2">~ Kenichi Ukui</p>
         </div>
@@ -173,7 +170,7 @@ export default function Home() {
           <Bounce left>
             <Link href="https://forum.deepchem.io/t/organizations-using-deepchem/567" target="_blank">
               <i
-                class="fa-solid fa-circle-info text-[32px] text-terminal-yellow"
+                className="fa-solid fa-circle-info text-[32px] text-terminal-yellow"
                 id="used-by-carousel"
                 data-tooltip-content="Click for more info"
               >

@@ -19,7 +19,7 @@ jobs:
       - name: install and build
         run: |
           cd deepchem
-          npm i
+          npm i --legacy-peer-deps
           npm run export
           cd out
           touch .nojekyll
