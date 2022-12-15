@@ -1,16 +1,18 @@
 name: Deploy to gh-pages
-  
+
 on:
   push:
     branches: [ main, revamp ]
   pull_request:
     branches: [ main, revamp ]
+  repository_dispatch:
+    types: [ update ]
 
 permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest  
 
     steps:
