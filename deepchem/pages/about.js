@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import DeveloperDeskImage from "../public/images/about/developer.png";
-import ScrodingerLogo from "../public/images/about/companies-developing-deepchem/schrodinger-logo.png";
+import DeepForestLogo from "../public/images/about/companies-developing-deepchem/deepforest_logo.png";
 import StanfordLogo from "../public/images/about/companies-developing-deepchem/stanford-logo.png";
 
 const faqs = [
@@ -80,7 +80,7 @@ export default function About() {
           Developing DeepChem
         </h2>
         <div className="flex flex-row flex-wrap items-center justify-center gap-16">
-          <Image src={ScrodingerLogo} height={0} width={300} alt="Schrodinger logo" />
+          <Image src={DeepForestLogo} height={0} width={300} alt="Deep Forest logo" />
           <Image src={StanfordLogo} height={0} width={400} alt="Stanford logo" />
         </div>
       </section>
