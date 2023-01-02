@@ -23,8 +23,6 @@ jobs:
           cd deepchem
           npm i --legacy-peer-deps
           npm run export
-          cd out
-          touch .nojekyll
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
