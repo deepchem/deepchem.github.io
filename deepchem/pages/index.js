@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link"
+import Link from "next/link";
 
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { TypeAnimation } from "react-type-animation";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-import Bounce from 'react-reveal/Bounce';
+import Bounce from "react-reveal/Bounce";
 
 import BouncingAtoms from "../components/Home/BouncingAtoms/BouncingAtoms";
 import CustomCarousel from "../components/CustomCarousel/CustomCarousel";
@@ -49,6 +49,25 @@ import uni_zhejiang from "../public/images/used-by/uni-zhejiang.png";
 import explore_tutorials from "../public/images/explore-tutorials.png";
 import explore_projects from "../public/images/explore-projects.png";
 
+const loadUsersCarouselImageData = () => {
+  const requireContext = require.context(
+    "../public/images/used-by",
+    false,
+    /\.png$/
+  );
+  const data = {};
+  requireContext.keys().forEach((key) => {
+    const obj = requireContext(key);
+    const simpleKey = key.split("/").pop().split(".").shift();
+    data[simpleKey] = obj;
+  });
+
+  return data;
+};
+
+const usersCarouselImageData = loadUsersCarouselImageData();
+console.log(usersCarouselImageData);
+
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -75,7 +94,13 @@ export default function Home() {
 
   return (
     <>
-      <div className="h-[300px] xl:h-[400px]" style={{ background: "linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%)" }}>
+      <div
+        className="h-[300px] xl:h-[400px]"
+        style={{
+          background:
+            "linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%)",
+        }}
+      >
         <BouncingAtoms />
       </div>
       {/* HERO */}
@@ -107,14 +132,16 @@ export default function Home() {
               className="type-animation"
             />
           </div>
-          <p className="font-semibold text-[48px] lg:text-[56px] text-dc-gray">DeepChem</p>
+          <p className="font-semibold text-[48px] lg:text-[56px] text-dc-gray">
+            DeepChem
+          </p>
         </div>
         <div className="h-[250px] rotate-[18deg] w-[2px] bg-dc-orange mr-10 hidden lg:flex"></div>
         <div className="flex-col flex-1 text-dc-gray text-opacity-60 hidden lg:flex">
           <p className="italic text-lg">
-            &quot;Chemistry itself knows altogether too well that - given the real
-            fear that the scarcity of global resources and energy might threaten
-            the unity of mankind - chemistry is in a position to make a
+            &quot;Chemistry itself knows altogether too well that - given the
+            real fear that the scarcity of global resources and energy might
+            threaten the unity of mankind - chemistry is in a position to make a
             contribution towards securing a true peace on earth.&quot;
           </p>
           <p className="text-right font-medium mt-2">~ Kenichi Ukui</p>
@@ -125,61 +152,71 @@ export default function Home() {
       {/* GET STARTED BEGIN */}
       <section className="px-4 gap-2 py-8 lg:gap-16 items-center justify-between flex flex-col lg:flex-row lg:py-16  bg-opacity-10 bg-dc-light-gray get-started">
         <div className=" hidden lg:block h-full w-[300px] flex-1"></div>
-        <h2 id="get-started">
-          Get Started
-        </h2>
-        {terminalVisible && <div className="flex flex-col max-w-[600px] w-full shadow-xl font-inconsolata rounded-2xl">
-          <div className="flex flex-row justify-between bg-terminal-header px-8 py-4 rounded-t-2xl">
-            <div className="flex flex-row gap-2 items-center">
-              <span className="h-4 w-4 bg-terminal-red inline-block rounded-full" onClick={() => { setTerminalVisible(false) }} />
-              <span className="h-4 w-4 bg-terminal-yellow inline-block rounded-full" />
-              <span className="h-4 w-4 bg-terminal-green inline-block rounded-full" />
+        <h2 id="get-started">Get Started</h2>
+        {terminalVisible && (
+          <div className="flex flex-col max-w-[600px] w-full shadow-xl font-inconsolata rounded-2xl">
+            <div className="flex flex-row justify-between bg-terminal-header px-8 py-4 rounded-t-2xl">
+              <div className="flex flex-row gap-2 items-center">
+                <span
+                  className="h-4 w-4 bg-terminal-red inline-block rounded-full"
+                  onClick={() => {
+                    setTerminalVisible(false);
+                  }}
+                />
+                <span className="h-4 w-4 bg-terminal-yellow inline-block rounded-full" />
+                <span className="h-4 w-4 bg-terminal-green inline-block rounded-full" />
+              </div>
+              <p className="text-lg justify-self-center invisible lg:visible">
+                deepchem -- bash
+              </p>
+              <div className="flex flex-row gap-2 items-center invisible">
+                <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-red inline-block rounded-full " />
+                <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-yellow inline-block rounded-full " />
+                <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-green inline-block rounded-full " />
+              </div>
             </div>
-            <p className="text-lg justify-self-center invisible lg:visible">
-              deepchem -- bash
-            </p>
-            <div className="flex flex-row gap-2 items-center invisible">
-              <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-red inline-block rounded-full " />
-              <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-yellow inline-block rounded-full " />
-              <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-green inline-block rounded-full " />
+            <div className="flex flex-row px-8 bg-white py-4 lg:py-6 rounded-b-2xl text-xl lg:text-2xl items-center">
+              <p className="pr-2 font-extrabold">$</p>
+              <div className="mr-auto">
+                <p>{terminalCommand}</p>
+              </div>
+              <CopyToClipboard text={terminalCommand}>
+                <i
+                  className="p-3 fa-regular fa-copy cursor-pointer text-dc-light-gray hover:bg-dc-gray/[0.06] rounded-full"
+                  onClick={handleClick}
+                ></i>
+              </CopyToClipboard>
             </div>
           </div>
-          <div className="flex flex-row px-8 bg-white py-4 lg:py-6 rounded-b-2xl text-xl lg:text-2xl items-center">
-            <p className="pr-2 font-extrabold">$</p>
-            <div className="mr-auto">
-              <p>{terminalCommand}</p>
-            </div>
-            <CopyToClipboard text={terminalCommand}>
-              <i
-                className="p-3 fa-regular fa-copy cursor-pointer text-dc-light-gray hover:bg-dc-gray/[0.06] rounded-full"
-                onClick={handleClick}
-              ></i>
-            </CopyToClipboard>
-          </div>
-        </div>}
+        )}
         <div className="hidden lg:block h-full w-[300px] flex-1"></div>
       </section>
       {/* GET STARTED END */}
 
       {/* SUPPORTERS SECTION BEGIN */}
 
-
       <section className="supporters py-16 px-[25px] 2xl:px-[300px]">
-        {isMounted && <ReactTooltip anchorId="used-by-carousel" place="top" className="hidden md:block" />}
+        {isMounted && (
+          <ReactTooltip
+            anchorId="used-by-carousel"
+            place="top"
+            className="hidden md:block"
+          />
+        )}
         <div className=" flex flex-row items-start justify-start gap-4 lg:gap-8 mb-8 lg:mb-16">
           <Bounce left>
-            <Link href="https://forum.deepchem.io/t/organizations-using-deepchem/567" target="_blank">
+            <Link
+              href="https://forum.deepchem.io/t/organizations-using-deepchem/567"
+              target="_blank"
+            >
               <i
                 className="fa-solid fa-circle-info text-[32px] text-terminal-yellow"
                 id="used-by-carousel"
                 data-tooltip-content="Click for more info"
-              >
-              </i>
+              ></i>
             </Link>
           </Bounce>
-          <h2
-            className="uppercase"
-          >
+          <h2 className="uppercase">
             Used By
             <br />
             Scientific Leaders
@@ -187,37 +224,10 @@ export default function Home() {
         </div>
 
         <CustomCarousel showArrows={true} showIndicators={true}>
-          <CarouselItem src={atom} />
-          <CarouselItem src={bist} />
-          <CarouselItem src={csir} />
-          <CarouselItem src={expedia} />
-          <CarouselItem src={firmenich} />
-          <CarouselItem src={german} />
-          <CarouselItem src={ghddi} />
-          <CarouselItem src={ibm} />
-          <CarouselItem src={icms} />
-          <CarouselItem src={jiangsu} />
-          <CarouselItem src={mit} />
-          <CarouselItem src={northwestern} />
-          <CarouselItem src={riken} />
-          <CarouselItem src={skoltech} />
-          <CarouselItem src={sri} />
-          <CarouselItem src={strath} />
-          <CarouselItem src={ucf} />
-          <CarouselItem src={uni_alberta} />
-          <CarouselItem src={uni_bristol} />
-          <CarouselItem src={uni_catalonia} />
-          <CarouselItem src={uni_central} />
-          <CarouselItem src={uni_east} />
-          <CarouselItem src={uni_geneva} />
-          <CarouselItem src={uni_hunan} />
-          <CarouselItem src={uni_macau} />
-          <CarouselItem src={uni_shanghai} />
-          <CarouselItem src={uni_taiwan} />
-          <CarouselItem src={uni_tartu} />
-          <CarouselItem src={uni_tokyo} />
-          <CarouselItem src={uni_vienna} />
-          <CarouselItem src={uni_zhejiang} />
+          {Object.keys(usersCarouselImageData).map((image, i) => {
+            console.log(image);
+            return <CarouselItem key={i} src={usersCarouselImageData[image]} />;
+          })}
         </CustomCarousel>
       </section>
       {/* SUPPORTERS SECTION END */}
@@ -255,7 +265,11 @@ export default function Home() {
       {/* EXPLORE END */}
 
       <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%", background: "#252422" }}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          sx={{ width: "100%", background: "#252422" }}
+        >
           Copied!
         </Alert>
       </Snackbar>
