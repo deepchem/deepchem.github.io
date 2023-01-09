@@ -8,7 +8,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import Bounce from "react-reveal/Bounce";
 
-import BouncingAtoms from "../components/Home/BouncingAtoms/BoauncingAtoms";
+import BouncingAtoms from "../components/Home/BouncingAtoms/BouncingAtoms";
 import CustomCarousel from "../components/CustomCarousel/CustomCarousel";
 import CarouselItem from "../components/CustomCarousel/CarouselItem";
 import ExploreCardItem from "./../components/Home/ExploreCardItem";
