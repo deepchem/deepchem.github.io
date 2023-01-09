@@ -8,46 +8,13 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import Bounce from "react-reveal/Bounce";
 
-import BouncingAtoms from "../components/Home/BouncingAtoms/BouncingAtoms";
+import BouncingAtoms from "../components/Home/BouncingAtoms/BoauncingAtoms";
 import CustomCarousel from "../components/CustomCarousel/CustomCarousel";
 import CarouselItem from "../components/CustomCarousel/CarouselItem";
 import ExploreCardItem from "./../components/Home/ExploreCardItem";
 
-import atom from "../public/images/used-by/atom.png";
-
-import bist from "../public/images/used-by/bist.png";
-import csir from "../public/images/used-by/csir.png";
-import expedia from "../public/images/used-by/expedia.png";
-import firmenich from "../public/images/used-by/firmenich.png";
-import german from "../public/images/used-by/german-research-center-for-env-health.png";
-import ghddi from "../public/images/used-by/ghddi.png";
-import ibm from "../public/images/used-by/ibm-watson.png";
-import icms from "../public/images/used-by/icms.png";
-import jiangsu from "../public/images/used-by/jiangsu.png";
-import mit from "../public/images/used-by/mit.png";
-import northwestern from "../public/images/used-by/northwestern.png";
-import riken from "../public/images/used-by/riken.png";
-import skoltech from "../public/images/used-by/skoltech.png";
-import sri from "../public/images/used-by/sri-international.png";
-import strath from "../public/images/used-by/strath.png";
-import ucf from "../public/images/used-by/ucf.png";
-import uni_alberta from "../public/images/used-by/uni-alberta.png";
-import uni_bristol from "../public/images/used-by/uni-bristol.png";
-import uni_catalonia from "../public/images/used-by/uni-catalonia.png";
-import uni_central from "../public/images/used-by/uni-central-south.png";
-import uni_east from "../public/images/used-by/uni-east-china.png";
-import uni_geneva from "../public/images/used-by/uni-geneva.png";
-import uni_hunan from "../public/images/used-by/uni-hunan.png";
-import uni_macau from "../public/images/used-by/uni-macau.png";
-import uni_shanghai from "../public/images/used-by/uni-shanghai.png";
-import uni_taiwan from "../public/images/used-by/uni-taiwan.png";
-import uni_tartu from "../public/images/used-by/uni-tartu.png";
-import uni_tokyo from "../public/images/used-by/uni-tokyo.png";
-import uni_vienna from "../public/images/used-by/uni-vienna.png";
-import uni_zhejiang from "../public/images/used-by/uni-zhejiang.png";
-
-import explore_tutorials from "../public/images/explore-tutorials.png";
-import explore_projects from "../public/images/explore-projects.png";
+import exploreTutorialsIcon from "../public/images/explore-tutorials.png";
+import exploreProjectsIcon from "../public/images/explore-projects.png";
 
 const loadUsersCarouselImageData = () => {
   const requireContext = require.context(
@@ -126,9 +93,7 @@ export default function Home() {
               wrapper="div"
               cursor={false}
               repeat={Infinity}
-              style={{
-                color: "#FF6700",
-              }}
+              style={{ color: "#FF6700" }}
               className="type-animation"
             />
           </div>
@@ -227,7 +192,7 @@ export default function Home() {
           {Object.keys(usersCarouselImageData).map((image, i) => {
             console.log(image);
             return <CarouselItem key={i} src={usersCarouselImageData[image]} />;
-          })}
+          })}{" "}
         </CustomCarousel>
       </section>
       {/* SUPPORTERS SECTION END */}
@@ -242,24 +207,24 @@ export default function Home() {
             link={"/models"}
           /> */}
           <ExploreCardItem
-            image={explore_projects}
+            image={exploreProjectsIcon}
             title="Projects"
             link={"https://github.com/deepchem/deepchem/tree/master/examples"}
             blank={true}
           />
           <ExploreCardItem
-            image={explore_tutorials}
+            image={exploreTutorialsIcon}
             title="Tutorials"
             link={
               "https://github.com/deepchem/deepchem/tree/master/examples/tutorials"
             }
             blank={true}
-          />
+          />{" "}
           {/* <ExploreCardItem
             image={"/images/explore-datasets.png"}
             title="DATASETS"
             link={"/datasets"}
-          /> */}
+          /> */}{" "}
         </div>
       </section>
       {/* EXPLORE END */}
@@ -268,7 +233,10 @@ export default function Home() {
         <Alert
           onClose={handleClose}
           severity="success"
-          sx={{ width: "100%", background: "#252422" }}
+          sx={{
+            width: "100%",
+            background: "#252422",
+          }}
         >
           Copied!
         </Alert>

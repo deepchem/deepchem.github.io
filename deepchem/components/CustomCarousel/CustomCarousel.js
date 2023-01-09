@@ -1,6 +1,5 @@
 import { Carousel } from "react-responsive-carousel";
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
+import React, { useEffect } from "react";
 
 export default function CustomCarousel({ children }) {
   const [windowWidth, setWindowWidth] = React.useState(0);

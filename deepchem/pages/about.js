@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import React from "react";
 import DeveloperDeskImage from "../public/images/about/developer.png";
 import DeepForestLogo from "../public/images/about/companies-developing-deepchem/deepforest_logo.png";
 import StanfordLogo from "../public/images/about/companies-developing-deepchem/stanford-logo.png";
@@ -21,25 +21,27 @@ export default function About() {
   return (
     <>
       <section className="py-8 px-[25px] 2xl:px-[300px] about text-center lg:text-left min-h-[50vh] justify-center flex flex-col">
-        <h2>
-          From Developer&apos;s Desk
-        </h2>
+        <h2>From Developer&apos;s Desk</h2>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-16">
           <div className="w-full">
-            <div className="text-3xl text-dc-blue text-left leading-tight h-3">“</div>
+            <div className="text-3xl text-dc-blue text-left leading-tight h-3">
+              “
+            </div>
             <p className="text-lg text-dc-gray text-center px-5">
-              The DeepChem project aims to make high quality open source software
-              for scientific machine learning more accessible to scientists and
-              developers worldwide. We have a particular focus on molecular
-              machine learning and drug discovery, but also support a broad range
-              of applications in bioinformatics, materials science, and
-              computational physics. I started DeepChem while doing my Ph.D. at
-              Stanford, but today DeepChem operates as a global distributed
-              community of researchers spread across many academic and industrial
-              institutions. We hope that you will join our community and help us
-              build!
+              The DeepChem project aims to make high quality open source
+              software for scientific machine learning more accessible to
+              scientists and developers worldwide. We have a particular focus on
+              molecular machine learning and drug discovery, but also support a
+              broad range of applications in bioinformatics, materials science,
+              and computational physics. I started DeepChem while doing my Ph.D.
+              at Stanford, but today DeepChem operates as a global distributed
+              community of researchers spread across many academic and
+              industrial institutions. We hope that you will join our community
+              and help us build!
             </p>
-            <div className="text-3xl text-dc-blue text-right leading-tight h-3 -mt-3">”</div>
+            <div className="text-3xl text-dc-blue text-right leading-tight h-3 -mt-3">
+              ”
+            </div>
           </div>
           <div className="order-first lg:order-none w-36 h-36 relative flex-shrink-0">
             <Image
@@ -54,9 +56,7 @@ export default function About() {
       </section>
 
       <section className="py-8 px-[25px] 2xl:px-[300px] about bg-dc-light-gray/10">
-        <h2>
-          FAQs
-        </h2>
+        <h2>FAQs</h2>
         <div className="flex flex-col justify-between gap-6">
           {faqs.map((faq, index) => {
             return (
@@ -80,15 +80,23 @@ export default function About() {
           Developing DeepChem
         </h2>
         <div className="flex flex-row flex-wrap items-center justify-center gap-16">
-          <Image src={DeepForestLogo} height={0} width={300} alt="Deep Forest logo" />
-          <Image src={StanfordLogo} height={0} width={400} alt="Stanford logo" />
+          <Image
+            src={DeepForestLogo}
+            height={0}
+            width={300}
+            alt="Deep Forest logo"
+          />
+          <Image
+            src={StanfordLogo}
+            height={0}
+            width={400}
+            alt="Stanford logo"
+          />
         </div>
       </section>
 
       <section className="py-8 px-[25px] 2xl:px-[300px] about text-left lg:text-left bg-dc-light-gray/10">
-        <h2 className="text-xl">
-          Licensing & Commercial Uses
-        </h2>
+        <h2 className="text-xl">Licensing & Commercial Uses</h2>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
           <p className="text-justify font-light text-sm lg:text-base">
             DeepChem is licensed under the MIT License. We actively support
