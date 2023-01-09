@@ -109,7 +109,7 @@ export default function Home() {
             threaten the unity of mankind - chemistry is in a position to make a
             contribution towards securing a true peace on earth.&quot;
           </p>
-          <p className="text-right font-medium mt-2">~ Kenichi Ukui</p>
+          <p className="text-right font-medium mt-2">~ Kenichi Fukui</p>
         </div>
       </section>
       {/* HERO END*/}
