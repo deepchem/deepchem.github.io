@@ -22,6 +22,7 @@ jobs:
         run: |
           cd deepchem
           npm i --legacy-peer-deps
+          npm run lint
           npm run export
 
       - name: Deploy 🚀
