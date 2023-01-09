@@ -1,10 +1,28 @@
 import Image from "next/image";
 import React from "react";
 import DeveloperDeskImage from "../public/images/about/developer.png";
-import DeepForestLogo from "../public/images/about/companies-developing-deepchem/deepforest_logo.png";
-import StanfordLogo from "../public/images/about/companies-developing-deepchem/stanford-logo.png";
 
 import faqs from "../data/about/faqs.json";
+import CustomCarousel from "./../components/CustomCarousel/CustomCarousel";
+import CarouselItem from "./../components/CustomCarousel/CarouselItem";
+
+const loadContributersCarouselImageData = () => {
+  const requireContext = require.context(
+    "../public/images/about/companies-developing-deepchem",
+    false,
+    /\.png$/
+  );
+  const data = {};
+  requireContext.keys().forEach((key) => {
+    const obj = requireContext(key);
+    const simpleKey = key.split("/").pop().split(".").shift();
+    data[simpleKey] = obj;
+  });
+
+  return data;
+};
+
+const contributersCarouselImageData = loadContributersCarouselImageData();
 
 export default function About() {
   return (
@@ -69,18 +87,18 @@ export default function About() {
           Developing DeepChem
         </h2>
         <div className="flex flex-row flex-wrap items-center justify-center gap-16">
-          <Image
-            src={DeepForestLogo}
-            height={0}
-            width={300}
-            alt="Deep Forest logo"
-          />
-          <Image
-            src={StanfordLogo}
-            height={0}
-            width={400}
-            alt="Stanford logo"
-          />
+          <CustomCarousel>
+            {Object.keys(contributersCarouselImageData).map(
+              (contributerImage, i) => {
+                return (
+                  <CarouselItem
+                    key={i}
+                    src={contributersCarouselImageData[contributerImage]}
+                  />
+                );
+              }
+            )}
+          </CustomCarousel>
         </div>
       </section>
 
