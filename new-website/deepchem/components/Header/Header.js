@@ -4,11 +4,11 @@ import NavLinks from "./NavLinks";
 import Logo from "../Logo/Logo";
 
 /**
- * NavBar component
- *
- * @return {JSX} - rendered JSX for the NavBar component
+ * Navigation Bar component
+ * @component
+ * @return {JSX} - JSX for the NavBar component
  */
-export default function NavBar() {
+const NavBar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   /**
@@ -39,4 +39,6 @@ export default function NavBar() {
       </div>
     </header>
   );
-}
+};
+
+export default NavBar;

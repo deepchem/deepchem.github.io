@@ -2,9 +2,9 @@ import Image from "next/image";
 
 /**
  * CarouselItem component that renders an individual item in a carousel
- * @param {Object} props - Properties passed to the component
+ * @param {Object} props - props passed to the component
  * @param {string} props.src - The source URL of the image
- * @return {JSX.Element} - The JSX representation of the CarouselItem component
+ * @return {JSX.Element} - JSX for the CarouselItem component
  */
 export default function CarouselItem({ src }) {
   return (

@@ -3,15 +3,17 @@ import React, { useEffect } from "react";
 
 /**
  * CustomCarousel component that renders a responsive carousel
- * @param {Object} props - Properties passed to the component
+ * @param {Object} props - props passed to the component
  * @param {Array} props.children - elements to be rendered in the carousel
- * @return {JSX.Element} - The JSX representation of the CustomCarousel component
+ * @return {JSX.Element} - JSX for the CustomCarousel component
  */
 export default function CustomCarousel({ children }) {
   const [windowWidth, setWindowWidth] = React.useState(0);
 
   useEffect(() => {
-    // Handler to call on window resize
+    /**
+     * update state on window resize
+     */
     function handleResize() {
       setWindowWidth(window.innerWidth);
     }

@@ -1,16 +1,16 @@
 import Link from "next/link";
 
 /**
- * NavLink component
- * @function
- * @param {Object} props - properties passed to the component
+ * NavLink component for links in the navigation bar
+ * @component
+ * @param {Object} props - props passed to the component
  * @param {string} props.link - the link to navigate to
- * @param {string} props.icon - the icon class for the link
+ * @param {string} props.icon - the fontawsome icon class for the link
  * @param {string} props.label - the label for the link
  * @param {boolean} props.blank - whether the link should open in a new tab
- * @return {JSX} - rendered JSX for the NavLink component
+ * @return {JSX} - JSX for the NavLink component
  */
-export default function NavLink({ link, icon, label, blank }) {
+const NavLink = ({ link, icon, label, blank }) => {
   return (
     <>
       <Link
@@ -27,4 +27,6 @@ export default function NavLink({ link, icon, label, blank }) {
       </Link>
     </>
   );
-}
+};
+
+export default NavLink;

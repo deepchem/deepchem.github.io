@@ -1,12 +1,11 @@
 import NavLink from "./NavLink";
 
 /**
- * NavLinks component
- * @function
- * @param {Object} props - properties passed to the component
- * @return {JSX} - rendered JSX for the NavLinks component
+ * NavLinks component containing all the external and interal navigation links
+ * @component
+ * @return {JSX} - JSX for the NavLinks component
  */
-export default function NavLinks(props) {
+const NavLinks = () => {
   return (
     <nav className="w-full">
       <ul className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-10">
@@ -61,4 +60,6 @@ export default function NavLinks(props) {
       </ul>
     </nav>
   );
-}
+};
+
+export default NavLinks;
