@@ -77,3 +77,19 @@ The configuration file sets various options for the project, such as:
 This configuration file is used by Tailwind to generate the final CSS stylesheet for the project. This file should be kept and maintained to ensure the proper styling of the project.
 
 Read more about `tailwind` [here](https://tailwindcss.com/docs/installation)
+
+### jsdoc.conf.json
+The file `jsdoc.conf.json` is a configuration file for JSDoc, a JavaScript documentation generator, which allows for customization of various settings such as which tags and dictionaries to use, what files to include or exclude, what plugins to use, and where to output the generated documentation.
+
+Following options have been used
+- `tags.allowUnknownTags`: allows for the use of unknown tags in the documentation
+- `tags.dictionaries`: specifies which dictionaries should be used, in this case `jsdoc` and `closure`
+- `source.include`: specifies which directories should be included in the documentation generation
+- `source.includePattern`: specifies a pattern for included file names
+- `source.excludePattern`: specifies a pattern for excluded file names
+- `plugins`: specifies which plugins should be used
+- `templates.better-docs.name`: specifies the name for the `better-docs` template
+- `templates.default.includeDate`: specifies whether the date should be included in the default template
+- `opts.destination`: specifies the directory where the documentation should be generated
+- `opts.recurse`: specifies whether the process should recurse through subdirectories
+- `opts.readme`: specifies the main documentation file
