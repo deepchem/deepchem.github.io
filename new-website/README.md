@@ -15,6 +15,10 @@ Website for DeepChem - https://deepchem.io.
 ### Lint
 - Execute `npm run lint`
 
+### Documentation
+- Execute `npm run docs` to generate documentation
+- To change the destination folder for the generated docs, set the `opts.destination` property in `deepchem/jsdoc.conf.json`
+
 ## TechStack
 - [Next-13](https://nextjs.org/blog/next-13)
 - [TailwindCSS](https://tailwindcss.com/)
@@ -25,7 +29,7 @@ Website for DeepChem - https://deepchem.io.
 - Tutorials
 
 ## Links
-- [UI/UX](https://www.figma.com/file/lx8RDjCI7XyzLeUMmP7tCw/DeepChem?node-id=0%3A1&t=fen0Nhme contributers
+- [UI/UX](https://www.figma.com/file/lx8RDjCI7XyzLeUMmP7tCw/DeepChem?node-id=0%3A1&t=fen0Nhme)
 
 ## Adding users and contributers to the carousels in home page and about page
 - To add an organisation to the `Used by Scientific Leaders` section, add the the logo of the new organisation to the `/deepchem/public/used-by ` directory
