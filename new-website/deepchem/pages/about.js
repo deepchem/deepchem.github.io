@@ -14,18 +14,27 @@ import FromDevelopersDeskText from "../data/about/from-developers-desk.json";
  * @return {Object} - An object containing the image file name as keys and the actual image data as the values
  */
 const loadContributersCarouselImageData = () => {
+  // Loading all PNG files in the directory "../public/images/about/companies-developing-deepchem".
   const requireContext = require.context(
     "../public/images/about/companies-developing-deepchem",
     false,
     /\.png$/
   );
+
+  // data object to store key value pair of image file and its name.
   const data = {};
+
+  // loop through all the file keys
   requireContext.keys().forEach((key) => {
+    // get the image data using the key
     const obj = requireContext(key);
+    // extract the file name from the key
     const simpleKey = key.split("/").pop().split(".").shift();
+    // store the image data in data object
     data[simpleKey] = obj;
   });
 
+  // return the data object
   return data;
 };
 
