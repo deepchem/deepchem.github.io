@@ -16,25 +16,40 @@ import ExploreCardItem from "./../components/Home/ExploreCardItem";
 import exploreTutorialsIcon from "../public/images/explore-tutorials.png";
 import exploreProjectsIcon from "../public/images/explore-projects.png";
 
+/**
+ * Function to import all images from /public/images/used-by/ for the 'used by scientific leaders' carousel
+ * @function
+ * @return {Object} - An object containing the image file name as keys and the actual image data as the values
+ */
 const loadUsersCarouselImageData = () => {
+  // Loading all PNG files in the directory "../public/images/used-by"
   const requireContext = require.context(
     "../public/images/used-by",
     false,
     /\.png$/
   );
+  // data object to store key value pair of image file and its name
   const data = {};
   requireContext.keys().forEach((key) => {
     const obj = requireContext(key);
+    // extract the file name from the key
     const simpleKey = key.split("/").pop().split(".").shift();
+    // store the image data in data object
     data[simpleKey] = obj;
   });
 
   return data;
 };
-
 const usersCarouselImageData = loadUsersCarouselImageData();
 console.log(usersCarouselImageData);
 
+/**
+ * A React component that creates an Alert component with Material UI styling.
+ * @component
+ * @param {Object} props - The props to pass down to the Material UI Alert component.
+ * @param {Object} ref - The ref to pass down to the Material UI Alert component.
+ * @returns {React.Element} - A Material UI Alert component with the passed props and ref.
+ */
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
