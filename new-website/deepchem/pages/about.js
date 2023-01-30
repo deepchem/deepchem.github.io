@@ -9,19 +9,19 @@ import CarouselItem from "./../components/CustomCarousel/CarouselItem";
 import FromDevelopersDeskText from "../data/about/from-developers-desk.json";
 
 /**
- * Function to import all images from /public/images/about/ for the 'companies developing deepchem' carousel
+ * Function to import all images from /public/images/about/companies-developing-deepchem for the 'companies developing deepchem' carousel
  * @function
  * @return {Object} - An object containing the image file name as keys and the actual image data as the values
  */
 const loadContributersCarouselImageData = () => {
-  // Loading all PNG files in the directory "../public/images/about/companies-developing-deepchem".
+  // Loading all PNG files in the directory "../public/images/about/companies-developing-deepchem"
   const requireContext = require.context(
     "../public/images/about/companies-developing-deepchem",
     false,
     /\.png$/
   );
 
-  // data object to store key value pair of image file and its name.
+  // data object to store key value pair of image file and its name
   const data = {};
 
   // loop through all the file keys
