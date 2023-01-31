@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  /* font-family: 'Lato', sans-serif; */
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+canvas {
+  display: block;
+  background: rgb(0, 78, 152);
+  background: linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%);
+}
+
+@media(-webkit-device-pixel-ratio: 1.25) {
+  header,
+  nav,
+  i,
+  .hero,
+  .get-started,
+  .supporters,
+  .contributors,
+  footer,
+  .explore,
+  .about {
+    zoom: 0.8;
+
+  };
+
+  /* .get-started,
+  .hero,
+  .explore,
+  header {
+    padding-left: calc(0.46 * 100vw - 400px) !important;
+    padding-right: calc(0.46 * 100vw - 400px) !important;
+  } */
+
+
+}
+
+@media(min-width: 1200px) {
+
+
+  .carousel::before,
+  .carousel::after {
+    background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 300px;
+    z-index: 2;
+  }
+
+  .carousel::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  .carousel::before {
+    left: 0;
+    top: 0;
+  }
+
+
+}
+
+
+#get-started {
+  scroll-margin-top: 450px;
+}
+
+header,
+footer {
+  margin: 0;
+}
+
+@layer base {
+  html {
+    @apply
+    font-poppins;
+  }
+
+  h2 {
+    @apply
+    text-2xl
+    md:text-3xl
+    mb-4
+    font-medium
+    text-dc-gray/80;
+  }
+}
+
+.type-animation::after {
+  content: "|";
+  animation: cursor 1.1s infinite step-start;
+  font-weight: 400;
+}
+@keyframes cursor {
+  50% {
+    opacity: 0;
+  }
+}
