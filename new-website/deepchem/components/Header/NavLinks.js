@@ -8,7 +8,7 @@ import NavLink from "./NavLink";
 const NavLinks = () => {
   return (
     <nav className="w-full">
-      <ul className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-10">
+      <ul className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         <li>
           <NavLink
             label="About"
