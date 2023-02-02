@@ -13,7 +13,7 @@ let NUM_ATOMS = 40;
 
 const MAX_DIA = 7;
 const MIN_DIA = 1;
-const MAX_SPEED = 1.5;
+const MAX_SPEED = 0.3;
 const MAX_DIA_CHANGE_SPEED = 0.1;
 
 let MAX_BONDING_DISTANCE = 8000;
