@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 
 import Snackbar from "@mui/material/Snackbar";
@@ -12,6 +12,8 @@ import BouncingAtoms from "../components/Home/BouncingAtoms/BouncingAtoms";
 import CustomCarousel from "../components/CustomCarousel/CustomCarousel";
 import CarouselItem from "../components/CustomCarousel/CarouselItem";
 import ExploreCardItem from "./../components/Home/ExploreCardItem";
+
+import { AnimationsContext } from "../contexts/animations-context";
 
 import exploreTutorialsIcon from "../public/images/explore-tutorials.png";
 import exploreProjectsIcon from "../public/images/explore-projects.png";
@@ -63,6 +65,8 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
+  const { isAnimationsEnabled } = useContext(AnimationsContext);
+
   /**
    * Terminal command to install deepchem
    *
@@ -107,34 +111,37 @@ export default function Home() {
             "linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%)",
         }}
       >
-        <BouncingAtoms />
+        <div>{isAnimationsEnabled && <BouncingAtoms />}</div>
       </div>
       {/* HERO */}
       <section className="flex flex-row py-8 items-center justify-between px-[25px] 2xl:px-[300px] hero">
         <div className="flex-1">
           <p className="text-dc-blue font-medium text-xl lg:text-[30px]">
-            Democratising Deep Learning in
+            Democratising Deep Learning for
           </p>
-          <div className="text-3xl lg:text-[36px] pb-4 lg:pb-10 lg:pt-4 font-semibold">
-            <TypeAnimation
-              sequence={[
-                "Drug Discovery",
-                1000,
-                "Material Science",
-                1000,
-                "Quantum Chemistry",
-                1000,
-                "Biology",
-                1000,
-              ]}
-              speed={1}
-              deletionSpeed={60}
-              wrapper="div"
-              cursor={false}
-              repeat={Infinity}
-              style={{ color: "#FF6700" }}
-              className="type-animation"
-            />
+          <div className="text-3xl lg:text-[36px] pb-4 lg:pb-10 lg:pt-4 font-semibold text-dc-orange">
+            {isAnimationsEnabled ? (
+              <TypeAnimation
+                sequence={[
+                  "Drug Discovery",
+                  1000,
+                  "Material Science",
+                  1000,
+                  "Quantum Chemistry",
+                  1000,
+                  "Biology",
+                  1000,
+                ]}
+                speed={1}
+                deletionSpeed={20}
+                wrapper="div"
+                cursor={false}
+                repeat={Infinity}
+                className="type-animation"
+              />
+            ) : (
+              <span>Sciences</span>
+            )}
           </div>
           <p className="font-semibold text-[48px] lg:text-[56px] text-dc-gray">
             DeepChem

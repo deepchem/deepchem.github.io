@@ -1,5 +1,7 @@
+import React, { useEffect, useContext } from "react";
+
 import { Carousel } from "react-responsive-carousel";
-import React, { useEffect } from "react";
+import { AnimationsContext } from "../../contexts/animations-context";
 
 /**
  * CustomCarousel component that renders a responsive carousel
@@ -8,6 +10,7 @@ import React, { useEffect } from "react";
  * @return {JSX.Element} - JSX for the CustomCarousel component
  */
 export default function CustomCarousel({ children }) {
+  const { isAnimationsEnabled } = useContext(AnimationsContext);
   const [windowWidth, setWindowWidth] = React.useState(0);
 
   useEffect(() => {
@@ -29,7 +32,7 @@ export default function CustomCarousel({ children }) {
   return (
     <Carousel
       className="carousel"
-      autoPlay={true}
+      autoPlay={isAnimationsEnabled}
       centerMode={true}
       infiniteLoop={true}
       showThumbs={false}
