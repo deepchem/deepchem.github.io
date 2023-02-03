@@ -114,3 +114,34 @@ footer {
     opacity: 0;
   }
 }
+
+.react-toggle-track {
+   @apply !bg-dc-white !border-dc-gray !border-[6px];
+}
+
+.react-toggle--checked .react-toggle-track {
+  @apply !bg-dc-white;
+}
+
+.react-toggle-track-check {
+ @apply !hidden;
+}
+
+.react-toggle-track-x {
+  @apply !hidden;
+}
+
+.react-toggle-thumb {
+  @apply !bg-dc-light-gray;  
+}
+
+.react-toggle--checked .react-toggle-thumb {  
+  @apply !bg-dc-light-blue !border-none;
+}
+
+.react-toggle--focus .react-toggle-thumb {
+ @apply !shadow-none;
+}
+.react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {
+ @apply !shadow-none;
+}
