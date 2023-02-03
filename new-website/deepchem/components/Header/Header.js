@@ -24,9 +24,10 @@ const NavBar = () => {
     <header className="py-4 px-[25px] 2xl:px-[300px] bg-dc-gray text-dc-white flex flex-col justify-center">
       <div className="flex flex-row items-center justify-between">
         <Logo />
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex flex flex-row items-center">
           <NavLinks />
         </div>
+
         <i
           className={`fa-solid ${
             isNavOpen ? "fa-xmark" : "fa-bars"
@@ -34,7 +35,9 @@ const NavBar = () => {
           onClick={toggleMobileNavbar}
         ></i>
       </div>
-      <div className={`${isNavOpen ? "flex" : "hidden"} lg:hidden mt-5`}>
+      <div
+        className={`${isNavOpen ? "flex flex-col" : "hidden"} lg:hidden mt-5`}
+      >
         <NavLinks />
       </div>
     </header>

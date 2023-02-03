@@ -16,9 +16,9 @@ const NavLink = ({ link, icon, label, blank }) => {
       <Link
         href={link}
         className="
-                    transform hover:text-dc-light-blue text-lg flex items-center gap-2 font-poppins
-                    border-solid border-t-2
-                    lg:hover:-translate-y-1 lg:flex-row lg:justify-between lg:border-none
+                    transform hover:text-dc-light-blue text-lg flex items-center gap-2 py-1 font-poppins
+                    border-solid border-t-2 border-opacity-50 border-dc-white
+                    lg:hover:-translate-y-1 lg:flex-row lg:justify-between lg:border-none 
                 "
         target={blank ? "_blank" : ""}
       >

@@ -1,4 +1,8 @@
+import { useContext } from "react";
 import NavLink from "./NavLink";
+import Toggle from "react-toggle";
+
+import { AnimationsContext } from "../../contexts/animations-context";
 
 /**
  * NavLinks component containing all the external and interal navigation links
@@ -6,9 +10,17 @@ import NavLink from "./NavLink";
  * @return {JSX} - JSX for the NavLinks component
  */
 const NavLinks = () => {
+  const { setIsAnimationsEnabled, isAnimationsEnabled } =
+    useContext(AnimationsContext);
+  /** function to toggle the current animation state
+   * @function
+   */
+  function toggleAnimationState() {
+    setIsAnimationsEnabled(!isAnimationsEnabled);
+  }
   return (
     <nav className="w-full">
-      <ul className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 lg:gap-10">
+      <ul className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         <li>
           <NavLink
             label="About"
@@ -56,6 +68,16 @@ const NavLinks = () => {
             icon="fa-brands fa-github"
             blank={true}
           />
+        </li>
+        <span className="text-3xl font-thin hidden lg:inline">|</span>
+        <li>
+          <div className="flex flex-row items-center gap-4 justify-between pt-4 lg:pt-0">
+            <span className="opacity-70 font-extralight">Animations: </span>
+            <Toggle
+              checked={isAnimationsEnabled}
+              onChange={toggleAnimationState}
+            />
+          </div>
         </li>
       </ul>
     </nav>

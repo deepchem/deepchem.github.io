@@ -8,6 +8,9 @@ import Layout from "../layouts/layout";
 import "../components/CustomCarousel/CustomCarousel.styles.css";
 
 import "react-tooltip/dist/react-tooltip.css";
+import "react-toggle/style.css";
+
+import { AnimationsProvider } from "../contexts/animations-context";
 
 /**
  * Custom _app.js to render common layouts for all pages
@@ -19,7 +22,7 @@ import "react-tooltip/dist/react-tooltip.css";
  */
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <>
+    <AnimationsProvider>
       <Head>
         <title>DeepChem</title>
 
@@ -28,7 +31,7 @@ const MyApp = ({ Component, pageProps }) => {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </>
+    </AnimationsProvider>
   );
 };
 
