@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 
 const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
   ssr: false,
 });
-
-const CANVAS_RESIZE = 1;
-let CANVAS_HEIGHT = 420 * CANVAS_RESIZE;
-let CANVAS_WIDTH = 1920 * CANVAS_RESIZE;
-
-let NUM_ATOMS = 40;
-
 const MAX_DIA = 7;
 const MIN_DIA = 1;
 const MAX_SPEED = 0.3;
 const MAX_DIA_CHANGE_SPEED = 0.1;
 
-let MAX_BONDING_DISTANCE = 8000;
-let MAX_STRONG_BONDING_DISTANCE = 3000;
+let canvasHeight = 420;
+let canvasWidth = 1920;
+
+let maxBondingDistance = 8000;
+let maxStrongBondingDistance = 3000;
+
+let atomCount = 40;
 
 const atoms = [];
 
@@ -29,20 +27,20 @@ const atoms = [];
  * @return {void}
  */
 function updateP5ParametersBasedOnWindowDimensions(windowWidth, windowHeight) {
-  CANVAS_HEIGHT = 400;
-  CANVAS_WIDTH = windowWidth;
+  canvasHeight = 400;
+  canvasWidth = windowWidth;
 
   if (windowWidth < 1280) {
-    NUM_ATOMS = 30;
-    CANVAS_HEIGHT = 300;
-    MAX_BONDING_DISTANCE = 6000;
-    MAX_STRONG_BONDING_DISTANCE = 2000;
+    atomCount = 30;
+    canvasHeight = 300;
+    maxBondingDistance = 6000;
+    maxStrongBondingDistance = 2000;
   }
 
   if (windowWidth < 600) {
-    NUM_ATOMS = 20;
-    MAX_BONDING_DISTANCE = 3000;
-    MAX_STRONG_BONDING_DISTANCE = 1000;
+    atomCount = 20;
+    maxBondingDistance = 3000;
+    maxStrongBondingDistance = 1000;
   }
 }
 /**
@@ -78,11 +76,11 @@ class Atom {
   move(p5) {
     this.x += this.vx;
     this.y += this.vy;
-    if (this.x < 0 || this.x > CANVAS_WIDTH) {
+    if (this.x < 0 || this.x > canvasWidth) {
       this.vx = this.vx * -1;
     }
 
-    if (this.y < 0 || this.y > CANVAS_HEIGHT) {
+    if (this.y < 0 || this.y > canvasHeight) {
       this.vy = this.vy * -1;
     }
 
@@ -116,10 +114,10 @@ function distanceSq(a, b, p5) {
 function formBond(a, b, separation, p5) {
   // Setting the pen stroke color to Argent(A shade of Gray)
   p5.stroke(p5.color(192, 192, 192));
-  if (separation > MAX_BONDING_DISTANCE) {
+  if (separation > maxBondingDistance) {
     return;
   }
-  if (separation < MAX_STRONG_BONDING_DISTANCE) {
+  if (separation < maxStrongBondingDistance) {
     p5.strokeWeight(0.8);
   }
   p5.line(a.x, a.y, b.x, b.y);
@@ -132,7 +130,14 @@ function formBond(a, b, separation, p5) {
  * @param {object} props - the component props
  * @return {JSX} Sketch component with setup, draw, windowResized, and mouseClicked props
  */
-export default function BouncingAtoms(props) {
+const BouncingAtoms = (props) => {
+  useEffect(() => {
+    // Ensure that the canvasWidth is set properly upon page mount
+    updateP5ParametersBasedOnWindowDimensions(
+      window.screen.width,
+      window.screen.height
+    );
+  }, []);
   /**
    * Function to set up the canvas and initial atom positions
    * @function
@@ -140,16 +145,15 @@ export default function BouncingAtoms(props) {
    * @param {object} canvasParentRef - reference to the canvas parent element
    */
   const setup = (p5, canvasParentRef) => {
-    updateP5ParametersBasedOnWindowDimensions(p5.windowWidth, p5.windowHeight);
-    p5.createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT).parent(canvasParentRef);
+    p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
 
-    for (let i = atoms.length; i < NUM_ATOMS; i++) {
+    for (let i = atoms.length; i < atomCount; i++) {
       p5.append(
         atoms,
         new Atom(
           p5.random(MIN_DIA, MAX_DIA),
-          p5.random(0, CANVAS_WIDTH),
-          p5.random(0, CANVAS_HEIGHT),
+          p5.random(0, canvasWidth),
+          p5.random(0, canvasHeight),
           p5.random(-MAX_SPEED, MAX_SPEED),
           p5.random(-MAX_SPEED, MAX_SPEED),
           p5.random(-MAX_DIA_CHANGE_SPEED, MAX_DIA_CHANGE_SPEED)
@@ -205,7 +209,7 @@ export default function BouncingAtoms(props) {
    */
   const windowResized = (p5) => {
     updateP5ParametersBasedOnWindowDimensions(p5.windowWidth, p5.windowHeight);
-    p5.resizeCanvas(p5.windowWidth, CANVAS_HEIGHT);
+    p5.resizeCanvas(p5.windowWidth, canvasHeight);
   };
 
   return (
@@ -216,4 +220,6 @@ export default function BouncingAtoms(props) {
       mouseClicked={mouseClicked}
     />
   );
-}
+};
+
+export default BouncingAtoms;

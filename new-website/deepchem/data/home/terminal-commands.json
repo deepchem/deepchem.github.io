@@ -1,0 +1,12 @@
+{
+  "pip": [
+    "pip install deepchem"
+  ],
+  "conda": [
+    "conda install -c conda-forge rdkit deepchem==2.6.1"
+  ],
+  "docker": [
+    "docker pull deepchemio/deepchem:2.6.1",
+    "docker run -it deepchemio/deepchem: 2.6.1"
+  ]
+}
