@@ -69,9 +69,8 @@ const NavLinks = () => {
             blank={true}
           />
         </li>
-        <span className="text-3xl font-thin hidden lg:inline">|</span>
         <li>
-          <div className="flex flex-row items-center gap-4 justify-between pt-4 lg:pt-0">
+          <div className="flex flex-row items-center gap-4 justify-between pt-4 lg:pt-0 lg:hidden">
             <span className="opacity-70 font-extralight">Animations: </span>
             <Toggle
               checked={isAnimationsEnabled}

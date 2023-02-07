@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert from "@mui/material/Alert";
 import { TypeAnimation } from "react-type-animation";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 import Bounce from "react-reveal/Bounce";
 
@@ -17,6 +15,8 @@ import { AnimationsContext } from "../contexts/animations-context";
 
 import exploreTutorialsIcon from "../public/images/explore-tutorials.png";
 import exploreProjectsIcon from "../public/images/explore-projects.png";
+import Terminal from "../components/Home/Terminal";
+import deepchemLogo from "../public/images/deepchem-logo.png";
 
 /**
  * Function to import all images from /public/images/used-by/ for the 'used by scientific leaders' carousel
@@ -46,54 +46,15 @@ const usersCarouselImageData = loadUsersCarouselImageData();
 console.log(usersCarouselImageData);
 
 /**
- * A React component that creates an Alert component with Material UI styling.
- * @component
- * @param {Object} props - The props to pass down to the Material UI Alert component.
- * @param {Object} ref - The ref to pass down to the Material UI Alert component.
- * @returns {React.Element} - A Material UI Alert component with the passed props and ref.
- */
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
-/**
  * Home component that displays the home page of the application
  * @component
  * @return {JSX.Element} The JSX element to render the Home component.
  */
 export default function Home() {
-  const [open, setOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-
-  const { isAnimationsEnabled } = useContext(AnimationsContext);
-
-  /**
-   * Terminal command to install deepchem
-   *
-   * @type {string}
-   */
-  const terminalCommand = "pip install deepchem";
-
-  /**
-   * Handles the click event to open the component
-   */
-  const handleClick = () => {
-    setOpen(true);
-  };
   const [terminalVisible, setTerminalVisible] = useState(true);
-
-  /**
-   * Handles the close event for the component
-   * @function
-   * @param {React.SyntheticEvent} event - The event object for the close action
-   * @param {string} reason - The reason for closing the component
-   */
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
-  };
+  const { isAnimationsEnabled, setIsAnimationsEnabled } =
+    useContext(AnimationsContext);
 
   /**
    * Effect hook to set isMounted state to true once after website loads
@@ -101,6 +62,10 @@ export default function Home() {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const toggleAnimationState = () => {
+    setIsAnimationsEnabled(!isAnimationsEnabled);
+  };
 
   return (
     <>
@@ -111,7 +76,24 @@ export default function Home() {
             "linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%)",
         }}
       >
-        <div>{isAnimationsEnabled && <BouncingAtoms />}</div>
+        <div className="relative">
+          {isMounted && (
+            <ReactTooltip anchorId="play-pause-animations" place="left" />
+          )}
+          <div
+            data-tooltip-content="Toggle animations"
+            id="play-pause-animations"
+            className=" bg-dc-gray opacity-50 hover:opacity-100 transition-all text-dc-white text-sm h-8 w-8 absolute right-8 top-8 text-center flex rounded-full flex-row items-center"
+          >
+            <i
+              className={`fa-solid cursor-pointer rounded-full w-full ${
+                isAnimationsEnabled ? "fa-pause" : "fa-play"
+              } `}
+              onClick={toggleAnimationState}
+            ></i>
+          </div>
+          {isAnimationsEnabled && <BouncingAtoms />}
+        </div>
       </div>
       {/* HERO */}
       <section className="flex flex-row py-8 items-center justify-between px-[25px] 2xl:px-[300px] hero">
@@ -143,9 +125,17 @@ export default function Home() {
               <span>Sciences</span>
             )}
           </div>
-          <p className="font-semibold text-[48px] lg:text-[56px] text-dc-gray">
-            DeepChem
-          </p>
+          <div className="flex flex-row items-center gap-4">
+            <Image
+              src={deepchemLogo}
+              alt="DeepChem Logo"
+              width={70}
+              height={79}
+            />
+            <p className="font-semibold text-[48px] lg:text-[56px] text-dc-gray">
+              DeepChem
+            </p>
+          </div>
         </div>
         <div className="h-[250px] rotate-[18deg] w-[2px] bg-dc-orange mr-10 hidden lg:flex"></div>
         <div className="flex-col flex-1 text-dc-gray text-opacity-60 hidden lg:flex">
@@ -165,40 +155,7 @@ export default function Home() {
         <div className=" hidden lg:block h-full w-[300px] flex-1"></div>
         <h2 id="get-started">Get Started</h2>
         {terminalVisible && (
-          <div className="flex flex-col max-w-[600px] w-full shadow-xl font-inconsolata rounded-2xl">
-            <div className="flex flex-row justify-between bg-terminal-header px-8 py-4 rounded-t-2xl">
-              <div className="flex flex-row gap-2 items-center">
-                <span
-                  className="h-4 w-4 bg-terminal-red inline-block rounded-full"
-                  onClick={() => {
-                    setTerminalVisible(false);
-                  }}
-                />
-                <span className="h-4 w-4 bg-terminal-yellow inline-block rounded-full" />
-                <span className="h-4 w-4 bg-terminal-green inline-block rounded-full" />
-              </div>
-              <p className="text-lg justify-self-center invisible lg:visible">
-                deepchem -- bash
-              </p>
-              <div className="flex flex-row gap-2 items-center invisible">
-                <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-red inline-block rounded-full " />
-                <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-yellow inline-block rounded-full " />
-                <span className="h-3 w-3 lg:h-5 lg:w-5 bg-terminal-green inline-block rounded-full " />
-              </div>
-            </div>
-            <div className="flex flex-row px-8 bg-white py-4 lg:py-6 rounded-b-2xl text-xl lg:text-2xl items-center">
-              <p className="pr-2 font-extrabold">$</p>
-              <div className="mr-auto">
-                <p>{terminalCommand}</p>
-              </div>
-              <CopyToClipboard text={terminalCommand}>
-                <i
-                  className="p-3 fa-regular fa-copy cursor-pointer text-dc-light-gray hover:bg-dc-gray/[0.06] rounded-full"
-                  onClick={handleClick}
-                ></i>
-              </CopyToClipboard>
-            </div>
-          </div>
+          <Terminal setTerminalVisible={setTerminalVisible} />
         )}
         <div className="hidden lg:block h-full w-[300px] flex-1"></div>
       </section>
@@ -274,19 +231,6 @@ export default function Home() {
         </div>
       </section>
       {/* EXPLORE END */}
-
-      <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          sx={{
-            width: "100%",
-            background: "#252422",
-          }}
-        >
-          Copied!
-        </Alert>
-      </Snackbar>
     </>
   );
 }
