@@ -18,6 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: fetch latest deepchem version
+        run: |
+          cd new-website/utils/home
+          python3 fetch-version.py
+
       - name: install and build
         run: |
           cd new-website
