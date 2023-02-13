@@ -2,13 +2,13 @@ import requests
 import json
 import os
 
-# Define the URL of the deepchem repository releases.
+# URL of the deepchem repository releases.
 releases_url = 'https://api.github.com/repos/deepchem/deepchem/releases'
 
-# Define the latest version as 2.7.1
+# Set the base latest version as 2.7.1
 latest_version = '2.7.1'
 
-# Try to send a GET request to the releases URL and get the latest version information.
+# Send a GET request to the releases URL and get the latest version information.
 try:
     # Send the GET request to the releases URL.
     response = requests.get(releases_url)
@@ -23,7 +23,7 @@ except Exception as e:
     # Print the exception message.
     print(e)
 
-# Define a dictionary of terminal commands for different package managers.
+# Dictionary of terminal commands for different package managers.
 terminal_commands = {
     "pip": ["pip install deepchem"],
     "conda": [
