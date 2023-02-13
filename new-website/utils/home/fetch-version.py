@@ -1,6 +1,6 @@
-# Import the 'requests' and 'json' libraries.
 import requests
 import json
+import os
 
 # Define the URL of the deepchem repository releases.
 releases_url = 'https://api.github.com/repos/deepchem/deepchem/releases'
@@ -34,6 +34,12 @@ terminal_commands = {
         f"docker run -it deepchemio/deepchem:{latest_version}"
     ]
 }
+
+# Try to create the data folder
+try:
+    os.makedirs("../../deepchem/data/home")
+except Exception as e:
+    print(e)
 
 # Try to write the terminal commands dictionary to a JSON file.
 try:
