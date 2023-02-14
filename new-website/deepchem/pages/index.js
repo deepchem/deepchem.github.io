@@ -51,7 +51,7 @@ const usersCarouselImageData = loadUsersCarouselImageData();
  * @return {JSX.Element} The JSX element to render the Home component.
  */
 const Home = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["isAnimationsEnabled"]);
+  const [cookies, setCookie] = useCookies(["isAnimationsEnabled"]);
   const [isMounted, setIsMounted] = useState(false);
   const [terminalVisible, setTerminalVisible] = useState(true);
   const { isAnimationsEnabled, setIsAnimationsEnabled } =
