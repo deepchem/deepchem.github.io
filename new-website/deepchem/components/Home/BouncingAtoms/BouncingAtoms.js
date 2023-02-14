@@ -145,7 +145,9 @@ const BouncingAtoms = (props) => {
    * @param {object} canvasParentRef - reference to the canvas parent element
    */
   const setup = (p5, canvasParentRef) => {
+    updateP5ParametersBasedOnWindowDimensions(p5.windowWidth, p5.windowHeight);
     p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
+    p5.resizeCanvas(p5.windowWidth, canvasHeight);
 
     for (let i = atoms.length; i < atomCount; i++) {
       p5.append(
