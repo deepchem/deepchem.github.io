@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
  * @function
  */
 export const AnimationsContext = createContext({
-  isAnimationsEnabled: true,
+  isAnimationsEnabled: false,
   setIsAnimationsEnabled: () => null,
 });
 
@@ -14,7 +14,7 @@ export const AnimationsContext = createContext({
  * @return {React.Provider} - Provider for the AnimationsContext
  */
 export const AnimationsProvider = ({ children }) => {
-  const [isAnimationsEnabled, setIsAnimationsEnabled] = useState(true);
+  const [isAnimationsEnabled, setIsAnimationsEnabled] = useState(false);
 
   const value = {
     isAnimationsEnabled,
