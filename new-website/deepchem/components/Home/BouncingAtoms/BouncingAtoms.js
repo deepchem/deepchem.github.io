@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import dynamic from "next/dynamic";
+
+import { AnimationsContext } from "../../../contexts/animations-context";
 
 const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
   ssr: false,
@@ -131,6 +133,7 @@ function formBond(a, b, separation, p5) {
  * @return {JSX} Sketch component with setup, draw, windowResized, and mouseClicked props
  */
 const BouncingAtoms = (props) => {
+  const { isAnimationsEnabled } = useContext(AnimationsContext);
   useEffect(() => {
     // Ensure that the canvasWidth is set properly upon page mount
     updateP5ParametersBasedOnWindowDimensions(
@@ -138,6 +141,20 @@ const BouncingAtoms = (props) => {
       window.screen.height
     );
   }, []);
+
+  /**
+   * Set and reset atoms' velocities whenever isAnimationsEnabled is toggled
+   */
+  useEffect(() => {
+    for (const atom of atoms) {
+      atom.vx = isAnimationsEnabled
+        ? -MAX_SPEED + Math.random() * (2 * MAX_SPEED)
+        : 0;
+      atom.vy = isAnimationsEnabled
+        ? -MAX_SPEED + Math.random() * (2 * MAX_SPEED)
+        : 0;
+    }
+  }, [isAnimationsEnabled]);
   /**
    * Function to set up the canvas and initial atom positions
    * @function
@@ -145,7 +162,9 @@ const BouncingAtoms = (props) => {
    * @param {object} canvasParentRef - reference to the canvas parent element
    */
   const setup = (p5, canvasParentRef) => {
+    updateP5ParametersBasedOnWindowDimensions(p5.windowWidth, p5.windowHeight);
     p5.createCanvas(canvasWidth, canvasHeight).parent(canvasParentRef);
+    p5.resizeCanvas(p5.windowWidth, canvasHeight);
 
     for (let i = atoms.length; i < atomCount; i++) {
       p5.append(
