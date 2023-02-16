@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useCookies } from "react-cookie";
 
 import { TypeAnimation } from "react-type-animation";
 import { Tooltip as ReactTooltip } from "react-tooltip";
@@ -43,25 +44,33 @@ const loadUsersCarouselImageData = () => {
   return data;
 };
 const usersCarouselImageData = loadUsersCarouselImageData();
-console.log(usersCarouselImageData);
 
 /**
  * Home component that displays the home page of the application
  * @component
  * @return {JSX.Element} The JSX element to render the Home component.
  */
-export default function Home() {
+const Home = () => {
+  const [cookies, setCookie] = useCookies(["isAnimationsEnabled"]);
   const [isMounted, setIsMounted] = useState(false);
   const [terminalVisible, setTerminalVisible] = useState(true);
   const { isAnimationsEnabled, setIsAnimationsEnabled } =
     useContext(AnimationsContext);
 
   /**
-   * Effect hook to set isMounted state to true once after website loads
+   * useEffect hook to set isMounted state to true and set initial animation state based on cookie after website loads
    */
   useEffect(() => {
     setIsMounted(true);
+    setIsAnimationsEnabled(cookies.isAnimationsEnabled == "true");
   }, []);
+
+  /**
+   * useEffect hook to set the cookie whenever isAnimationsEnabled changes
+   */
+  useEffect(() => {
+    setCookie("isAnimationsEnabled", isAnimationsEnabled);
+  }, [isAnimationsEnabled]);
 
   const toggleAnimationState = () => {
     setIsAnimationsEnabled(!isAnimationsEnabled);
@@ -92,7 +101,7 @@ export default function Home() {
               onClick={toggleAnimationState}
             ></i>
           </div>
-          {isAnimationsEnabled && <BouncingAtoms />}
+          <BouncingAtoms />
         </div>
       </div>
       {/* HERO */}
@@ -193,7 +202,6 @@ export default function Home() {
 
         <CustomCarousel showArrows={true} showIndicators={true}>
           {Object.keys(usersCarouselImageData).map((image, i) => {
-            console.log(image);
             return <CarouselItem key={i} src={usersCarouselImageData[image]} />;
           })}{" "}
         </CustomCarousel>
@@ -233,4 +241,6 @@ export default function Home() {
       {/* EXPLORE END */}
     </>
   );
-}
+};
+
+export default Home;

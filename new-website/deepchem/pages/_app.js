@@ -8,7 +8,6 @@ import Layout from "../layouts/layout";
 import "../components/CustomCarousel/CustomCarousel.styles.css";
 
 import "react-tooltip/dist/react-tooltip.css";
-import "react-toggle/style.css";
 import "react-dropdown/style.css";
 
 import { AnimationsProvider } from "../contexts/animations-context";
