@@ -101,7 +101,7 @@ const Home = () => {
               onClick={toggleAnimationState}
             ></i>
           </div>
-          {isAnimationsEnabled && <BouncingAtoms />}
+          <BouncingAtoms />
         </div>
       </div>
       {/* HERO */}
