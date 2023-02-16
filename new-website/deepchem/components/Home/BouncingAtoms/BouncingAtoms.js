@@ -127,6 +127,29 @@ function formBond(a, b, separation, p5) {
 }
 
 /**
+ * @function
+ * @param {Object} p5 - p5 instance
+ * @param {boolean} isAnimationsEnabled - boolean denoting whether animations are on or off
+ * @param {boolean} createdOnClick - boolean denoting whether the atom was created on click
+ * @return {Object} - Atom Object
+ */
+function getNewAtom(p5, isAnimationsEnabled, createdOnClick = false) {
+  return new Atom(
+    p5.random(MIN_DIA, MAX_DIA),
+    createdOnClick ? p5.mouseX : p5.random(0, canvasWidth),
+    createdOnClick ? p5.mouseY : p5.random(0, canvasHeight),
+    p5.random(
+      isAnimationsEnabled ? -MAX_SPEED : 0,
+      isAnimationsEnabled ? MAX_SPEED : 0
+    ),
+    p5.random(
+      isAnimationsEnabled ? -MAX_SPEED : 0,
+      isAnimationsEnabled ? MAX_SPEED : 0
+    ),
+    p5.random(-MAX_DIA_CHANGE_SPEED, MAX_DIA_CHANGE_SPEED)
+  );
+}
+/**
  * BouncingAtoms component that renders an interactive animation of bouncing atoms
  * @component
  * @param {object} props - the component props
@@ -167,17 +190,7 @@ const BouncingAtoms = (props) => {
     p5.resizeCanvas(p5.windowWidth, canvasHeight);
 
     for (let i = atoms.length; i < atomCount; i++) {
-      p5.append(
-        atoms,
-        new Atom(
-          p5.random(MIN_DIA, MAX_DIA),
-          p5.random(0, canvasWidth),
-          p5.random(0, canvasHeight),
-          p5.random(-MAX_SPEED, MAX_SPEED),
-          p5.random(-MAX_SPEED, MAX_SPEED),
-          p5.random(-MAX_DIA_CHANGE_SPEED, MAX_DIA_CHANGE_SPEED)
-        )
-      );
+      p5.append(atoms, getNewAtom(p5, isAnimationsEnabled));
     }
   };
 
@@ -208,17 +221,7 @@ const BouncingAtoms = (props) => {
    * @param {object} p5 - p5 object to access p5 functions
    */
   const mouseClicked = (p5) => {
-    p5.append(
-      atoms,
-      new Atom(
-        p5.random(MIN_DIA, MAX_DIA),
-        p5.mouseX,
-        p5.mouseY,
-        p5.random(-MAX_SPEED, MAX_SPEED),
-        p5.random(-MAX_SPEED, MAX_SPEED),
-        p5.random(-MAX_DIA_CHANGE_SPEED, MAX_DIA_CHANGE_SPEED)
-      )
-    );
+    p5.append(atoms, getNewAtom(p5, isAnimationsEnabled, true));
   };
 
   /**
