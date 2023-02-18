@@ -22,7 +22,7 @@ const NavLink = ({ link, icon, label, blank }) => {
                 "
         target={blank ? "_blank" : ""}
       >
-        <i className={`${icon} text-xl hidden lg:flex`}></i>
+        <i className={`${icon} text-xl hidden xl:flex`}></i>
         {label}
       </Link>
     </>
