@@ -20,7 +20,7 @@ Website for DeepChem - https://deepchem.io.
 - To change the destination folder for the generated docs, set the `opts.destination` property in `deepchem/jsdoc.conf.json`
 
 ## TechStack
-- [Next-13](https://nextjs.org/blog/next-13)
+- [Next-12](https://nextjs.org/blog/next-12)
 - [TailwindCSS](https://tailwindcss.com/)
 
 ## Features
@@ -40,12 +40,19 @@ Website for DeepChem - https://deepchem.io.
 ## Deployment
 - The `next build` command generates the static files for next export to use.
 - The `next export` command builds an HTML version of your application from pregenerated static files.
-- A [workflow](#workflow) has been set up to handle build time data fetching and automatic deployment of the website to Github Pages.
-- The [Github pages deploy action](https://github.com/JamesIves/github-pages-deploy-action) is used to deploy the website to GitHub Pages with GitHub Actions.
+- A [workflow](#workflow-overview) has been set up to handle build time data fetching and automatic deployment of the website to Github Pages.
+- The [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action) is used to deploy the website to GitHub Pages with GitHub Actions.
 - The static HTML build is saved in a separate branch called `gh-pages`.
 - The workflow is triggered everytime the main branch is updated.
 - In case the workflow run fails, the build is aborted and the current website deployment stays as is.
 
-## Workflow
+## Workflow script
+- The `deploy_gh_pages.yml` workflow script in `.github/workflows` is triggered on updates to the main branch.
+- The workflow runs a single job comprising of 3 steps
+   - Fetch version data: This step fetches the latest deepchem release version from the github [api endpoint](https://api.github.com/repos/deepchem/deepchem/releases) and updates the terminal commands in `deepchem/data/home/terminal-commmands.json`
+   - Install and build: This step checks out the repository, installs the required dependencies using npm i, runs the linting process with npm run lint, and generates the static website with npm run export. 
+   - Deploy: This step deploys the website to the gh-pages branch using the [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action). The website files are copied from the deepchem/out directory, and any files listed in the clean-exclude parameter are excluded from the cleaning process.
+
+## Workflow overview
 
 ![](./public/assets/workflow.png)
