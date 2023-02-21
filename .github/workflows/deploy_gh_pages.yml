@@ -2,7 +2,7 @@ name: Deploy to gh-pages
 
 on:
   push:
-    branches: [ main, reavamp ]
+    branches: [ main, revamp ]
   repository_dispatch:
     types: [ update ]
 
