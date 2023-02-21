@@ -37,6 +37,15 @@ Website for DeepChem - https://deepchem.io.
 - File names can be flexible, but should be meaningful and represent the organisation
 - Files must be .png files with transparent backgrounds
 
+## Deployment
+- The `next build` command generates the static files for next export to use.
+- The `next export` command builds an HTML version of your application from pregenerated static files.
+- A [workflow](#workflow) has been set up to handle build time data fetching and automatic deployment of the website to Github Pages.
+- The [Github pages deploy action](https://github.com/JamesIves/github-pages-deploy-action) is used to deploy the website to GitHub Pages with GitHub Actions.
+- The static HTML build is saved in a separate branch called `gh-pages`.
+- The workflow is triggered everytime the main branch is updated.
+- In case the workflow run fails, the build is aborted and the current website deployment stays as is.
+
 ## Workflow
 
 ![](./public/assets/workflow.png)
