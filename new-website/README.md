@@ -40,7 +40,7 @@ Website for DeepChem - https://deepchem.io.
 ## Model Data Scraping
 - The model data is scraped from the offical [Deepchem documentation](https://deepchem.readthedocs.io/en/latest/api_reference/models.html#model-cheatsheet) page using the `get_models.py` script in the `/utils/models` directory.
 - The script uses the [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) library to scrape the data from the documentation page.
-- The script first scrapes the page, extracts the table data, and saves it in multiple json files in the `/deepchem/data/models` directory.
+- The script first scrapes the page, extracts the table data, and then saves it in multiple json files in the `/deepchem/data/models` directory.
 - The data is generated during the workflow process and not stored in the repository.
 
 ## Deployment
