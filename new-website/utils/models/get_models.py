@@ -9,7 +9,7 @@ import subprocess
 import pandas as pd
 import numpy as np
 
-PATH = '../deepchem/data/models/'
+PATH = '../../deepchem/data/models/'
 REDIRECT_URL = 'https://deepchem.readthedocs.io/en/latest/api_reference/models.html#'
 CHEATSHEETS = {
     'general': 'https://raw.githubusercontent.com/deepchem/deepchem/master/docs/source/api_reference/general_purpose_models.csv',
