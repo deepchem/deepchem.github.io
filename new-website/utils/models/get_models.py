@@ -62,7 +62,7 @@ class ModelListEncoder(JSONEncoder):
 
         Returns
         -------
-            json: str
+        json: str
         """
         return o.__dict__
 
@@ -72,9 +72,12 @@ def convert_to_json(data, name, is_model=False):
 
     Parameters
     ----------
-        data: list
-        name: str
-        is_model: bool
+    data: list
+        The list of data to be converted to JSON
+    name: str
+        The name of the file to be written
+    is_model: bool
+        Flag to check if the data is a list of Model objects, different encoding is required for Model objects
     """
     if is_model:
         data = json.dumps(data, indent=4, cls=ModelListEncoder)

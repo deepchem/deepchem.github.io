@@ -38,7 +38,7 @@ Website for DeepChem - https://deepchem.io.
 - Files must be .png files with transparent backgrounds
 
 ## Model Data Fetching
-- The model data is fetched from the offical [Deepchem page](https://github.com/deepchem/deepchem/tree/master/docs/source/api_reference) using the `get_models.py` script in the `/utils/models` directory.
+- The model data is fetched from the offical [Deepchem repo](https://github.com/deepchem/deepchem/tree/master/docs/source/api_reference) using the `get_models.py` script in the `/utils/models` directory.
 - The script downloads the raw csv files hosted at Github and extracts the necessary data.
 - The script reads the files using pandas, encodes and saves it to json format in the `/deepchem/data/models` directory.
 - The data is generated during the workflow process and not stored in the repository.
