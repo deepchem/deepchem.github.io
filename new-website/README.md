@@ -37,6 +37,12 @@ Website for DeepChem - https://deepchem.io.
 - File names can be flexible, but should be meaningful and represent the organisation
 - Files must be .png files with transparent backgrounds
 
+## Model Data Fetching
+- The model data is fetched from the offical [Deepchem repo](https://github.com/deepchem/deepchem/tree/master/docs/source/api_reference) using the `get_models.py` script in the `/utils/models` directory.
+- The script downloads the raw csv files hosted at Github and extracts the necessary data.
+- The script reads the files using pandas, encodes and saves it to json format in the `/deepchem/data/models` directory.
+- The data is generated during the workflow process and not stored in the repository.
+
 ## Deployment
 - The `next build` command generates the static files for next export to use.
 - The `next export` command builds an HTML version of your application from pregenerated static files.

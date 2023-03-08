@@ -60,6 +60,10 @@ const About = () => {
             <div className="text-3xl text-dc-blue text-right leading-tight h-3 -mt-3">
               ”
             </div>
+            <br />
+            <p className="text-lg text-dc-gray text-right px-5">
+              ~ {FromDevelopersDeskText.author}
+            </p>
           </div>
           <div className="order-first lg:order-none w-36 h-36 relative flex-shrink-0">
             <Image
