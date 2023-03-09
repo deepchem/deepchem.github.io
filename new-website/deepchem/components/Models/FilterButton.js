@@ -3,6 +3,7 @@ import Image from "next/image";
 import deepchemCross from "../../public/icons/deepchem-cross.png";
 
 /**
+ * The FilterButton component is used to create a button for each filter
  * @component
  * @param {Object} props - props passed to the component
  * @param {Array} props.category - array of all the available filters

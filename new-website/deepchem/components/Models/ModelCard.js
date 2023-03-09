@@ -24,6 +24,7 @@ function parseName(name) {
 }
 
 /**
+ * The ModelCard component is used to create a card for each model
  * @component
  * @param {Object} model - model props passed to the component, contains name, category, backend, type, featurizers
  * @return {JSX.Element} - A JSX element representing the card of an individual model
