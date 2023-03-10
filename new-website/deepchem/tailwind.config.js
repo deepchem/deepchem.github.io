@@ -16,6 +16,9 @@ module.exports = {
       lato: ["Lato", "monospace"],
     },
     extend: {
+      screens: {
+        "3xl": "1800px",
+      },
       colors: {
         "dc-gray": "#252422",
         "dc-blue": "#004E98",

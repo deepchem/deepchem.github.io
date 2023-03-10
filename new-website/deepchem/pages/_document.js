@@ -37,7 +37,7 @@ const Document = () => {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <Main />
         <NextScript />
       </body>
