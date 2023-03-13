@@ -16,6 +16,7 @@ import { AnimationsContext } from "../contexts/animations-context";
 
 import exploreTutorialsIcon from "../public/images/explore-tutorials.png";
 import exploreProjectsIcon from "../public/images/explore-projects.png";
+import exploreModelsIcon from "./../public/images/explore-models.png";
 import Terminal from "../components/Home/Terminal";
 import deepchemLogo from "../public/images/deepchem-logo.png";
 
@@ -213,8 +214,8 @@ const Home = () => {
         <h2 className="mb-8">Explore</h2>
         <div className="explore flex flex-wrap lg:flex-row items-center justify-center gap-10">
           <ExploreCardItem
-            image={"/images/explore-models.png"}
-            title="MODELS"
+            image={exploreModelsIcon}
+            title="Models"
             link={"/models"}
           />
           <ExploreCardItem
