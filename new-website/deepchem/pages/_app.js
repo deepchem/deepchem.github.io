@@ -3,7 +3,6 @@ import Head from "next/head";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import "../styles/globals.css";
-import "../styles/models.css";
 
 import Layout from "../layouts/layout";
 
