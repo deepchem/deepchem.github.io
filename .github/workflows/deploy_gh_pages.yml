@@ -16,11 +16,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: install requirements
+        run: |
+          cd new-website
+          cd utils
+          pip install -r requirements.txt
+
       - name: fetch latest deepchem version
         run: |
           cd new-website
           cd utils/home
           python3 fetch-version.py
+
+      - name: fetch and convert model data
+        run: |
+          cd new-website
+          cd utils/models
+          python3 get_models.py
 
       - name: install and build
         run: |

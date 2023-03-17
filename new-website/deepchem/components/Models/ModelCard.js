@@ -44,10 +44,10 @@ const ModelCard = ({ model }) => {
               {parseName(model.name)}
             </div>
             <div className="flex flex-row items-center gap-1.5 bg-dc-light-blue/5 px-2 py-1 rounded-md">
-              {model.category === "Molecule" && (
+              {model.category === "molecule" && (
                 <Image src={deepchemMolecule} alt="Molecule Logo" width={12} />
               )}
-              {model.category === "Material" && (
+              {model.category === "material" && (
                 <Image src={deepchemMaterial} alt="Material Logo" width={12} />
               )}
               <div className="font-medium text-sm text-dc-gray">
