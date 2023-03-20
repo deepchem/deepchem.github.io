@@ -1,13 +1,14 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
-/** Common layout with the header and the footer
+/**
+ * Main layout component - A wrapper layout with the header the the footer
  * @component
  * @param {Object} props - props passed to the component
- * @param {Object} props.children - children to be rendered inside the common layout
- * @return {JSX} - JSX for the common layout with the header and the footer
+ * @param {Object} props.children - children to be rendered inside the Main layout
+ * @return {JSX} - JSX for the MainLayout component
  */
-export default function Layout({ children }) {
+const MainLayout = ({ children }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -15,4 +16,6 @@ export default function Layout({ children }) {
       <Footer />
     </div>
   );
-}
+};
+
+export default MainLayout;
