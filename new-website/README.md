@@ -43,6 +43,12 @@ Website for DeepChem - https://deepchem.io.
 - The script reads the files using pandas, encodes and saves it to json format in the `/deepchem/data/models` directory.
 - The data is generated during the workflow process and not stored in the repository.
 
+## Tutorial Data Fetching
+- The tutorial data is fetched from the offical [Deepchem repo](https://github.com/deepchem/deepchem/tree/master/docs/source/api_reference) using the `fetch_tutorials.py` script in the `/utils/tutorials` directory.
+- The script downloads the raw `.ipynb` files from Github and uses `jupyter nbconvert` to convert them to `html` files.
+- A second script `export_tutorials.py` in the same directory reads the html files, creates a react component and a json data-file out of the parsed HTML data and exports them to the `/deepchem/pages/tutorials` and `/deepchem/data/tutorials` directories respectively.
+- The data is generated only during the workflow process and is not stored in the repository.
+
 ## Deployment
 - The `next build` command generates the static files for next export to use.
 - The `next export` command builds an HTML version of your application from pregenerated static files.
