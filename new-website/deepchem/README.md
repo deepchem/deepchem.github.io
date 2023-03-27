@@ -93,3 +93,18 @@ Following options have been used
 - `opts.destination`: specifies the directory where the documentation should be generated
 - `opts.recurse`: specifies whether the process should recurse through subdirectories
 - `opts.readme`: specifies the main documentation file
+
+### MathJax
+The website uses MathJax to render the equations in the tutorials. Following configurations have been used and can be found in `layouts/tutorial.js` 
+
+- equationNumbers: generates equation numbers using AMS style and label ids.
+- tex2jax: converts TeX code to MathJax format, including inline and display math, escapes, and LaTeX environments.
+- displayAlign: centers displayed equations.
+- CommonHTML: uses the renderer for HTML output and enables automatic line breaking.
+
+The specific options used are:
+
+- autoNumber: "AMS", useLabelIds: true for equationNumbers
+- inlineMath: [['$', '$']], displayMath: [['$$', '$$']], processEscapes: true, processEnvironments: true for tex2jax
+- 'center' for displayAlign
+- linebreaks: { automatic: true } for CommonHTML
