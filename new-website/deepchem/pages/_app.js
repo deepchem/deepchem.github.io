@@ -4,7 +4,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import "../styles/globals.css";
 
-import Layout from "../layouts/layout";
+import MainLayout from "../layouts/main";
+import DefaultLayout from "../layouts/default";
 
 import "../components/CustomCarousel/CustomCarousel.styles.css";
 
@@ -14,7 +15,7 @@ import "react-dropdown/style.css";
 import { AnimationsProvider } from "../contexts/animations-context";
 
 /**
- * Custom _app.js to render common layouts for all pages
+ * Custom _app.js to render common and selective layouts for different pages
  * @component
  * @param {Object} props - Props passed to the component
  * @param {React.Component} props.Component - Component to be rendered within the common layout
@@ -22,6 +23,7 @@ import { AnimationsProvider } from "../contexts/animations-context";
  * @return {JSX} - JSX for the App component
  */
 const MyApp = ({ Component, pageProps }) => {
+  const Layout = Component.Layout || DefaultLayout;
   return (
     <AnimationsProvider>
       <Head>
@@ -29,11 +31,12 @@ const MyApp = ({ Component, pageProps }) => {
 
         <link rel="shortcut icon" href="/deepchem.github.io/favicon.ico" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <MainLayout>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </MainLayout>
     </AnimationsProvider>
   );
 };
-
 export default MyApp;
