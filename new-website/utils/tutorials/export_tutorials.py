@@ -22,57 +22,63 @@ def to_valid_identifier(s):
     """
     Converts a given string into a valid identifier.
 
-    Args
-    ----
-        s: str
-            The string to be converted into a valid identifier.
+    Parameters
+    ----------
+    s: str
+        The string to be converted into a valid identifier.
 
-    Returns:
-        str: The converted valid identifier.
+    Returns
+    -------
+    valid_identifier: str
+        The converted valid identifier.
     """
-    s = s.replace(" ", "_")
-    s = re.sub(r'[^0-9a-zA-Z_]', '_', s)
-    if s[0].isdigit():
-        s = "_" + s
-    return s
+    valid_identifier = s.replace(" ", "_")
+    valid_identifier = re.sub(r'[^0-9a-zA-Z_]', '_', valid_identifier)
+    if valid_identifier[0].isdigit():
+        valid_identifier = "_" + valid_identifier
+    return valid_identifier
 
 
 def to_valid_url_path(s):
     """
     Converts a given string into a valid URL path.
 
-    Args
-    ----
-        s: str
-            The string to be converted into a valid URL path.
+    Parameters
+    ----------
+    s: str
+        The string to be converted into a valid URL path.
 
     Returns
     -------
-        str: The converted valid URL path.
+    valid_url: str
+        The converted valid URL path.
     """
-    s = re.sub(r"[^\w\s]", "-", s)
-    s = re.sub(r'[ _]+', '-', s)
-    s = s.lower()
-    return s
+    valid_url = re.sub(r"[^\w\s]", "-", s)
+    valid_url = re.sub(r'[ _]+', '-', valid_url)
+    valid_url = valid_url.lower()
+    return valid_url
 
 
 def get_component(file_name, component_name):
     """
     Generates a React component for a given file name and component name.
 
-    Args
-    ----
-        file_name (str): The name of the file to generate the component for.
-        component_name (str): The name of the component to be generated.
+    Parameters
+    ----------
+    file_name: str
+        The name of the file to generate the component for.
+    component_name: str
+        The name of the component to be generated.
 
     Returns
     -------
-        str: The generated React component.
+    generated_component: str
+        The generated React component.
     """
     # Remove file extension if any
     file_name = file_name.rsplit(".")[0]
 
-    return f"""
+    generated_component = f"""
 import TutorialLayout from "../../layouts/tutorial";
 import notebookStyles from "../../data/tutorials/styles";
 import innerHTML from "../../data/tutorials/{file_name}.js";
@@ -106,8 +112,14 @@ return <div
 export default {component_name};
 """
 
+    return generated_component
+
 
 def parse_and_export_tutorials():
+    """
+    Parses HTML files containing DeepChem tutorials and converts them into React components and JSON data that is used to
+    display tutorials on the website
+    """
     tutorials = []
 
     # Open 'notebooks.txt' file and iterate over each file name
@@ -161,7 +173,10 @@ def parse_and_export_tutorials():
                 tutorials.append(tutorial)
 
     # Write the list of tutorials to a js file located in the 'data/tutorials' directory
-
     with open('../../deepchem/data/tutorials/tutorials.js', 'w') as f:
         f.write("export default")
         f.write(json.dumps(tutorials))
+
+
+if __name__ == "__main__":
+    parse_and_export_tutorials()

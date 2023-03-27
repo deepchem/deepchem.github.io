@@ -59,10 +59,7 @@ def fetch_tutorial_data():
 
 def create_directories():
     """
-    Creates two directories to store the jupyter notebooks and the converted HTML notebooks.
-
-    Raises:
-    Exception: If the directories already exist, or if the directories could not be created.
+    Creates two directories to store the jupyter notebooks and the converted HTML notebooks.   
     """
     try:
         os.makedirs('./html-notebooks')
@@ -101,7 +98,7 @@ def convert_to_html(tutorials):
             shutil.copyfile(f'{fromPath}fixed-{file_name_html}',
                             toPath + file_name_html)
 
-            with open('./notebooks.txt', "w") as notebook_list:
+            with open('./notebooks.txt', "a") as notebook_list:
                 notebook_list.write(file_name_html + '\n')
         except Exception as exception:
             print(exception)
