@@ -12,107 +12,14 @@ Example Usage:
     - Run this script using "python script_name.py".
     - The output JSON and React components data will be generated in the "../../deepchem/data/tutorials/" and
       "../../deepchem/pages/tutorials/" directories.
+
+NOTE: DO NOT CREATE OR MODIFY ANY OF THE REQUIRED FILES MANUALLY. The script will create the required directories and files
+      
 """
 from bs4 import BeautifulSoup
 import json
-import re
-
-
-def to_valid_identifier(s):
-    """
-    Converts a given string into a valid identifier.
-
-    Parameters
-    ----------
-    s: str
-        The string to be converted into a valid identifier.
-
-    Returns
-    -------
-    valid_identifier: str
-        The converted valid identifier.
-    """
-    valid_identifier = s.replace(" ", "_")
-    valid_identifier = re.sub(r'[^0-9a-zA-Z_]', '_', valid_identifier)
-    if valid_identifier[0].isdigit():
-        valid_identifier = "_" + valid_identifier
-    return valid_identifier
-
-
-def to_valid_url_path(s):
-    """
-    Converts a given string into a valid URL path.
-
-    Parameters
-    ----------
-    s: str
-        The string to be converted into a valid URL path.
-
-    Returns
-    -------
-    valid_url: str
-        The converted valid URL path.
-    """
-    valid_url = re.sub(r"[^\w\s]", "-", s)
-    valid_url = re.sub(r'[ _]+', '-', valid_url)
-    valid_url = valid_url.lower()
-    return valid_url
-
-
-def get_component(file_name, component_name):
-    """
-    Generates a React component for a given file name and component name.
-
-    Parameters
-    ----------
-    file_name: str
-        The name of the file to generate the component for.
-    component_name: str
-        The name of the component to be generated.
-
-    Returns
-    -------
-    generated_component: str
-        The generated React component.
-    """
-    # Remove file extension if any
-    file_name = file_name.rsplit(".")[0]
-
-    generated_component = f"""
-import TutorialLayout from "../../layouts/tutorial";
-import notebookStyles from "../../data/tutorials/styles";
-import innerHTML from "../../data/tutorials/{file_name}.js";
-import {{useEffect}} from "react";
-import scrollnav from "scrollnav";
-
-const {component_name} = () => {{
-
-useEffect(() => {{
-        document.getElementsByClassName('scroll-nav')[0]?.remove();
-        const content = document.querySelector(".notebook");
-        const insertTarget = document.querySelector(".notebook");
-
-        if (insertTarget && content) {{
-            scrollnav.init(content, {{
-                sections: "h1, h2", insertTarget: insertTarget, insertLocation: "after",
-            }});
-        }}
-
-        MathJax?.Hub?.Queue(["Typeset", MathJax.Hub]);
-    }}, []);
-
-return <div
-    className="overflow-x-scroll"
-    dangerouslySetInnerHTML={{{{__html: `${{innerHTML.html}} ${{notebookStyles}}`,}}}}
-></div>
-}}
-
-{component_name}.Layout = TutorialLayout;
-
-export default {component_name};
-"""
-
-    return generated_component
+from utils import to_valid_identifier, to_valid_url_path
+from tutorial_component_template import get_react_component
 
 
 def parse_and_export_tutorials():
@@ -164,7 +71,7 @@ def parse_and_export_tutorials():
 
                 # Generate a component for the tutorial and write it to a js file located in the 'pages/tutorials' directory
                 with open(f'../../deepchem/pages/tutorials/{urlified_file_name}.js', 'w', encoding="utf-8") as component:
-                    component.write(get_component(
+                    component.write(get_react_component(
                         urlified_file_name, component_name))
 
                 # Add the tutorial title and urlified file name to the list of tutorials

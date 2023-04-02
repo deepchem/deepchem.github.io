@@ -5,6 +5,9 @@ Example Usage:
     - Run this script using "python script_name.py".
     - The output .ipynb and corresponding .html notebooks data will be generated in the "./ipynb-notebooks" and
       "./html-notebooks" directories
+
+NOTE: NO FILES OR DIRECTORIES HAVE TO BE CREATED MANUALLY. The script will create the required directories and files
+
 """
 import os
 import shutil
@@ -12,25 +15,7 @@ import subprocess
 import re
 import requests
 from bs4 import BeautifulSoup
-
-
-def clean(invalid_filename):
-    """
-    Removes non-alphanumeric characters and replaces them with an underscore from the given string.
-
-    Parameters
-    ----------
-    invalid_filename: str
-        String that needs to be cleaned.
-
-    Returns
-    -------
-    cleaned_string: str
-        The cleaned string with every non-alphanumeric character replaced with an underscore
-    """
-
-    cleaned_string = re.sub(r'\W+|^(?=\d)', '_', invalid_filename)
-    return cleaned_string
+from utils import clean
 
 
 def fetch_tutorial_data():
