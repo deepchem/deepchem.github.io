@@ -107,7 +107,7 @@ const Models = () => {
   }, []);
 
   return (
-    <>
+    <div className="models">
       <div
         className={`${
           isPopUp ? "flex" : "hidden"
@@ -262,7 +262,7 @@ const Models = () => {
         </div>
         {/* BODY END */}
       </div>
-    </>
+    </div>
   );
 };
 
