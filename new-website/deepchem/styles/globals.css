@@ -22,10 +22,15 @@ a {
 canvas {
   display: block;
   background: rgb(0, 78, 152);
-  background: linear-gradient(35deg, rgba(0,78,152,1) 0%, rgba(58,110,165,1) 34%, rgba(255,103,0,1) 100%);
+  background: linear-gradient(
+    35deg,
+    rgba(0, 78, 152, 1) 0%,
+    rgba(58, 110, 165, 1) 34%,
+    rgba(255, 103, 0, 1) 100%
+  );
 }
 
-@media(-webkit-device-pixel-ratio: 1.25) {
+@media (-webkit-device-pixel-ratio: 1.25) {
   header,
   nav,
   i,
@@ -35,16 +40,21 @@ canvas {
   .contributors,
   footer,
   .explore,
-  .about {
+  .about,
+  .models,
+  .tutorials {
     zoom: 0.8;
-  };
-
+  }
 }
 
-@media(min-width: 1200px) {
+@media (min-width: 1200px) {
   .carousel::before,
   .carousel::after {
-    background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+      to right,
+      white 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
     content: "";
     height: 100px;
     position: absolute;
@@ -64,7 +74,6 @@ canvas {
   }
 }
 
-
 #get-started {
   scroll-margin-top: 450px;
 }
@@ -76,13 +85,11 @@ footer {
 
 @layer base {
   html {
-    @apply
-    font-poppins;
+    @apply font-poppins;
   }
 
   h2 {
-    @apply
-    text-2xl
+    @apply text-2xl
     md:text-3xl
     mb-4
     font-medium
@@ -102,7 +109,7 @@ footer {
 }
 
 .react-toggle-track {
-   @apply !bg-dc-white !border-dc-gray !border-[6px];
+  @apply !bg-dc-white !border-dc-gray !border-[6px];
 }
 
 .react-toggle--checked .react-toggle-track {
@@ -110,7 +117,7 @@ footer {
 }
 
 .react-toggle-track-check {
- @apply !hidden;
+  @apply !hidden;
 }
 
 .react-toggle-track-x {
@@ -118,63 +125,100 @@ footer {
 }
 
 .react-toggle-thumb {
-  @apply !bg-dc-light-gray;  
+  @apply !bg-dc-light-gray;
 }
 
-.react-toggle--checked .react-toggle-thumb {  
+.react-toggle--checked .react-toggle-thumb {
   @apply !bg-dc-light-blue !border-none;
 }
 
 .react-toggle--focus .react-toggle-thumb {
- @apply !shadow-none;
+  @apply !shadow-none;
 }
 .react-toggle:active:not(.react-toggle--disabled) .react-toggle-thumb {
- @apply !shadow-none;
+  @apply !shadow-none;
 }
 
 /* models page */
 @layer components {
   .btn-container-filter {
-      @apply flex flex-row items-start gap-2.5 flex-wrap;
+    @apply flex flex-row items-start gap-2.5 flex-wrap;
   }
 
   .rmv-filter {
-      @apply p-0 normal-case min-w-0;
+    @apply p-0 normal-case min-w-0;
   }
 
   .btn-filter {
-      @apply flex flex-row items-center gap-2.5 py-0.5 px-2 box-border bg-white border border-solid border-dc-light-gray rounded-md;
+    @apply flex flex-row items-center gap-2.5 py-0.5 px-2 box-border bg-white border border-solid border-dc-light-gray rounded-md;
   }
 
   .btn-selected-filter {
-      @apply flex flex-row items-center gap-2.5 py-0.5 px-2 box-border bg-dc-light-gray border border-solid border-dc-light-gray rounded-md;
+    @apply flex flex-row items-center gap-2.5 py-0.5 px-2 box-border bg-dc-light-gray border border-solid border-dc-light-gray rounded-md;
   }
 
   .btn-text-filter {
-      @apply text-[0.8rem] text-dc-gray text-ellipsis font-medium;
+    @apply text-[0.8rem] text-dc-gray text-ellipsis font-medium;
   }
 
   .btn-text-selected-filter {
-      @apply text-[0.8rem] text-dc-white break-all;
+    @apply text-[0.8rem] text-dc-white break-all;
   }
 
   .category-text-filter {
-      @apply text-lg text-dc-light-blue;
+    @apply text-lg text-dc-light-blue;
   }
 
   .category-filter {
-      @apply flex flex-col items-start gap-2.5;
+    @apply flex flex-col items-start gap-2.5;
   }
 
   .model-container {
-      @apply w-full grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-3;
+    @apply w-full grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-3;
   }
-  
+
   .model-card {
-      @apply h-fit md:min-h-[260px];
+    @apply h-fit md:min-h-[260px];
   }
 }
 
 /* tutorials page */
+@layer component {
+  .notebook-menu {
+    flex: 2 1 0;
+    @apply z-10 fixed flex flex-col lg:!h-[70vh] overflow-y-scroll px-0 lg:!translate-x-0 lg:!static lg:!shadow-none;
+  }
 
-/* datasets page */
+  .notebook {
+    flex: 6 1 0;
+    @apply mb-10 overflow-x-scroll;
+  }
+
+  :not(html) ::-webkit-scrollbar {
+    width: 17px;
+  }
+
+  :not(html) ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  :not(html) ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 28px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  :not(html) ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }
+
+  .scroll-nav {
+    flex: 2 1 0;
+    @apply text-right text-base hidden xl:block font-poppins max-w-[200px] pl-2;
+  }
+
+  .scroll-nav__item {
+    @apply pb-2;
+  }
+}

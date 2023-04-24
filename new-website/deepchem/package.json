@@ -35,8 +35,10 @@
     "react-placeholder": "^4.1.0",
     "react-responsive-carousel": "^3.2.23",
     "react-reveal": "^1.2.2",
+    "react-scroll-to-top": "^3.0.0",
     "react-tooltip": "^5.1.0",
-    "react-type-animation": "^2.1.2"
+    "react-type-animation": "^2.1.2",
+    "scrollnav": "^3.0.2"
   },
   "devDependencies": {
     "@iconify/react": "^4.0.0",
