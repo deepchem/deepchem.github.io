@@ -18,6 +18,33 @@ from bs4 import BeautifulSoup
 from utils import clean
 
 
+def fetch_file_list_from_repo(path_to_directory):
+    """
+    Fetches the names of all the files from a given directory in a Github repository.
+
+    Parameters
+    ----------
+    path_to_directory: str
+        The URL of the directory in the Github repository.
+
+    Returns
+    -------
+    files: list
+        A list of strings, where each string represents the name of a file present in the directory.
+    """
+    files = []
+    response = requests.get(path_to_directory)
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    fileNames = soup.find_all(
+        'a', attrs={'class': 'js-navigation-open Link--primary'})
+    for fileName in fileNames:
+        fileName = fileName.text
+        files.append(fileName)
+
+    return files
+
+
 def fetch_tutorial_data():
     """
     Fetches the names of all the tutorials from the given Github URL.
@@ -27,33 +54,40 @@ def fetch_tutorial_data():
     tutorials: list
         A list of strings, where each string represents the name of a tutorial.
     """
-    tutorials = []
     tutorials_url = 'https://github.com/deepchem/deepchem/tree/master/examples/tutorials'
-    response = requests.get(tutorials_url)
-    soup = BeautifulSoup(response.content, 'html.parser')
+    tutorials = fetch_file_list_from_repo(tutorials_url)
 
-    fileNames = soup.find_all(
-        'a', attrs={'class': 'js-navigation-open Link--primary'})
-    for fileName in fileNames:
-        fileName = fileName.text
-        if(fileName != '.gitignore' and fileName != 'assets'):
-            tutorials.append(fileName)
-
+    # Filter only the ipynb files
+    tutorials = [
+        tutorial for tutorial in tutorials if tutorial.endswith('.ipynb')]
     return tutorials
+
+def fetch_tutorial_render_order():
+    """
+    Downloads the CSV files containing the tutorial order from the Deepchem repository.
+    """
+
+    raw_path = 'https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/website-render-order/'
+    csv_directory = 'https://github.com/deepchem/deepchem/tree/master/examples/tutorials/website-render-order'
+    tutorial_order = fetch_file_list_from_repo(csv_directory)
+
+    # Filter only the csv files
+    tutorial_order = [
+        tutorial for tutorial in tutorial_order if tutorial.endswith('.csv')]
+
+    for tutorial_group in tutorial_order:
+        response = requests.get(raw_path + tutorial_group)
+        with open(f"./website-render-order/{tutorial_group}", "wb") as tutorial_file:
+            tutorial_file.write(response.content)
 
 
 def create_directories():
     """
-    Creates two directories to store the jupyter notebooks and the converted HTML notebooks.   
+    Creates the required directories   
     """
-    try:
-        os.makedirs('./html-notebooks')
-        os.makedirs('./ipynb-notebooks')
-
-    except Exception as exception:
-        print("Directories already exist, or could not create directories. ")
-        print(exception)
-
+    os.makedirs('./html-notebooks',exist_ok=True)
+    os.makedirs('./ipynb-notebooks', exist_ok=True)
+    os.makedirs('./website-render-order', exist_ok=True)
 
 def convert_to_html(tutorials):
     """
@@ -94,3 +128,4 @@ if __name__ == "__main__":
     tutorials = fetch_tutorial_data()
     create_directories()
     convert_to_html(tutorials)
+    fetch_tutorial_render_order()
