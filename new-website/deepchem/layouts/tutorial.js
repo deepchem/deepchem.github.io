@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import TutorialLink from "../components/Tutorials/TutorialLink";
 import tutorials from "../data/tutorials/tutorials";
+import renderOrder from "../data/tutorials/render-order";
 
 import ScrollToTop from "react-scroll-to-top";
 
@@ -46,6 +47,8 @@ export default function TutorialLayout({ children }) {
     });
   }, []);
 
+  let baseIndex = 0;
+
   return (
     <div className="tutorials">
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML-full,Safe" />
@@ -63,7 +66,7 @@ export default function TutorialLayout({ children }) {
                         displayMath: [['$$', '$$']],
                         processEscapes: true,
                         processEnvironments: true
-                    },
+                  },
                     displayAlign: 'center',
                     CommonHTML: {
                         linebreaks: {
@@ -91,19 +94,33 @@ export default function TutorialLayout({ children }) {
           <nav
             className={`notebook-menu ${
               isNavbarOpen ? "translate-x-0" : "-translate-x-full"
-            } bg-white ease-in-out duration-300 lg:duration-0 fixed top-0 left-0 shadow-xl py-8 lg:py-0 h-screen w-[70vw] max-w-[300px]`}
+            } bg-white ease-in-out duration-300 lg:duration-0 fixed top-0 left-0 shadow-xl py-8 lg:py-0 h-[100vh] w-[70vw] max-w-[300px]`}
           >
-            {tutorials.map((tutorial, i) => {
-              return (
-                <TutorialLink
-                  key={i}
-                  title={tutorial.title}
-                  active={i === currentTutorialIndex}
-                  onClick={setCurrentTutorialIndex}
-                  index={i}
-                  fileName={tutorial.urlifiedFileName}
-                />
+            {renderOrder.map((tutorials, i) => {
+
+              const list = (
+                <div key={i}>
+                  <h3 className="text-lg pt-8">
+                    {i + 1}. {tutorials.name}
+                  </h3>
+                  {tutorials.tutorials.map((tutorial, j) => {
+                    return (
+                      <TutorialLink
+                        key={j}
+                        title={tutorial.title}
+                        active={baseIndex + j === currentTutorialIndex}
+                        onClick={setCurrentTutorialIndex}
+                        index={baseIndex + j}
+                        fileName={tutorial.urlifiedFileName}
+                        displayIndex={j}
+                      />
+                    );
+                  })}
+                </div>
               );
+
+              baseIndex += tutorials.tutorials.length;
+              return list;
             })}
           </nav>
           <div className="notebook overflow-x-hidden bg-dc-light-gray/10">
