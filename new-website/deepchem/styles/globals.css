@@ -30,7 +30,7 @@ canvas {
   );
 }
 
-@media (-webkit-device-pixel-ratio: 1.25) {
+@media (-webkit-min-device-pixel-ratio: 1.25) {
   header,
   nav,
   i,
@@ -44,6 +44,11 @@ canvas {
   .models,
   .tutorials {
     zoom: 0.8;
+  }
+
+  .notebook-menu,
+  .scroll-nav {
+    zoom: 1;
   }
 }
 
@@ -186,7 +191,7 @@ footer {
 @layer component {
   .notebook-menu {
     flex: 2 1 0;
-    @apply z-10 fixed flex flex-col lg:!h-[70vh] overflow-y-scroll px-0 lg:!translate-x-0 lg:!static lg:!shadow-none;
+    @apply z-10 fixed flex flex-col lg:!h-screen overflow-y-scroll px-0 lg:!translate-x-0 lg:!static lg:!shadow-none;
   }
 
   .notebook {
@@ -215,10 +220,10 @@ footer {
 
   .scroll-nav {
     flex: 2 1 0;
-    @apply text-right text-base hidden xl:block font-poppins max-w-[200px] pl-2;
+    @apply text-right hidden xl:block font-poppins max-w-[200px] pl-2;
   }
 
   .scroll-nav__item {
-    @apply pb-2;
+    @apply pb-4;
   }
 }
