@@ -55,6 +55,11 @@ A detailed description of the working of the scripts is given below.
   - The script first fetches the list of all tutorials present in the deepchem repo. This is done using web scraping. The list is fetched from [deepchem/examples/tutorials](https://github.com/deepchem/deepchem/tree/master/examples/tutorials) and the `assets` and the `README` are ignored
   - Once the list of tutorials has been fetched, the script now fetches each notebook, uses `jq` to remove the metadata from the downloaded notebook (this is done to prevent errors during conversion), and finally uses `nbconvert` to convert the notebook to an HTML file.
   - The list of converted notebooks is stored in `/utils/tutorials/notebooks.txt` which is used by the `export_tutorials.py` script to generate the react components and the json data files.
+  - The script also fetches the order in which the TUtorials are recommended to be completed. The order is stored in the corresponding
+  deepchem tutorials directory located [HERE](https://github.com/deepchem/deepchem/tree/master/examples/tutorials/website-render-order)
+    - Each CSV file contains an Index Number which specifies the order in which the tutorials mentioned in it should be read. 
+    - The name of the CSV file signifies the section heading on the website.
+    - The CSV file itself contains the Titles and File names of the tutorials in the order in which they should be read.
 
 - ### `export_tutorials.py`
   - This script reads the list of notebooks from `/utils/tutorials/notebooks.txt` and parses the HTML files using `BeautifulSoup`.
