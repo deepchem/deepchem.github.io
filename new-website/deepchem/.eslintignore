@@ -1,0 +1,2 @@
+# Ignore generated tutorial data
+/pages/tutorials/*.js

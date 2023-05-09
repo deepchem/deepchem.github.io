@@ -8,9 +8,17 @@ import { useRouter } from "next/router";
  * @param {Function} props.onClick - function to be called when the tutorial is clicked
  * @param {Number} props.index - index of the tutorial
  * @param {String} props.fileName - name of the tutorial file to be opened
+ * @param {String} props.displayIndex - index of the tutorial to be displayed in front of the name
  * @return {JSX.Element} - TutorialLink component
  */
-const TutorialLink = ({ title, active, onClick, index, fileName }) => {
+const TutorialLink = ({
+  title,
+  active,
+  onClick,
+  index,
+  fileName,
+  displayIndex,
+}) => {
   const router = useRouter();
   /**
    * Function to handle the event when a particular tutorial link is clicked
@@ -40,7 +48,7 @@ const TutorialLink = ({ title, active, onClick, index, fileName }) => {
       }}
     >
       <p className={`${active ? "text-dc-blue font-bold" : "text-dc-gray"}`}>
-        {title}
+        {displayIndex + 1}. {title}
       </p>
     </div>
   );

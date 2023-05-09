@@ -20,9 +20,8 @@ const NavLinks = () => {
         <li>
           <NavLink
             label="Tutorials"
-            link="https://github.com/deepchem/deepchem/tree/master/examples/tutorials"
+            link="/tutorials"
             icon="fa-solid fa-book-open"
-            blank={true}
           />
         </li>
         <li>

@@ -24,12 +24,7 @@ function Footer() {
             </p>
             <Link href="/#get-started">Get Started</Link>
             <Link href="/about">About</Link>
-            <Link
-              href="https://github.com/deepchem/deepchem/tree/master/examples/tutorials"
-              target={"_blank"}
-            >
-              Tutorials
-            </Link>
+            <Link href="/tutorials">Tutorials</Link>
             <Link
               href="https://github.com/deepchem/deepchem/tree/master/examples"
               target={"_blank"}

@@ -227,16 +227,13 @@ const Home = () => {
           <ExploreCardItem
             image={exploreTutorialsIcon}
             title="Tutorials"
-            link={
-              "https://github.com/deepchem/deepchem/tree/master/examples/tutorials"
-            }
-            blank={true}
-          />{" "}
+            link={"/tutorials"}
+          />
           {/* <ExploreCardItem
             image={"/images/explore-datasets.png"}
             title="DATASETS"
             link={"/datasets"}
-          /> */}{" "}
+          /> */}
         </div>
       </section>
       {/* EXPLORE END */}
