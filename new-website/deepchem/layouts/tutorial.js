@@ -99,7 +99,7 @@ export default function TutorialLayout({ children }) {
             {renderOrder.map((tutorials, i) => {
               const list = (
                 <div key={i}>
-                  <h3 className="text-lg pt-8 pl-2 md:px-0">
+                  <h3 className="text-lg pt-8 pl-2 lg:pl-0">
                     {i + 1}. {tutorials.name}
                   </h3>
                   {tutorials.tutorials.map((tutorial, j) => {
