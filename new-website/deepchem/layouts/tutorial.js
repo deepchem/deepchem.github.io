@@ -97,7 +97,6 @@ export default function TutorialLayout({ children }) {
             } bg-white ease-in-out duration-300 lg:duration-0 fixed top-0 left-0 shadow-xl py-8 lg:py-0 h-[100vh] w-[70vw] max-w-[300px]`}
           >
             {renderOrder.map((tutorials, i) => {
-
               const list = (
                 <div key={i}>
                   <h3 className="text-lg pt-8">
