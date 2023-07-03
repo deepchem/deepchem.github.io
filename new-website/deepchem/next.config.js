@@ -11,6 +11,7 @@ const nextConfig = {
 
   // basepath: !debug ? "/deepchem.github.io" : "",
   assetPrefix: !debug ? "/deepchem.github.io/" : "",
+  trailingSlash: true,
 };
 
 module.exports = nextConfig;
