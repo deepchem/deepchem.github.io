@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   repository_dispatch:
-    types: [ update ]
+    types: [ rebuild-website ]
   workflow_dispatch:
 
 permissions:
