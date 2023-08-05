@@ -23,7 +23,7 @@ TUTORIAL_RENDER_ORDER_PATH = "examples/tutorials/website-render-order"
 
 def fetch_file_list_from_repo(repo_owner, repo_name, path):
     """
-    Fetches the names of all the files in the given path from the given Github repository.
+    Fetches the metadata like name, download_url etc of all the files in a given path in a Github repository .
 
     Parameters
     ----------
@@ -36,8 +36,8 @@ def fetch_file_list_from_repo(repo_owner, repo_name, path):
 
     Returns
     -------
-    file_names: list
-        A list of strings, where each string represents the name of a file.
+    data: list
+        A list of dictionaries, where each dictionary contains various metadata like the name and download_url of a file.
 
     Raises
     ------
@@ -108,7 +108,7 @@ def create_directories():
     os.makedirs('./website-render-order', exist_ok=True)
 
 
-def convert_to_html(tutorial):
+def convert_to_html(tutorials):
     """
     Converts the Jupyter notebooks in the './ipynb-notebooks' directory to HTML files and stores them in the './html-notebooks' directory.
 
@@ -127,8 +127,6 @@ def convert_to_html(tutorial):
 
             if not tutorial_file_name.endswith('.ipynb'):
                 continue
-
-            print()
 
             file_name_html = f'{tutorial_file_name.rsplit(".")[0]}.html'
             response = requests.get(tutorial_download_link)
@@ -152,9 +150,8 @@ def convert_to_html(tutorial):
 
 if __name__ == "__main__":
     create_directories()
-    tutorials = fetch_file_list_from_repo(DEEPCHEM_REPO_OWNER, DEEPCHEM_REPO_NAME, TUTORIALS_PATH)
-
-    print(tutorials)
+    tutorials = fetch_file_list_from_repo(
+        DEEPCHEM_REPO_OWNER, DEEPCHEM_REPO_NAME, TUTORIALS_PATH)
 
 # The script throws an AssertionError if no tutorials are fetched. This is to prevent website deployment if no tutorials are fetched.
     assert len(tutorials) > 0
