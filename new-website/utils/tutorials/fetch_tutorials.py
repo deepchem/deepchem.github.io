@@ -12,55 +12,65 @@ NOTE: NO FILES OR DIRECTORIES HAVE TO BE CREATED MANUALLY. The script will creat
 import os
 import shutil
 import subprocess
-import re
 import requests
-from bs4 import BeautifulSoup
 from utils import clean
 
+DEEPCHEM_REPO_OWNER = "deepchem"
+DEEPCHEM_REPO_NAME = "deepchem"
+TUTORIALS_PATH = "examples/tutorials"
+TUTORIAL_RENDER_ORDER_PATH = "examples/tutorials/website-render-order"
 
-def fetch_file_list_from_repo(path_to_directory):
+
+def fetch_file_list_from_repo(repo_owner, repo_name, path):
     """
-    Fetches the names of all the files from a given directory in a Github repository.
+    Fetches the names of all the files in the given path from the given Github repository.
 
     Parameters
     ----------
-    path_to_directory: str
-        The URL of the directory in the Github repository.
+    repo_owner: str
+        The owner of the Github repository.
+    repo_name: str
+        The name of the Github repository.
+    path: str
+        The path in the Github repository from which the file names are to be fetched.
 
     Returns
     -------
-    files: list
-        A list of strings, where each string represents the name of a file present in the directory.
+    file_names: list
+        A list of strings, where each string represents the name of a file.
+
+    Raises
+    ------
+    Exception
+        If the response status code is not 200.
     """
-    files = []
-    response = requests.get(path_to_directory)
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    fileNames = soup.find_all(
-        'a', attrs={'class': 'js-navigation-open Link--primary'})
-    for fileName in fileNames:
-        fileName = fileName.text
-        files.append(fileName)
-
-    return files
+    url = "https://api.github.com/repos/{}/{}/contents/{}".format(
+        repo_owner, repo_name, path)
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return [file["name"] for file in data]
+    else:
+        raise Exception(
+            "Error fetching file names: {}".format(response.status_code))
 
 
-def fetch_tutorial_data():
+def get_tutorial_list():
     """
-    Fetches the names of all the tutorials from the given Github URL.
-
+    Fetches the names of all the tutorials from the Deepchem Github repository.
     Returns
     -------
     tutorials: list
         A list of strings, where each string represents the name of a tutorial.
     """
-    tutorials_url = 'https://github.com/deepchem/deepchem/tree/master/examples/tutorials'
-    tutorials = fetch_file_list_from_repo(tutorials_url)
+    tutorials = fetch_file_list_from_repo(
+        DEEPCHEM_REPO_OWNER, DEEPCHEM_REPO_NAME, TUTORIALS_PATH)
 
     # Filter only the ipynb files
     tutorials = [
         tutorial for tutorial in tutorials if tutorial.endswith('.ipynb')]
     return tutorials
+
 
 def fetch_tutorial_render_order():
     """
@@ -68,8 +78,8 @@ def fetch_tutorial_render_order():
     """
 
     raw_path = 'https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/website-render-order/'
-    csv_directory = 'https://github.com/deepchem/deepchem/tree/master/examples/tutorials/website-render-order'
-    tutorial_order = fetch_file_list_from_repo(csv_directory)
+    tutorial_order = fetch_file_list_from_repo(
+        DEEPCHEM_REPO_OWNER, DEEPCHEM_REPO_NAME, TUTORIAL_RENDER_ORDER_PATH)
 
     # Filter only the csv files
     tutorial_order = [
@@ -77,17 +87,22 @@ def fetch_tutorial_render_order():
 
     for tutorial_group in tutorial_order:
         response = requests.get(raw_path + tutorial_group)
-        with open(f"./website-render-order/{tutorial_group}", "wb") as tutorial_file:
-            tutorial_file.write(response.content)
+        if response.status_code == 200:
+            with open(f"./website-render-order/{tutorial_group}", "wb") as tutorial_file:
+                tutorial_file.write(response.content)
+        else:
+            raise Exception(
+                "Error fetching tutorial render order: {}".format(response.status_code))
 
 
 def create_directories():
     """
     Creates the required directories   
     """
-    os.makedirs('./html-notebooks',exist_ok=True)
+    os.makedirs('./html-notebooks', exist_ok=True)
     os.makedirs('./ipynb-notebooks', exist_ok=True)
     os.makedirs('./website-render-order', exist_ok=True)
+
 
 def convert_to_html(tutorials):
     """
@@ -125,7 +140,11 @@ def convert_to_html(tutorials):
 
 
 if __name__ == "__main__":
-    tutorials = fetch_tutorial_data()
     create_directories()
-    convert_to_html(tutorials)
+    tutorials = get_tutorial_list()
+
+# The script throws an AssertionError if no tutorials are fetched. This is to prevent website deployment if no tutorials are fetched.
+    assert len(tutorials) > 0
+
     fetch_tutorial_render_order()
+    convert_to_html(tutorials)

@@ -52,11 +52,11 @@ class TestFetchTutorialData(unittest.TestCase):
 
         mock_response = Response()
         mock_response.status_code = 200
-        with open('./mocks/github-response-mock.html', 'rb') as f:
+        with open('./mocks/github-response-mock.json', 'rb') as f:
             mock_response._content = f.read()
         mock_get.return_value = mock_response
 
-        tutorials = fetch_tutorials.fetch_tutorial_data()
+        tutorials = fetch_tutorials.get_tutorial_list()
 
         expected_tutorials = [
             'About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb',
