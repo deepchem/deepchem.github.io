@@ -49,7 +49,7 @@ def fetch_file_list_from_repo(repo_owner, repo_name, path):
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
-        return [file["name"] for file in data]
+        return data
     else:
         raise Exception(
             "Error fetching file names: {}".format(response.status_code))
@@ -66,10 +66,12 @@ def get_tutorial_list():
     tutorials = fetch_file_list_from_repo(
         DEEPCHEM_REPO_OWNER, DEEPCHEM_REPO_NAME, TUTORIALS_PATH)
 
+    tutorial_names = [tutorial['name'] for tutorial in tutorials]
+
     # Filter only the ipynb files
-    tutorials = [
-        tutorial for tutorial in tutorials if tutorial.endswith('.ipynb')]
-    return tutorials
+    tutorial_names = [
+        tutorial for tutorial in tutorial_names if tutorial.endswith('.ipynb')]
+    return tutorial_names
 
 
 def fetch_tutorial_render_order():
@@ -77,18 +79,20 @@ def fetch_tutorial_render_order():
     Downloads the CSV files containing the tutorial order from the Deepchem repository.
     """
 
-    raw_path = 'https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/website-render-order/'
-    tutorial_order = fetch_file_list_from_repo(
+    tutorial_order_csv_data = fetch_file_list_from_repo(
         DEEPCHEM_REPO_OWNER, DEEPCHEM_REPO_NAME, TUTORIAL_RENDER_ORDER_PATH)
 
-    # Filter only the csv files
-    tutorial_order = [
-        tutorial for tutorial in tutorial_order if tutorial.endswith('.csv')]
+    tutorial_order_csv_names = [tutorial['name']
+                                for tutorial in tutorial_order_csv_data]
 
-    for tutorial_group in tutorial_order:
-        response = requests.get(raw_path + tutorial_group)
+    # Filter only the csv files
+    tutorial_order_csv_names = [
+        tutorial for tutorial in tutorial_order_csv_names if tutorial.endswith('.csv')]
+
+    for tutorial_group in tutorial_order_csv_data:
+        response = requests.get(tutorial_group.get('download_url'))
         if response.status_code == 200:
-            with open(f"./website-render-order/{tutorial_group}", "wb") as tutorial_file:
+            with open(f"./website-render-order/{tutorial_group.get('name')}", "wb") as tutorial_file:
                 tutorial_file.write(response.content)
         else:
             raise Exception(
@@ -104,7 +108,7 @@ def create_directories():
     os.makedirs('./website-render-order', exist_ok=True)
 
 
-def convert_to_html(tutorials):
+def convert_to_html(tutorial):
     """
     Converts the Jupyter notebooks in the './ipynb-notebooks' directory to HTML files and stores them in the './html-notebooks' directory.
 
@@ -116,19 +120,26 @@ def convert_to_html(tutorials):
     fromPath = "./ipynb-notebooks/"
     toPath = "./html-notebooks/"
 
-    tutorialURL = 'https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/'
-
     for tutorial in tutorials:
         try:
-            file_name_html = f'{tutorial.rsplit(".")[0]}.html'
-            response = requests.get(tutorialURL + tutorial)
-            with open(f"./ipynb-notebooks/{tutorial}", "wb") as tutorial_file:
+            tutorial_file_name = tutorial["name"]
+            tutorial_download_link = tutorial["download_url"]
+
+            if not tutorial_file_name.endswith('.ipynb'):
+                continue
+
+            print()
+
+            file_name_html = f'{tutorial_file_name.rsplit(".")[0]}.html'
+            response = requests.get(tutorial_download_link)
+            with open(f"./ipynb-notebooks/{tutorial_file_name}", "wb") as tutorial_file:
                 tutorial_file.write(response.content)
 
             subprocess.call(
-                f'jq -M "del(.metadata.widgets)" ./ipynb-notebooks/{tutorial} > ./ipynb-notebooks/fixed-{tutorial}', shell=True)
+                f'jq -M "del(.metadata.widgets)" ./ipynb-notebooks/{tutorial_file_name} > ./ipynb-notebooks/fixed-{tutorial_file_name}', shell=True
+            )
             subprocess.call(
-                f'python -m nbconvert --to html ./ipynb-notebooks/fixed-{tutorial}', shell=True)
+                f'python -m nbconvert --to html ./ipynb-notebooks/fixed-{tutorial_file_name}', shell=True)
             shutil.copyfile(f'{fromPath}fixed-{file_name_html}',
                             toPath + file_name_html)
 
@@ -136,12 +147,14 @@ def convert_to_html(tutorials):
                 notebook_list.write(file_name_html + '\n')
         except Exception as exception:
             print(exception)
-            print(f"Could not process {tutorial}")
+            print(f"Could not process {tutorial_file_name}")
 
 
 if __name__ == "__main__":
     create_directories()
-    tutorials = get_tutorial_list()
+    tutorials = fetch_file_list_from_repo(DEEPCHEM_REPO_OWNER, DEEPCHEM_REPO_NAME, TUTORIALS_PATH)
+
+    print(tutorials)
 
 # The script throws an AssertionError if no tutorials are fetched. This is to prevent website deployment if no tutorials are fetched.
     assert len(tutorials) > 0
