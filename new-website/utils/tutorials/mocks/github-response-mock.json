@@ -1,0 +1,98 @@
+[
+  {
+    "name": "About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb",
+    "path": "examples/tutorials/About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb",
+    "sha": "e04715d9ae2cafe1feddf518170631109389258d",
+    "size": 58509,
+    "url": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb?ref=master",
+    "html_url": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb",
+    "git_url": "https://api.github.com/repos/deepchem/deepchem/git/blobs/e04715d9ae2cafe1feddf518170631109389258d",
+    "download_url": "https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb?ref=master",
+      "git": "https://api.github.com/repos/deepchem/deepchem/git/blobs/e04715d9ae2cafe1feddf518170631109389258d",
+      "html": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb"
+    }
+  },
+  {
+    "name": "Advanced_Model_Training.ipynb",
+    "path": "examples/tutorials/Advanced_Model_Training.ipynb",
+    "sha": "6c05b041ff6643d6e17ee4752928e2b40120926b",
+    "size": 14737,
+    "url": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/Advanced_Model_Training.ipynb?ref=master",
+    "html_url": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/Advanced_Model_Training.ipynb",
+    "git_url": "https://api.github.com/repos/deepchem/deepchem/git/blobs/6c05b041ff6643d6e17ee4752928e2b40120926b",
+    "download_url": "https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/Advanced_Model_Training.ipynb",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/Advanced_Model_Training.ipynb?ref=master",
+      "git": "https://api.github.com/repos/deepchem/deepchem/git/blobs/6c05b041ff6643d6e17ee4752928e2b40120926b",
+      "html": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/Advanced_Model_Training.ipynb"
+    }
+  },
+  {
+    "name": "Advanced_model_training_using_hyperopt.ipynb",
+    "path": "examples/tutorials/Advanced_model_training_using_hyperopt.ipynb",
+    "sha": "9eec5a84bd58292474cf74d61a26d03d08f24b00",
+    "size": 30688,
+    "url": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/Advanced_model_training_using_hyperopt.ipynb?ref=master",
+    "html_url": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/Advanced_model_training_using_hyperopt.ipynb",
+    "git_url": "https://api.github.com/repos/deepchem/deepchem/git/blobs/9eec5a84bd58292474cf74d61a26d03d08f24b00",
+    "download_url": "https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/Advanced_model_training_using_hyperopt.ipynb",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/Advanced_model_training_using_hyperopt.ipynb?ref=master",
+      "git": "https://api.github.com/repos/deepchem/deepchem/git/blobs/9eec5a84bd58292474cf74d61a26d03d08f24b00",
+      "html": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/Advanced_model_training_using_hyperopt.ipynb"
+    }
+  },
+  {
+    "name": "An_Introduction_To_MoleculeNet.ipynb",
+    "path": "examples/tutorials/An_Introduction_To_MoleculeNet.ipynb",
+    "sha": "f1c8723fbefef7f739ab6d126729175993ec414e",
+    "size": 24984,
+    "url": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/An_Introduction_To_MoleculeNet.ipynb?ref=master",
+    "html_url": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/An_Introduction_To_MoleculeNet.ipynb",
+    "git_url": "https://api.github.com/repos/deepchem/deepchem/git/blobs/f1c8723fbefef7f739ab6d126729175993ec414e",
+    "download_url": "https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/An_Introduction_To_MoleculeNet.ipynb",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/An_Introduction_To_MoleculeNet.ipynb?ref=master",
+      "git": "https://api.github.com/repos/deepchem/deepchem/git/blobs/f1c8723fbefef7f739ab6d126729175993ec414e",
+      "html": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/An_Introduction_To_MoleculeNet.ipynb"
+    }
+  },
+  {
+    "name": "Atomic_Contributions_for_Molecules.ipynb",
+    "path": "examples/tutorials/Atomic_Contributions_for_Molecules.ipynb",
+    "sha": "6d5356e49b8292f70e0d38f27f678a28a404fc59",
+    "size": 1774157,
+    "url": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/Atomic_Contributions_for_Molecules.ipynb?ref=master",
+    "html_url": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/Atomic_Contributions_for_Molecules.ipynb",
+    "git_url": "https://api.github.com/repos/deepchem/deepchem/git/blobs/6d5356e49b8292f70e0d38f27f678a28a404fc59",
+    "download_url": "https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/Atomic_Contributions_for_Molecules.ipynb",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/Atomic_Contributions_for_Molecules.ipynb?ref=master",
+      "git": "https://api.github.com/repos/deepchem/deepchem/git/blobs/6d5356e49b8292f70e0d38f27f678a28a404fc59",
+      "html": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/Atomic_Contributions_for_Molecules.ipynb"
+    }
+  },
+  {
+    "name": "Conditional_Generative_Adversarial_Networks.ipynb",
+    "path": "examples/tutorials/Conditional_Generative_Adversarial_Networks.ipynb",
+    "sha": "e87142e3cee9dfb461c195e4772bc730d596fff9",
+    "size": 83015,
+    "url": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/Conditional_Generative_Adversarial_Networks.ipynb?ref=master",
+    "html_url": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/Conditional_Generative_Adversarial_Networks.ipynb",
+    "git_url": "https://api.github.com/repos/deepchem/deepchem/git/blobs/e87142e3cee9dfb461c195e4772bc730d596fff9",
+    "download_url": "https://raw.githubusercontent.com/deepchem/deepchem/master/examples/tutorials/Conditional_Generative_Adversarial_Networks.ipynb",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/deepchem/deepchem/contents/examples/tutorials/Conditional_Generative_Adversarial_Networks.ipynb?ref=master",
+      "git": "https://api.github.com/repos/deepchem/deepchem/git/blobs/e87142e3cee9dfb461c195e4772bc730d596fff9",
+      "html": "https://github.com/deepchem/deepchem/blob/master/examples/tutorials/Conditional_Generative_Adversarial_Networks.ipynb"
+    }
+  }
+]

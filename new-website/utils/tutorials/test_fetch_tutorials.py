@@ -15,34 +15,37 @@ from unittest.mock import patch
 from requests import Response
 import fetch_tutorials
 import os
-
+import json
 
 class TestConvertToHTML(unittest.TestCase):
 
     def test_convert_to_html(self):
-        tutorials = ['About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb',
-                     'Advanced_model_training_using_hyperopt.ipynb']
         
-        try:
-            os.makedirs('./html-notebooks')
-            os.makedirs('./ipynb-notebooks')
+        with open('./mocks/github-response-mock.json', 'rb') as f:
+            tutorials = json.load(f)
+        
+            try:
+                os.makedirs('./html-notebooks')
+                os.makedirs('./ipynb-notebooks')
 
-        except Exception as exception:
-            print("Directories already exist, or could not create directories. ")
-            print(exception)      
+            except Exception as exception:
+                print("Directories already exist, or could not create directories. ")
+                print(exception)      
 
-        fetch_tutorials.convert_to_html(tutorials)
+            fetch_tutorials.convert_to_html(tutorials)
 
-        for tutorial in tutorials:
-            file_name_html = f'{tutorial.rsplit(".")[0]}.html'
-            self.assertTrue(os.path.isfile(
-                f"./html-notebooks/{file_name_html}"))
-
-        with open('./notebooks.txt', "r") as notebook_list:
-            content = notebook_list.read()
             for tutorial in tutorials:
-                file_name_html = f'{tutorial.rsplit(".")[0]}.html'
-                self.assertIn(file_name_html, content)
+                tutorial_file_name = tutorial["name"]
+                file_name_html = f'{tutorial_file_name.rsplit(".")[0]}.html'
+                self.assertTrue(os.path.isfile(
+                    f"./html-notebooks/{file_name_html}"))
+
+            with open('./notebooks.txt', "r") as notebook_list:
+                content = notebook_list.read()
+                for tutorial in tutorials:
+                    tutorial_file_name = tutorial["name"]
+                    file_name_html = f'{tutorial_file_name.rsplit(".")[0]}.html'
+                    self.assertIn(file_name_html, content)
 
 
 class TestFetchTutorialData(unittest.TestCase):
@@ -52,11 +55,11 @@ class TestFetchTutorialData(unittest.TestCase):
 
         mock_response = Response()
         mock_response.status_code = 200
-        with open('./mocks/github-response-mock.html', 'rb') as f:
+        with open('./mocks/github-response-mock.json', 'rb') as f:
             mock_response._content = f.read()
         mock_get.return_value = mock_response
 
-        tutorials = fetch_tutorials.fetch_tutorial_data()
+        tutorials = fetch_tutorials.get_tutorial_list()
 
         expected_tutorials = [
             'About_nODE_Using_Torchdiffeq_in_Deepchem.ipynb',
