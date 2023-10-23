@@ -48,7 +48,7 @@ const About = () => {
   return (
     <>
       <section className="py-8 px-[25px] 2xl:px-[300px] about text-center lg:text-left min-h-[50vh] justify-center flex flex-col">
-        <h2>From Developer&apos;s Desk</h2>
+        <h2>From the Developer&apos;s Desk</h2>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-16">
           <div className="w-full">
             <div className="text-3xl text-dc-blue text-left leading-tight h-3">
