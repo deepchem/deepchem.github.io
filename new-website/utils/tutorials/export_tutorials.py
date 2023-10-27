@@ -81,11 +81,11 @@ def parse_and_export_tutorials():
                     for heading in headings:
                         del heading['id']
 
-                    # Add the class 'overflow-x-scroll' to all the pre tags in the html file
+                    # Add the class 'overflow-x-scroll' and 'font-mono' to all the pre tags in the html file. The Pre tags correspond to the code snippets within the notebooks. 
                     code_cells = body.find_all('pre')
                     for code_cell in code_cells:
                         code_cell['class'] = code_cell.get(
-                            'class', []) + ['overflow-x-scroll']
+                            'class', []) + ['overflow-x-scroll', 'font-mono']
 
                     # Hide the body tag of the html file
                     soup.find('body').hidden = True
