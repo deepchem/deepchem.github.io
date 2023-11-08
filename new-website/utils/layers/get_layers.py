@@ -17,6 +17,7 @@ CHEATSHEETS = {
 }
 
 layer_list = []
+model_list = []
 
 @dataclasses.dataclass
 class Layer:
