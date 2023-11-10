@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import LayerCard from "/components/Layers/LayerCard";
-import FilterButton from "/components/Layers/FilterButton";
+import FilterButton from "/components/common/FilterButton";
 
 import layers from "/data/layers/layers.json";
 import modelList from "/data/layers/models.json";
@@ -83,7 +83,7 @@ const Layers = () => {
       ></div>
       <div className= "flex flex-col items-start w-full px-[25px] 2xl:px-[300px] py-8 lg:py-16 gap-6">
         {/* HEADING BEGIN */}
-        <div className="flex flex-row w-[100%] items-center justify-between py-2.5">
+        <div className="flex flex-col w-[100%] justify-between py-2.5">
           <div className="lg:text-4xl text-[26px]">Our Layers</div>
           <div className="lg:hidden">
             <button className="min-w-0" onClick={handlePopUp}>
@@ -92,7 +92,7 @@ const Layers = () => {
           </div>
             {/* HEADING END */}
             {/* BODY BEGIN */}
-            <div className="flex flex-row items-start gap-12 w-full">
+            <div className="flex flex-col items-start gap-12 w-full">
               {/* FILTER SECTION BEGIN */}
               <div
                 className={`${
