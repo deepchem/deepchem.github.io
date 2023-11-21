@@ -42,6 +42,7 @@ canvas {
   .explore,
   .about,
   .models,
+  .layers,
   .tutorials {
     zoom: 0.8;
   }
@@ -144,7 +145,7 @@ footer {
   @apply !shadow-none;
 }
 
-/* models page */
+/* models and layers page */
 @layer components {
   .btn-container-filter {
     @apply flex flex-row items-start gap-2.5 flex-wrap;
@@ -183,6 +184,14 @@ footer {
   }
 
   .model-card {
+    @apply h-fit md:min-h-[260px];
+  }
+
+  .layer-container {
+    @apply w-full grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3;
+  }
+
+  .layer-card {
     @apply h-fit md:min-h-[260px];
   }
 }
@@ -227,3 +236,5 @@ footer {
     @apply pb-4;
   }
 }
+
+

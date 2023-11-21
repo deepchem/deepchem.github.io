@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import ModelCard from "/components/Models/ModelCard";
-import FilterButton from "/components/Models/FilterButton";
+import FilterButton from "/components/common/FilterButton";
 
 import models from "/data/models/models.json";
 import backendList from "/data/models/backends.json";
@@ -124,7 +124,6 @@ const Models = () => {
             </button>
           </div>
         </div>
-
         {/* HEADING END */}
         {/* BODY BEGIN */}
         <div className="flex flex-row items-start gap-12 w-full">

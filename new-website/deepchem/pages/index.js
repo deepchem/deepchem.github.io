@@ -229,11 +229,11 @@ const Home = () => {
             title="Tutorials"
             link={"/tutorials"}
           />
-          {/* <ExploreCardItem
+          <ExploreCardItem
             image={"/images/explore-datasets.png"}
-            title="DATASETS"
-            link={"/datasets"}
-          /> */}
+            title="LAYERS"
+            link={"/layers"}
+          />
         </div>
       </section>
       {/* EXPLORE END */}
