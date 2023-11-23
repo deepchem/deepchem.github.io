@@ -17,6 +17,8 @@ import { AnimationsContext } from "../contexts/animations-context";
 import exploreTutorialsIcon from "../public/images/explore-tutorials.png";
 import exploreProjectsIcon from "../public/images/explore-projects.png";
 import exploreModelsIcon from "./../public/images/explore-models.png";
+import exploreLayersIcon from "./../public/images/explore-layers.png";
+
 import Terminal from "../components/Home/Terminal";
 import deepchemLogo from "../public/images/deepchem-logo.png";
 
@@ -230,7 +232,7 @@ const Home = () => {
             link={"/tutorials"}
           />
           <ExploreCardItem
-            image={"/images/explore-datasets.png"}
+            image={exploreLayersIcon}
             title="LAYERS"
             link={"/layers"}
           />
