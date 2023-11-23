@@ -28,14 +28,15 @@ const LayerCard = ({ layer }) => {
             <div className="text-xl font-medium text-dc-orange">
               {parseName(layer.name)}
             </div>
-            <div className="flex flex-row items-center gap-1.5 bg-dc-light-blue/5 px-2 py-1 rounded-md">
-              {layer.category === "torch" && (
-                <Image src={deepchemPytorch} alt="PyTorch" width={16} />
-              )}
-              {layer.category === "keras" && (
-                <Image src={deepchemKeras} alt="Keras" width={16} />
-              )}
-            </div>
+          </div>
+
+          <div className="flex flex-row justify-center items-center gap-2.5 w-fit">
+            {layer.category === "torch" && (
+              <Image src={deepchemPytorch} alt="PyTorch" width={16} />
+            )}
+            {layer.category === "keras" && (
+              <Image src={deepchemKeras} alt="Keras" width={16} />
+            )}
             <div className="font-medium text-sm text-dc-gray">
               {layer.category}
             </div>
