@@ -12,12 +12,15 @@ import numpy as np
 PATH = '../../deepchem/data/layers/'
 REDIRECT_URL = 'https://deepchem.readthedocs.io/en/latest/api_reference/layers.html#'
 CHEATSHEETS = {
-    'keras': 'https://raw.githubusercontent.com/deepchem/deepchem/master/docs/source/api_reference/keras_layers.csv',
-    'torch': 'https://raw.githubusercontent.com/deepchem/deepchem/master/docs/source/api_reference/torch_layers.csv'
+    'keras':
+    'https://raw.githubusercontent.com/deepchem/deepchem/master/docs/source/api_reference/keras_layers.csv',
+    'torch':
+    'https://raw.githubusercontent.com/deepchem/deepchem/master/docs/source/api_reference/torch_layers.csv'
 }
 
 layer_list = []
 model_list = []
+
 
 @dataclasses.dataclass
 class Layer:
@@ -37,14 +40,16 @@ class Layer:
     """
     name: str
     url: str
-    category: str 
-    models : list
+    category: str
+    models: list
     layer_id: int
-    
+
+
 class LayerListEncoder(JSONEncoder):
     """
     LayerEncoder class to encode the Layer object to JSON
     """
+
     def default(self, o):
         """
         Default function to encode the Layer object to JSON
@@ -54,6 +59,7 @@ class LayerListEncoder(JSONEncoder):
         json: str
         """
         return o.__dict__
+
 
 def convert_to_json(data, name, is_layer=False):
     """
@@ -78,25 +84,30 @@ def convert_to_json(data, name, is_layer=False):
     with open(PATH + name, 'w', encoding="utf-8") as file:
         file.write(data)
 
+
 def fetch_data():
     """
     Function to fetch the layer csv files and extract necessary data
     """
     for category in CHEATSHEETS.items():
-        subprocess.call(f'curl -o {PATH}{category[0] + ".csv"} {category[1]}', shell=True)
+        subprocess.call(f'curl -o {PATH}{category[0] + ".csv"} {category[1]}',
+                        shell=True)
 
     index = -1
     for filename in os.listdir(PATH):
-        for row in pd.read_csv(PATH + filename, on_bad_lines='skip').replace(np.nan, '').iterrows():
+        for row in pd.read_csv(PATH + filename,
+                               on_bad_lines='skip').replace(np.nan,
+                                                            '').iterrows():
             name = row[1]['Layer']
             url = REDIRECT_URL + name.lower()
             category = filename.split('.')[0]
-            models = row['Model'].split(' ') if row['Model'] != '' else []
+            models = row[1][' Model'].split(
+                ' ') if row[1][' Model'] != '' else []
             index += 1
 
-            model_list.append(models) 
+            model_list.append(models)
             layer_list.append(Layer(name, url, category, models, index))
-            
+
 
 def main():
     """
@@ -107,6 +118,6 @@ def main():
     convert_to_json(layer_list, 'layers.json', is_layer=True)
     convert_to_json(model_list, 'models.json')
 
+
 if __name__ == '__main__':
     main()
-
