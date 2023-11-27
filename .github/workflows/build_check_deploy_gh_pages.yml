@@ -1,8 +1,10 @@
-name: Deploy to gh-pages
+name: Check Lint and Build, Deploy to gh-pages
 
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [main]
   repository_dispatch:
     types: [ rebuild-website ]
   workflow_dispatch:
@@ -11,7 +13,7 @@ permissions:
   contents: write
 
 jobs:
-  build_and_deploy:
+  build_check_and_deploy_gh_pages:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,6 +38,12 @@ jobs:
           cd utils/models
           python3 get_models.py
 
+      - name: fetch and convert layer data
+        run: |
+          cd new-website
+          cd utils/layers
+          python3 get_layers.py
+
       - name: fetch and convert tutorial data
         run: |
           sudo apt-get install jq
@@ -52,7 +60,9 @@ jobs:
           npm run lint
           npm run export
 
+      # Run the deploy action only if the push is to the main branch
       - name: Deploy 🚀
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: new-website/deepchem/out
