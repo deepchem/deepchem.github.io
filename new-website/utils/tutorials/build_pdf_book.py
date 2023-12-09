@@ -3,6 +3,7 @@ This script is used to build the pdf book from DeepChem Tutorials.
 
 Requirements:
     - pdfunite
+    - pdfkit
 
 Example Usage:
     - Run the script "fetch_tutorials.py" // It will fetch all the tutorials.
