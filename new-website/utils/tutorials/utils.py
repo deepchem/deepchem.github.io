@@ -8,6 +8,32 @@ Requirements
 import re
 
 
+def numeric_sorter(s):
+    """
+    Sorts the tutorials according to their serial number.
+
+    Parameters
+    ----------
+    s: List[str]
+        The List to be sorted.
+
+    Returns
+    -------
+    s_sorted: List[List[str]]
+        The sorted and Broken into parts list.
+
+    """
+    s_splitted_list = []
+    s_sorted = []
+    for i in s:
+        s_splitted_list.append(i.split("-"))
+    for i in range(len(s_splitted_list)+1):
+        for j in s_splitted_list:
+            if i == int(j[0]):
+                s_sorted.append(j)
+    return s_sorted
+
+
 def to_valid_identifier(s):
     """
     Converts a given string into a valid identifier.
