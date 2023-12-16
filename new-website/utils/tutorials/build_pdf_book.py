@@ -21,6 +21,7 @@ import os
 import pandas as pd
 import pdfkit
 from utils import numeric_sorter
+from typing import List
 
 
 INFO_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/website-render-order/"
@@ -58,6 +59,21 @@ def merge_pdf():
             command = command + PDF_PATH + j[:-5] + "pdf "
     os.system(command + "merged.pdf")
 
+def merge_pdf_pages(a: List[str]):
+    """Merges the PDFs.
+    Usage include adding title page, ending, etc.
+
+    Parameters
+    ----------
+    a: List[str]
+        List of addresses of pdf to merge. In correct order.
+
+    """
+    command = "pdfunite "
+    for i in a:
+        command = command + i + ' '
+    return command
+    #os.system(command, "merged.pdf")
 
 if __name__ == "__main__":
     os.system("mkdir " + PDF_PATH)
