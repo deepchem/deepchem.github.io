@@ -72,8 +72,7 @@ def merge_pdf_pages(a: List[str]):
     command = "pdfunite "
     for i in a:
         command = command + i + ' '
-    return command
-    #os.system(command, "merged.pdf")
+    os.system(command, "merged.pdf")
 
 if __name__ == "__main__":
     os.system("mkdir " + PDF_PATH)
