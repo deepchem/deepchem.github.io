@@ -4,6 +4,7 @@ This script is used to build the pdf book from DeepChem Tutorials.
 Requirements:
     - pdfunite
     - pdfkit
+    - mdpdf
 
 Example Usage:
     - Run the script "fetch_tutorials.py" // It will fetch all the tutorials.
@@ -74,7 +75,17 @@ def merge_pdf_pages(a: List[str]):
         command = command + i + ' '
     os.system(command, "merged.pdf")
 
+def compile_information_pages():
+    """Converts the Acknowledgent page and content page from
+    Markdowns to pdf, then they can be merged with the content
+    pdf using `merge_pdf_pages` function.
+
+    """
+    os.system('mdpdf -o storage/acknowledgement.pdf acknowledgement.md')
+    os.system('mdpdf -o storage/contents.pdf contents.md')
+
 if __name__ == "__main__":
     os.system("mkdir " + PDF_PATH)
     html_to_pdf()
     merge_pdf()
+    compile_information_pages()
