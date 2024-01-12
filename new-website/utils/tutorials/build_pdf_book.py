@@ -73,7 +73,7 @@ def merge_pdf_pages(a: List[str]):
     command = "pdfunite "
     for i in a:
         command = command + i + ' '
-    os.system(command, "merged.pdf")
+    os.system(command + "merged.pdf")
 
 def compile_information_pages():
     """Converts the Acknowledgent page and content page from
