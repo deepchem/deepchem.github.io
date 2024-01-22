@@ -1,45 +1,45 @@
 # Conents
-- About_nODE_Using_Torchdiffeq_in_Deepchem
-- Advanced_Model_Training
-- Advanced_model_training_using_hyperopt
-- An_Introduction_To_MoleculeNet
-- Atomic_Contributions_for_Molecules
-- Conditional_Generative_Adversarial_Networks
-- Creating_Models_with_TensorFlow_and_PyTorch
-- Creating_a_high_fidelity_model_from_experimental_data
-- DeepQMC_tutorial
-- Deep_probabilistic_analysis_of_single-cell_omics_data
-- Exploring_Quantum_Chemistry_with_GDB1k
-- Generating_molecules_with_MolGAN
-- Going_Deeper_on_Molecular_Featurizations
-- Hierarchial_Moelcular_Generation_with_HierVAE
-- Interactive_Model_Evaluation_with_Trident_Chemwidgets
-- Introducing_JaxModel_and_PINNModel
-- Introduction_To_Material_Science
-- Introduction_to_Bioinformatics
-- Introduction_to_Equivariance
-- Introduction_to_GROVER
-- Introduction_to_Gaussian_Processes
-- Introduction_to_Graph_Convolutions
-- Introduction_to_Model_Interpretability
-- Introduction_to_Molecular_Attention_Transformer
-- Large_Scale_Chemical_Screens
-- Learning_Unsupervised_Embeddings_for_Molecules
-- Modeling_Protein_Ligand_Interactions
-- Modeling_Protein_Ligand_Interactions_With_Atomic_Convolutions
-- Molecular_Fingerprints
-- Multisequence_Alignments
-- Physics_Informed_Neural_Networks
-- Protein_Deep_Learning
-- Putting_Multitask_Learning_to_Work
-- PytorchLightning_Integration
+- About Neural ODE : Using Torchdiffeq with Deepchem
+- Advanced Model Training
+- Advanced model training using hyperopt
+- An Introduction To MoleculeNet
+- Atomic Contributions for Molecules
+- Conditional Generative Adversarial Networks
+- Creating Models with TensorFlow and PyTorch
+- Creating a high fidelity model from experimental data
+- DeepQMC tutorial
+- Deep probabilistic analysis of single-cell omics data
+- Exploring Quantum Chemistry with GDB1k
+- Generating molecules with MolGAN
+- Going Deeper on Molecular Featurizations
+- Hierarchial Moelcular Generation with HierVAE
+- Interactive Model Evaluation with Trident Chemwidgets
+- Introducing JaxModel and PINNModel
+- Introduction To Material Science
+- Introduction to Bioinformatics
+- Introduction to Equivariance
+- Introduction to GROVER
+- Introduction to Gaussian Processes
+- Introduction to Graph Convolutions
+- Introduction to Model Interpretability
+- Introduction to Molecular Attention Transformer
+- Large Scale Chemical Screens
+- Learning Unsupervised Embeddings for Molecules
+- Modeling Protein Ligand Interactions
+- Modeling Protein Ligand Interactions With Atomic Convolutions
+- Molecular Fingerprints
+- Multisequence Alignments
+- Physics Informed Neural Networks
+- Protein Deep Learning
+- Putting Multitask Learning to Work
+- PytorchLightning Integration
 - Scanpy
-- The_Basic_Tools_of_the_Deep_Life_Sciences
-- Training_a_Generative_Adversarial_Network_on_MNIST
-- Training_a_Normalizing_Flow_on_QM9
-- Training_an_Exchange_Correlation_Functional_using_Deepchem
-- Transfer_Learning_With_ChemBERTa_Transformers
-- Uncertainty_In_Deep_Learning
-- Using_Reinforcement_Learning_to_Play_Pong
-- Working_With_Datasets
-- Working_With_Splitters
+- The Basic Tools of the Deep Life Sciences
+- Training a Generative Adversarial Network on MNIST
+- Training a Normalizing Flow on QM9
+- Training an Exchange Correlation Functional using Deepchem
+- Transfer Learning With ChemBERTa Transformers
+- Uncertainty In Deep Learning
+- Using Reinforcement Learning to Play Pong
+- Working With Datasets
+- Working With Splitters
