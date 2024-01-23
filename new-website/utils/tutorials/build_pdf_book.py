@@ -73,7 +73,7 @@ def merge_pdf_pages(a: List[str]):
     command = "pdfunite "
     for i in a:
         command = command + i + ' '
-    os.system(command + "merged.pdf")
+    os.system(command + "storage/merged.pdf")
 
 def compile_information_pages():
     """Converts the Acknowledgent page and content page from
@@ -89,3 +89,4 @@ if __name__ == "__main__":
     html_to_pdf()
     merge_pdf()
     compile_information_pages()
+    merge_pdf_pages(['storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/full_pdf.pdf'])
