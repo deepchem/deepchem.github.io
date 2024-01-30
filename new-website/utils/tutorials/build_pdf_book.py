@@ -77,12 +77,13 @@ def merge_pdf_pages(a: List[str]):
 
 def compile_information_pages():
     """Converts the Acknowledgent page and content page from
-    Markdowns to pdf, then they can be merged with the content
+    Html to pdf, then they can be merged with the content
     pdf using `merge_pdf_pages` function.
 
     """
-    os.system('mdpdf -o storage/acknowledgement.pdf acknowledgement.md')
-    os.system('mdpdf -o storage/contents.pdf contents.md')
+    pdfkit.from_file('title.html', 'storage/title.pdf')
+    pdfkit.from_file('contents.html', 'storage/contents.pdf')
+    pdfkit.from_file('acknowledgement.html', 'storage/acknowledgement.pdf')
 
 if __name__ == "__main__":
     os.system("mkdir " + PDF_PATH)
