@@ -48,7 +48,10 @@ def html_to_pdf():
         chapter = pd.read_csv(INFO_PATH + "-".join(i))
         for j in chapter["File Name"]:
             print(i, j)
-            pdfkit.from_file(DATA_PATH + j[:-5] + "html", PDF_PATH + j[:-5] + "pdf")
+            try:
+                pdfkit.from_file(DATA_PATH + j[:-5] + "html", PDF_PATH + j[:-5] + "pdf")
+            except:
+                pass
 
 def merge_pdf():
     """Merges the compiled PDFs."""
@@ -86,8 +89,8 @@ def compile_information_pages():
     pdfkit.from_file('acknowledgement.html', 'storage/acknowledgement.pdf')
 
 if __name__ == "__main__":
-    os.system("mkdir " + PDF_PATH)
-    html_to_pdf()
+    #os.system("mkdir " + PDF_PATH)
+    #html_to_pdf()
     merge_pdf()
-    compile_information_pages()
-    merge_pdf_pages(['storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/full_pdf.pdf'])
+    #compile_information_pages()
+    #merge_pdf_pages(['storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/full_pdf.pdf'])
