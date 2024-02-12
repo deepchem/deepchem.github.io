@@ -89,8 +89,8 @@ def compile_information_pages():
     pdfkit.from_file('acknowledgement.html', 'storage/acknowledgement.pdf')
 
 if __name__ == "__main__":
-    #os.system("mkdir " + PDF_PATH)
-    #html_to_pdf()
+    os.system("mkdir " + PDF_PATH)
+    html_to_pdf()
     merge_pdf()
-    #compile_information_pages()
-    #merge_pdf_pages(['storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/full_pdf.pdf'])
+    compile_information_pages()
+    merge_pdf_pages(['storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/full_pdf.pdf'])
