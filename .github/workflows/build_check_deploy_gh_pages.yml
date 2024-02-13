@@ -60,6 +60,13 @@ jobs:
           npm run lint
           npm run export
 
+      - name: generate and export book
+        run: |
+          cd new-website
+          cd utils/tutorials
+          python3 build_pdf_book.py
+          aws s3 cp ./dist/ s3://prithvi-docs/pychiron/${version}/ --recursive --follow-symlinks
+
       # Run the deploy action only if the push is to the main branch
       - name: Deploy 🚀
         if: ${{ github.ref == 'refs/heads/main' }}
