@@ -25,9 +25,9 @@ from utils import numeric_sorter
 from typing import List
 
 
-INFO_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/website-render-order/"
-DATA_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/html-notebooks/"
-PDF_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/storage/"
+INFO_PATH = "./website-render-order/"
+DATA_PATH = "./html-notebooks/"
+PDF_PATH = "./storage/"
 
 files = os.listdir(INFO_PATH)
 files = sorted(files)
