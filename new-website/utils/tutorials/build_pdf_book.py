@@ -25,9 +25,9 @@ from utils import numeric_sorter
 from typing import List
 
 
-INFO_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/website-render-order/"
-DATA_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/html-notebooks/"
-PDF_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/storage/"
+INFO_PATH = "./website-render-order/"
+DATA_PATH = "./html-notebooks/"
+PDF_PATH = "./storage/"
 
 files = os.listdir(INFO_PATH)
 files = sorted(files)
@@ -48,7 +48,10 @@ def html_to_pdf():
         chapter = pd.read_csv(INFO_PATH + "-".join(i))
         for j in chapter["File Name"]:
             print(i, j)
-            pdfkit.from_file(DATA_PATH + j[:-5] + "html", PDF_PATH + j[:-5] + "pdf")
+            try:
+                pdfkit.from_file(DATA_PATH + j[:-5] + "html", PDF_PATH + j[:-5] + "pdf")
+            except:
+                pass
 
 def merge_pdf():
     """Merges the compiled PDFs."""
