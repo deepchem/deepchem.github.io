@@ -33,11 +33,6 @@ INFO_PATH = "website-render-order/"
 DATA_PATH = "html-notebooks/"
 PDF_PATH = "storage/"
 
-files = os.listdir(INFO_PATH)
-files = sorted(files)
-
-files_list = numeric_sorter(files)
-
 
 def timeout_handler(signum, frame):
     """
@@ -75,6 +70,10 @@ def html_to_pdf(data_path=DATA_PATH, info_path=INFO_PATH, pdf_path=PDF_PATH):
         If the Conversion takes longer than 60 seconds.
 
     """
+    files = os.listdir(info_path)
+    files = sorted(files)
+    files_list = numeric_sorter(files)
+
     for i in files_list:
         chapter = pd.read_csv(info_path + "-".join(i))
         for j in chapter["File Name"]:
@@ -134,6 +133,11 @@ def merge_pdf(info_path=INFO_PATH, pdf_path=PDF_PATH):
         Path where the merged pdf file will be stored. Defaults to PDF_PATH.
 
     """
+    files = os.listdir(info_path)
+    files = sorted(files)
+
+    files_list = numeric_sorter(files)
+
     command = "pdfunite "
     for i in files_list:
         print(i)
@@ -143,7 +147,7 @@ def merge_pdf(info_path=INFO_PATH, pdf_path=PDF_PATH):
             if (os.path.exists(file_path)):
                 print(i, j)
                 command = command + pdf_path + j[:-5] + "pdf "
-    os.system(command + "storage/merged.pdf")
+    os.system(command + f"{pdf_path}merged.pdf")
 
 
 def merge_pdf_pages(a: List[str]):
