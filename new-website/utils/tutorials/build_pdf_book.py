@@ -5,6 +5,7 @@ Requirements:
     - pdfunite
     - pdfkit
     - mdpdf
+    - boto3
 
 Example Usage:
     - Run the script "fetch_tutorials.py" // It will fetch all the tutorials.
@@ -23,42 +24,127 @@ import pandas as pd
 import pdfkit
 from utils import numeric_sorter
 from typing import List
+import signal
+import logging
+import boto3
+from botocore.exceptions import ClientError
 
-
-INFO_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/website-render-order/"
-DATA_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/html-notebooks/"
-PDF_PATH = "/workspaces/deepchem.github.io/new-website/utils/tutorials/storage/"
+INFO_PATH = "website-render-order/"
+DATA_PATH = "html-notebooks/"
+PDF_PATH = "storage/"
 
 files = os.listdir(INFO_PATH)
 files = sorted(files)
 
 files_list = numeric_sorter(files)
 
-def html_to_pdf():
+
+def timeout_handler(signum, frame):
+    """
+    For terminating a function call.
+
+    Raises
+    ------
+    Exception
+        If the function is called.
+
+    """
+    raise Exception("Coversion Timed out")
+    
+
+def html_to_pdf(data_path=DATA_PATH, info_path=INFO_PATH, pdf_path=PDF_PATH):
     """
     Converts HTML files to PDF files.
+
+    Parameters
+    ----------
+    data_path: str
+        Path of the html files to be converted. Defaults to DATA_PATH.
+    info_path: str
+        Path for Tutorial Render Order. Defaults to INFO_PATH.
+    pdf_path: str
+        Path where the converted pdf files will be stored. Defaults to PDF_PATH.
 
     Raises
     ------
     ProtocolUnknownError
         If it faces some unknown kind of graphic.
+    IOError
+        If the file specified in the website-render-order is not present in /html-notebooks.
+    Exception
+        If the Conversion takes longer than 60 seconds.
 
     """
     for i in files_list:
-        chapter = pd.read_csv(INFO_PATH + "-".join(i))
+        chapter = pd.read_csv(info_path + "-".join(i))
         for j in chapter["File Name"]:
-            print(i, j)
-            pdfkit.from_file(DATA_PATH + j[:-5] + "html", PDF_PATH + j[:-5] + "pdf")
+            signal.signal(signal.SIGALRM, timeout_handler)
+            signal.alarm(60)
+            try:
+                print(i, j)
+                pdfkit.from_file(data_path + j[:-5] + "html", pdf_path + j[:-5] + "pdf")
+                print("Conversion Successful")
+            except Exception as e:
+                print("Exception occured: {}".format(e))   
 
-def merge_pdf():
-    """Merges the compiled PDFs."""
+
+def upload_file(file_name, bucket, object_name=None):
+    """
+    Upload a file to an S3 bucket
+
+    Parameters
+    ----------
+    file_name: str 
+        Path of the File to be uploaded.
+    bucket: str
+        Name of the Bucket to upload the file to.
+    object_name: str
+        S3 object name. If not specified then file_name is used.
+
+    Returns
+    -------
+    boolean: 
+        True if file was uploaded, else False
+
+    """
+
+    # If S3 object_name was not specified, use file_name
+    if object_name is None:
+        object_name = os.path.basename(file_name)
+
+    # Upload the file
+    s3_client = boto3.client('s3')
+    try:
+        response = s3_client.upload_file(file_name, bucket, object_name)
+    except ClientError as e:
+        logging.error(e)
+        return False
+    return True 
+
+
+def merge_pdf(info_path=INFO_PATH, pdf_path=PDF_PATH):
+    """
+    Merges the compiled PDFs.
+    
+    Parameters
+    ----------
+    info_path: str
+        Path for Tutorial Render Order. Defaults to INFO_PATH.
+    pdf_path: str
+        Path where the merged pdf file will be stored. Defaults to PDF_PATH.
+
+    """
     command = "pdfunite "
     for i in files_list:
-        chapter = pd.read_csv(INFO_PATH + "-".join(i))
+        print(i)
+        chapter = pd.read_csv(info_path + "-".join(i))
         for j in chapter["File Name"]:
-            print(i, j)
-            command = command + PDF_PATH + j[:-5] + "pdf "
-    os.system(command + "merged.pdf")
+            file_path = pdf_path + j[:-5] + "pdf"
+            if (os.path.exists(file_path)):
+                print(i, j)
+                command = command + pdf_path + j[:-5] + "pdf "
+    os.system(command + "storage/merged.pdf")
+
 
 def merge_pdf_pages(a: List[str]):
     """Merges the PDFs.
@@ -73,7 +159,8 @@ def merge_pdf_pages(a: List[str]):
     command = "pdfunite "
     for i in a:
         command = command + i + ' '
-    os.system(command + "storage/merged.pdf")
+    os.system(command + "storage/full_pdf.pdf")
+
 
 def compile_information_pages():
     """Converts the Acknowledgent page and content page from
@@ -85,9 +172,11 @@ def compile_information_pages():
     pdfkit.from_file('contents.html', 'storage/contents.pdf')
     pdfkit.from_file('acknowledgement.html', 'storage/acknowledgement.pdf')
 
+
 if __name__ == "__main__":
     os.system("mkdir " + PDF_PATH)
     html_to_pdf()
     merge_pdf()
     compile_information_pages()
-    merge_pdf_pages(['storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/full_pdf.pdf'])
+    merge_pdf_pages(['storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/merged.pdf'])
+    upload_file('storage/full_pdf.pdf', 'deepchemtutorials', 'TutorialsBook.pdf')
