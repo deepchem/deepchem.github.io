@@ -184,3 +184,4 @@ if __name__ == "__main__":
     compile_information_pages()
     merge_pdf_pages(['storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/merged.pdf'])
     upload_file('storage/full_pdf.pdf', 'deepchemtutorials', 'TutorialsBook.pdf')
+    
