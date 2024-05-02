@@ -19,6 +19,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: install pdfunite
+        run: sudo apt-get install -y poppler-utils
+
+      - name: install wkhtmltopdf
+        run: sudo apt-get install -y wkhtmltopdf
+
       - name: install requirements
         run: |
           cd new-website
@@ -36,5 +42,11 @@ jobs:
           cd new-website
           cd utils/tutorials
           python3 test_utils.py
+
+      - name: Test tutorials build pdf book functions
+        run: |
+          cd new-website
+          cd utils/tutorials
+          python3 test_build_pdf_book.py
 
       
