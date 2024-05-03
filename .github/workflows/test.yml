@@ -19,17 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: install pdfunite
-        run: sudo apt-get install -y poppler-utils
-
-      - name: install wkhtmltopdf
-        run: sudo apt-get install -y wkhtmltopdf
-
       - name: install requirements
         run: |
           cd new-website
           cd utils
           pip install -r requirements.txt
+          sudo apt-get install -y poppler-utils
+          sudo apt-get install -y wkhtmltopdf
 
       - name: Test tutorial fetching and export
         run: |
