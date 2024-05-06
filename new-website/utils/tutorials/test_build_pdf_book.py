@@ -18,8 +18,16 @@ import json
 
 
 class TestConvertHTMLToPDF(unittest.TestCase):
+    """
+    Test cases for the html_to_pdf function.
+    """
 
     def test_convert_html_to_pdf(self):
+        """
+        This function tests whether the html_to_pdf function correctly converts 
+        HTML files to PDF files and saves them in the appropriate directory.
+        
+        """
         INFO_PATH = "mocks/mock_website_render_order/"
         DATA_PATH = "mocks/mock_html-notebooks/"   
         PDF_PATH = "mocks/mock_temp_storage/"
@@ -47,8 +55,17 @@ class TestConvertHTMLToPDF(unittest.TestCase):
             
 
 class TestMergePDF(unittest.TestCase):
+    """
+    Test cases for the merge_pdf function.
+    """
 
     def test_convert_html_to_pdf(self):
+        """
+        This function tests whether the merge_pdf function correctly merges
+        a list of PDF files into a single PDF file and saves it in the specified directory.
+
+        """
+
         INFO_PATH = "mocks/mock_website_render_order/"  
         PDF_PATH = "mocks/mock_storage/"
 
