@@ -81,7 +81,7 @@ def html_to_pdf(data_path=DATA_PATH, info_path=INFO_PATH, pdf_path=PDF_PATH):
             signal.alarm(60)
             try:
                 print(i, j)
-                pdfkit.from_file(data_path + j[:-5] + "html", pdf_path + j[:-5] + "pdf")
+                pdfkit.from_file(data_path + j.strip()[:-5] + "html", pdf_path + j.strip()[:-5] + "pdf")
                 print("Conversion Successful")
             except Exception as e:
                 print("Exception occured: {}".format(e))   
