@@ -90,7 +90,8 @@ A detailed description of the working of the scripts is given below.
 - ### `build_pdf_book.py`
 
   - The script reads the list of notebooks from `utils/tutorials/website-render-order` and converts the HTML files (downloaded temporarily to `/utils/tutorials/html-notebooks`) to PDF files using `pdfkit` and stores them in `/utils/tutorials/storage/`.
-  - The script then merged these PDFs and creates the file `merged.pdf`.
+  - The script then merges these PDFs and creates the file `merged.pdf`.
+  - The `merged.pdf` file is then uploaded to the S3 bucket.
     - Please note, pdfunite package is required to be installed for merging. `apt install poppler-utils`
 
 
