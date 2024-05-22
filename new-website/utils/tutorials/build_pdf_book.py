@@ -182,6 +182,6 @@ if __name__ == "__main__":
     html_to_pdf()
     merge_pdf()
     compile_information_pages()
-    merge_pdf_pages(['storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/merged.pdf'])
+    merge_pdf_pages(['cover.pdf', 'storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/merged.pdf'])
     upload_file('storage/full_pdf.pdf', 'deepchemtutorials', 'TutorialsBook.pdf')
     
