@@ -93,6 +93,7 @@ A detailed description of the working of the scripts is given below.
   - The script then merges these PDFs and creates the file `merged.pdf`.
   - The `merged.pdf` file is then uploaded to the S3 bucket.
     - Please note, pdfunite package is required to be installed for merging. `apt install poppler-utils`
+    
 
 
 ## Deployment
@@ -107,11 +108,21 @@ A detailed description of the working of the scripts is given below.
 
 ## Workflow script
 
-- The `deploy_gh_pages.yml` workflow script in `.github/workflows` is triggered on updates to the main branch.
-- The workflow runs a single job comprising of 3 steps
-  - Fetch version data: This step fetches the latest deepchem release version from the github [api endpoint](https://api.github.com/repos/deepchem/deepchem/releases) and updates the terminal commands in `deepchem/data/home/terminal-commands.json`
-  - Install and build: This step checks out the repository, installs the required dependencies using npm i, runs the linting process with npm run lint, and generates the static website with npm run export.
-  - Deploy: This step deploys the website to the gh-pages branch using the [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action). The website files are copied from the deepchem/out directory, and any files listed in the clean-exclude parameter are excluded from the cleaning process.
+- ### `deploy_gh_pages.yml`
+  
+  - The `deploy_gh_pages.yml` workflow script in `.github/workflows` is triggered on updates to the main branch.
+  - The workflow runs a single job comprising of 3 steps
+    - Fetch version data: This step fetches the latest deepchem release version from the github [api endpoint](https://api.github.com/repos/deepchem/deepchem/releases) and updates the terminal commands in `deepchem/data/home/terminal-commands.json`
+    - Install and build: This step checks out the repository, installs the required dependencies using npm i, runs the linting process with npm run lint, and generates the static website with npm run export.
+    - Deploy: This step deploys the website to the gh-pages branch using the [JamesIves/github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action). The website files are copied from the deepchem/out directory, and any files listed in the clean-exclude parameter are excluded from the cleaning process.
+   
+  - ### `build_pdf_book.yml`
+  
+  - The `build_pdf_book.yml` workflow script in `.github/workflows` is triggered on updates to the `deepchem/examples/tutorials` directory in `deepchem` repository.
+  - The workflow runs a single job comprising of 3 steps
+    - Install requirements: This step installs the dependencies specified in the `requirements.txt` file in `new-website/utils`. It also installs poppler-utils and wkhtmltopdf packages.
+    - Fetch latest version of tutorials: It installs the jq package and then runs the `fetch_tutorials.py` script.
+    - Build pdf book: This step runs the `build_pdf_book.py` script. 
 
 ## Workflow overview
 
