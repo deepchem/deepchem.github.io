@@ -53,7 +53,6 @@ const NavLinks = () => {
             label="Book"
             link="https://deepchemdata.s3.us-west-1.amazonaws.com/book/TutorialsBook.pdf"
             icon="fa-solid fa-download"
-            blank={true}
           />
         </li>
         <li>
