@@ -106,20 +106,38 @@ def upload_file(file_name, bucket, object_name=None):
         True if file was uploaded, else False
 
     """
+    s3_client = boto3.client('s3')
+    try:
+        response = s3_client.head_object(Bucket=bucket, Key=object_name)
+    except ClientError as e:
+        logging.error(e)
+    else:
+        last_modified_datetime = response['LastModified']
+        format = '%Y-%m-%d_%H:%M:%S'
+        formatted_time = last_modified_datetime.strftime(format)
+        old_key = object_name
+        new_key = f'{object_name[:-4]}_{formatted_time}.pdf'
+        
+        s3_client.copy_object(
+            Bucket=bucket,
+            CopySource={'Bucket': bucket, 'Key': old_key},
+            Key=new_key
+        )
 
-    # If S3 object_name was not specified, use file_name
+        s3_client.delete_object(
+            Bucket=bucket,
+            Key=old_key
+        )
+
     if object_name is None:
         object_name = os.path.basename(file_name)
-
-    # Upload the file
-    s3_client = boto3.client('s3')
     try:
         response = s3_client.upload_file(file_name, bucket, object_name)
     except ClientError as e:
         logging.error(e)
         return False
     return True 
-
+    
 
 def merge_pdf(info_path=INFO_PATH, pdf_path=PDF_PATH):
     """
@@ -183,5 +201,5 @@ if __name__ == "__main__":
     merge_pdf()
     compile_information_pages()
     merge_pdf_pages(['cover.pdf', 'storage/title.pdf', 'storage/acknowledgement.pdf', 'storage/contents.pdf', 'storage/merged.pdf'])
-    upload_file('storage/full_pdf.pdf', 'deepchemtutorials', 'TutorialsBook.pdf')
+    upload_file('storage/full_pdf.pdf', 'deepchemdata', 'book/TutorialsBook.pdf')
     
