@@ -1,19 +1,15 @@
-name: Run tests
+name: Build latest version of PDF Book
 
 on:
-  push:
-    branches: [ main ]
-  repository_dispatch:
-    types: [ update ]
   workflow_dispatch:
-  pull_request:
-    branches: [ main ]
+  repository_dispatch:
+    types: [rebuild-book]
 
 permissions:
   contents: write
 
 jobs:
-  test_tutorial_scripts:
+  build_pdf_book:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,22 +23,20 @@ jobs:
           sudo apt-get install -y poppler-utils
           sudo apt-get install -y wkhtmltopdf
 
-      - name: Test tutorial fetching and export
+      - name: fetch latest version of tutorials
+        run: |
+          sudo apt-get install jq
+          cd new-website
+          cd utils/tutorials
+          python3 fetch_tutorials.py
+
+      - name: build pdf book
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
           cd new-website
           cd utils/tutorials
-          python3 test_fetch_tutorials.py
+          python3 build_pdf_book.py
 
-      - name: test tutorials util functions
-        run: |
-          cd new-website
-          cd utils/tutorials
-          python3 test_utils.py
-
-      - name: Test tutorials build pdf book functions
-        run: |
-          cd new-website
-          cd utils/tutorials
-          python3 test_build_pdf_book.py
-
-      
+          
