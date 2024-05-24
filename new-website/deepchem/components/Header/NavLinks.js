@@ -50,6 +50,13 @@ const NavLinks = () => {
         </li>
         <li>
           <NavLink
+            label="Book"
+            link="https://deepchemdata.s3.us-west-1.amazonaws.com/book/TutorialsBook.pdf"
+            icon="fa-solid fa-download"
+          />
+        </li>
+        <li>
+          <NavLink
             label="GitHub"
             link="https://github.com/deepchem/deepchem"
             icon="fa-brands fa-github"
