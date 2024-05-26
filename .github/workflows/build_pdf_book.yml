@@ -3,7 +3,7 @@ name: Build latest version of PDF Book
 on:
   workflow_dispatch:
   repository_dispatch:
-    types: [rebuild-book]
+    types: [ rebuild-website ]
 
 permissions:
   contents: write
