@@ -213,35 +213,29 @@ const Home = () => {
       {/* SUPPORTERS SECTION END */}
 
       {/* DOWNLOAD BOOK BEGIN */}
-      <section className="px-4 py-8 gap-2 lg:gap-16 items-center justify-center flex flex-col lg:py-16 bg-opacity-10 bg-dc-light-gray get-started">
+      <section className="px-4 py-8 gap-2 lg:gap-16 items-center justify-center flex flex-col lg:py-16 bg-opacity-10 bg-dc-light-gray download-book">
         <div className={"flex flex-col gap-8 items-center lg:flex-row lg:gap-16 lg:items-center"}>
           <h2 className={"lg:hidden mb-0"}>The DeepChem Book</h2>
           <Image
             src={deepchemBookCover}
             alt="DeepChem Book Cover"
-            width={300}
-            height={500}
+            width={250}
+            height={400}
             className={"shadow-lg"}
           />
+
           <div className="flex-col flex gap-8 text-dc-gray text-opacity-60 lg:flex w-[500px] items-center">
             <div className={"flex-col flex gap-6 hidden lg:flex"}>
               <h2 className={"mb-0"}>The DeepChem Book</h2>
               <p className="text-lg text-justify">
-                The DeepChem Book is a step-by-step tutorial series for deep 
-                life sciences. The author, Bharath Ramsundar and the 
-                DeepChem team, cover the essential tools and techniques for 
-                mastering deep learning in life sciences. Tailored for 
-                beginners in both machine learning and life sciences, the 
-                book builds a repertoire of tools required to perform 
-                meaningful work in the dynamic field of life sciences. Going 
-                beyond machine learning, the tutorial covers critical aspects 
-                of data handling necessary for constructing systems within 
-                the deep life sciences.
+                The DeepChem Book by the DeepChem team is a step-by-step guide for deep learning 
+                in life sciences. It offers essential tools and techniques on machine learning and 
+                data handling for beginners looking to apply AI in life sciences.
               </p>
             </div>
 
             <Link className={"w-full flex justify-center"} href={"https://deepchemdata.s3.us-west-1.amazonaws.com/book/TutorialsBook.pdf"}>
-              <div className="flex justify-center items-center gap-4 rounded-xl shadow-lg py-4 min-w-[250px] cursor-pointer bg-dc-orange w-fit lg:w-full px-10">
+              <div className="flex justify-center items-center gap-2 lg:gap-4 rounded-xl shadow-lg py-4 min-w-[250px] cursor-pointer bg-dc-orange w-fit lg:w-full px-4">
                 <i className={`fa-solid fa-download text-xl lg:text-2xl xl:flex text-white`}></i>
                 <p className="font-medium tracking-wide text-xl text-white">
                   Download E-Book
@@ -250,7 +244,6 @@ const Home = () => {
             </Link>
           </div>
         </div>
-        
       </section>
       {/* DOWNLOAD BOOK END */}
 
