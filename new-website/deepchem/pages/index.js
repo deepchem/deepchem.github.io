@@ -21,6 +21,7 @@ import exploreLayersIcon from "./../public/images/explore-layers.png";
 
 import Terminal from "../components/Home/Terminal";
 import deepchemLogo from "../public/images/deepchem-logo.png";
+import deepchemBookCover from "../public/images/deepchem-book-cover.png";
 
 /**
  * Function to import all images from /public/images/used-by/ for the 'used by scientific leaders' carousel
@@ -211,8 +212,55 @@ const Home = () => {
       </section>
       {/* SUPPORTERS SECTION END */}
 
+      {/* DOWNLOAD BOOK BEGIN */}
+      <section className="px-4 py-8 gap-2 lg:gap-16 items-center justify-center flex flex-col lg:py-16 bg-opacity-10 bg-dc-light-gray download-book">
+        <div
+          className={`
+            flex flex-col gap-8 items-center lg:flex-row lg:gap-16 lg:items-center
+          `}
+        >
+          <h2 className={"lg:hidden mb-0"}>The DeepChem Book</h2>
+          <Image
+            src={deepchemBookCover}
+            alt="DeepChem Book Cover"
+            width={250}
+            height={400}
+            className={"shadow-lg"}
+          />
+          <div className="flex-col flex gap-8 text-dc-gray text-opacity-60 lg:flex w-[500px] items-center">
+            <div className={"flex-col flex gap-6 hidden lg:flex"}>
+              <h2 className={"mb-0"}>The DeepChem Book</h2>
+              <p className="text-lg text-justify">
+                The DeepChem Book is a step-by-step guide for deep learning in
+                life sciences. It offers essential tools and techniques on
+                machine learning and data handling for beginners looking to
+                apply AI in life sciences.
+              </p>
+            </div>
+            <Link
+              className={"w-full flex justify-center"}
+              href={`
+                https://deepchemdata.s3.us-west-1.amazonaws.com/book/TutorialsBook.pdf
+              `}
+            >
+              <div className="flex justify-center items-center gap-2 lg:gap-4 rounded-xl shadow-lg py-4 min-w-[250px] cursor-pointer bg-dc-orange w-fit lg:w-full px-4">
+                <i
+                  className={`
+                    fa-solid fa-download text-xl lg:text-2xl xl:flex text-white
+                  `}
+                ></i>
+                <p className="font-medium tracking-wide text-xl text-white">
+                  Download E-Book
+                </p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+      {/* DOWNLOAD BOOK END */}
+
       {/* EXPLORE START */}
-      <section className="explore flex flex-col items-center px-[25px] 2xl:px-[300px] py-16 bg-dc-light-gray bg-opacity-10 gap-4">
+      <section className="explore flex flex-col items-center px-[25px] 2xl:px-[300px] py-16 gap-4">
         <h2 className="mb-8">Explore</h2>
         <div className="explore flex flex-wrap lg:flex-row items-center justify-center gap-10">
           <ExploreCardItem
