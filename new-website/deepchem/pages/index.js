@@ -227,17 +227,16 @@ const Home = () => {
             height={400}
             className={"shadow-lg"}
           />
-      
           <div className="flex-col flex gap-8 text-dc-gray text-opacity-60 lg:flex w-[500px] items-center">
             <div className={"flex-col flex gap-6 hidden lg:flex"}>
               <h2 className={"mb-0"}>The DeepChem Book</h2>
               <p className="text-lg text-justify">
-                The DeepChem Book by the DeepChem team is a step-by-step guide for deep learning in life
-                sciences. It offers essential tools and techniques on machine learning and data handling
-                for beginners looking to apply AI in life sciences.
+                The DeepChem Book by the DeepChem team is a step-by-step guide
+                for deep learning in life sciences. It offers essential tools
+                and techniques on machine learning and data handling for
+                beginners looking to apply AI in life sciences.
               </p>
             </div>
-              
             <Link
               className={"w-full flex justify-center"}
               href={`
