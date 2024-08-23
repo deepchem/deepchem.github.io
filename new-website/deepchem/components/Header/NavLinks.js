@@ -35,8 +35,8 @@ const NavLinks = () => {
         <li>
           <NavLink
             label="Discuss"
-            link="https://gitter.im/deepchem/Lobby"
-            icon="fa-brands fa-gitter"
+            link="https://discord.gg/deXJEfyn5x"
+            icon="fa-brands fa-discord"
             blank={true}
           />
         </li>
