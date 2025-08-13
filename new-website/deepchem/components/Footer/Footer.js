@@ -44,7 +44,7 @@ function Footer() {
             <Link href="https://forum.deepchem.io/" target={"_blank"}>
               Forums
             </Link>
-            <Link href="https://gitter.im/deepchem/Lobby" target={"_blank"}>
+            <Link href="https://discord.gg/deXJEfyn5x" target={"_blank"}>
               Discuss
             </Link>
           </div>
