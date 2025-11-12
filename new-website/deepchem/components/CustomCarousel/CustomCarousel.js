@@ -40,6 +40,7 @@ export default function CustomCarousel({ children }) {
       showArrows={true}
       showStatus={false}
       showIndicators={false}
+      selectedItem={1}
     >
       {children}
     </Carousel>
