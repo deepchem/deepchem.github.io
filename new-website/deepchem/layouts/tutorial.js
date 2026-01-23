@@ -6,7 +6,6 @@ import TutorialLink from "../components/Tutorials/TutorialLink";
 import tutorials from "../data/tutorials/tutorials";
 import renderOrder from "../data/tutorials/render-order";
 
-import ScrollToTop from "react-scroll-to-top";
 
 /**
  * Tutorial layout component - A wrapper layout for all the tutorials pages
@@ -77,9 +76,8 @@ export default function TutorialLayout({ children }) {
       </Script>
 
       <div
-        className={`${
-          isNavbarOpen ? "flex" : "hidden"
-        } fixed bg-dc-gray/80 w-full h-[100vh] top-0 lg:hidden z-10`}
+        className={`${isNavbarOpen ? "flex" : "hidden"
+          } fixed bg-dc-gray/80 w-full h-[100vh] top-0 lg:hidden z-10`}
         onClick={toggleNavbar}
       ></div>
       <div className="flex flex-col px-[25px] 2xl:px-[300px] items-start overflow-x-scroll gap-8 font-poppins py-8 lg:py-16">
@@ -92,9 +90,8 @@ export default function TutorialLayout({ children }) {
         </div>
         <div className="flex flex-row justify-between w-full">
           <nav
-            className={`notebook-menu ${
-              isNavbarOpen ? "translate-x-0" : "-translate-x-full"
-            } bg-white ease-in-out duration-300 lg:duration-0 fixed top-0 left-0 shadow-xl py-8 lg:py-0 h-[100vh] w-[70vw] max-w-[300px]`}
+            className={`notebook-menu ${isNavbarOpen ? "translate-x-0" : "-translate-x-full"
+              } bg-white ease-in-out duration-300 lg:duration-0 fixed top-0 left-0 shadow-xl py-8 lg:py-0 h-[100vh] w-[70vw] max-w-[300px]`}
           >
             {renderOrder.map((tutorials, i) => {
               const list = (
@@ -127,14 +124,6 @@ export default function TutorialLayout({ children }) {
           </div>
         </div>
       </div>
-
-      <ScrollToTop
-        className="flex items-center justify-center !rounded-full !opacity-70 hover:!opacity-100 transition-all !bg-dc-orange"
-        smooth
-        component={
-          <i className="fa-solid fa-chevron-up text-dc-white !text-lg "></i>
-        }
-      />
     </div>
   );
 }
