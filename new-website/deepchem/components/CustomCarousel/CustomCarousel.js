@@ -12,6 +12,7 @@ import { AnimationsContext } from "../../contexts/animations-context";
 export default function CustomCarousel({ children }) {
   const { isAnimationsEnabled } = useContext(AnimationsContext);
   const [windowWidth, setWindowWidth] = React.useState(0);
+  const [selectedItem, setSelectedItem] = React.useState(0);
 
   useEffect(() => {
     /**
@@ -40,6 +41,8 @@ export default function CustomCarousel({ children }) {
       showArrows={true}
       showStatus={false}
       showIndicators={false}
+      selectedItem={selectedItem}
+      onChange={(index) => setSelectedItem(index)}
     >
       {children}
     </Carousel>

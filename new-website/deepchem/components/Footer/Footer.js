@@ -15,7 +15,7 @@ function Footer() {
           <Logo />
           <p className="mt-4">Maintained by the DeepChem core team</p>
           <p>Design by @kid-116</p>
-          <p>&copy; DeepChem 2022</p>
+          <p>&copy; DeepChem 2025</p>
         </div>
         <div className="flex flex-row gap-8 lg:gap-20 items-start font-light">
           <div className="flex flex-col gap-1">
@@ -68,12 +68,12 @@ function Footer() {
               href="https://twitter.com/deep_chem?lang=en"
               target={"_blank"}
             >
-              Twitter
+              X
             </Link>
           </div>
         </div>
       </div>
-      <p className="text-center mt-8 lg:hidden text-sm">&copy; Deepchem 2022</p>
+      <p className="text-center mt-8 lg:hidden text-sm">&copy; Deepchem 2025</p>
     </footer>
   );
 }
