@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState} from "react";
 
 import { Carousel } from "react-responsive-carousel";
 import { AnimationsContext } from "../../contexts/animations-context";
@@ -11,7 +11,18 @@ import { AnimationsContext } from "../../contexts/animations-context";
  */
 export default function CustomCarousel({ children }) {
   const { isAnimationsEnabled } = useContext(AnimationsContext);
-  const [windowWidth, setWindowWidth] = React.useState(0);
+  const [windowWidth, setWindowWidth] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const childCount= React.Children.count(children);
+  const goToNext = () => {
+    setCurrentIndex((current) => (current+1) % childCount);
+  }
+
+
+
+  const goToPrev = () => {
+  setCurrentIndex( (current) => (current === 0 ?  (childCount-1) : (current-1)) )
+ }
 
   useEffect(() => {
     /**
@@ -32,12 +43,37 @@ export default function CustomCarousel({ children }) {
   return (
     <Carousel
       className="carousel"
+
       autoPlay={isAnimationsEnabled}
       centerMode={true}
-      infiniteLoop={true}
+      infiniteLoop={false}
       showThumbs={false}
       centerSlidePercentage={windowWidth > 1200 ? 40 : 100}
       showArrows={true}
+      swipeable={true}
+      selectedItem={currentIndex}
+      onChange={(index) => setCurrentIndex(index)}
+      renderArrowNext={(onClickHandler, hasNext, label) => (
+  <button
+    type="button"
+    onClick={goToNext}
+    title={label}
+    className="control-arrow control-next"
+  >
+    Next
+  </button>
+)}
+
+renderArrowPrev={(onClickHandler, hasPrev, label) => (
+  <button
+    type="button"
+    onClick={goToPrev}
+    title={label}
+    className="control-arrow control-prev"
+  >
+    Previous
+  </button>
+)}
       showStatus={false}
       showIndicators={false}
     >
