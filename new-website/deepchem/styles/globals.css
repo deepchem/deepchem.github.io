@@ -229,13 +229,19 @@ footer {
   }
 
   .scroll-nav {
-    flex: 2 1 0;
-    @apply text-right hidden xl:block font-poppins max-w-[200px] pl-2;
-  }
-
+  flex: 2 1 0;
+  @apply text-right hidden xl:block font-poppins max-w-[200px] pl-2;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  position: sticky;
+  top: 1rem;
+}
   .scroll-nav__item {
     @apply pb-4;
   }
+ .scroll-nav__item--active {
+  @apply font-semibold text-dc-light-blue;
+}
 }
 
 
